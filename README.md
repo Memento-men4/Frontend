@@ -1,11 +1,7 @@
-# 2022-2 Hanyang UniverSity
+2022-2 Hanyang UniverSity
+Software Engineering
+AI + applications
+Front-End
 
-# Software Engineering
-
-# AI + applications
-
-# Front-End
-
-## Development Environment
-
+# Development Environment
 React-Native
