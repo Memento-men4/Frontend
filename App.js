@@ -1,6 +1,12 @@
 import AppLoading from "expo-app-loading";
 import React, { useState } from "react";
-import { Text } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  SafeAreaView,
+  ScrollView,
+  StatusBar,
+} from "react-native";
 import * as Font from "expo-font";
 import { Ionicons } from "@expo/vector-icons";
 import { Asset } from "expo-asset";
