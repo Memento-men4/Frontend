@@ -1,8 +1,9 @@
 import React from "react";
 import { View, Text } from "react-native";
-const Movies = () => (
+const Recoding = () => (
   <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-    <Text>Movies</Text>
+    <Text>Recoding</Text>
   </View>
 );
-export default Movies;
+
+export default Recoding;
