@@ -4,6 +4,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Calendar from "../screens/Calendar";
 import { useColorScheme } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import Stack from "./Stack";
 
 const Tab = createBottomTabNavigator();
 
@@ -12,7 +13,7 @@ const Tabs = () => {
   return (
     // 바텀탭 다 속성 적용하려면 네비게이터에 screenOptions, 각각하려면 스크린에 options
     <Tab.Navigator
-      initialRouteName="Calendar"
+      initialRouteName="Home"
       screenOptions={{
         tabBarStyle: { backgroundColor: isDark ? "#1e272e" : "white" },
         tabBarActiveTintColor: isDark ? "#ffa801" : "#1e272e",
@@ -24,16 +25,30 @@ const Tabs = () => {
           color: isDark ? "white" : "#1e272e",
         },
         tabBarLabelPosition: "below-icon",
-        tabBarBadge: 0,
+        tabBarLabelStyle: {
+          marginTop: -5,
+          fontSize: 12,
+          fontWeight: "600",
+        },
       }}
     >
-      <Tab.Screen name="Recoding" component={Recoding} />
       <Tab.Screen
-        name="Calendar"
+        name="Recoding"
+        component={Recoding}
+        options={{
+          headerShown: false,
+          tabBarIcon: ({ color, size }) => {
+            return <Ionicons name="mic" size={size} color={color} />;
+          },
+        }}
+      />
+      <Tab.Screen
+        name="Home"
         component={Calendar}
         options={{
-          tabBarIcon: ({ focused, color, size }) => {
-            return <Ionicons name="calendar" size={24} color="black" />;
+          tabBarBadge: 0, // 홈화면 옆에 숫자
+          tabBarIcon: ({ color, size }) => {
+            return <Ionicons name="home" size={size} color={color} />;
           },
         }}
       />
