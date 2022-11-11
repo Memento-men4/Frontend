@@ -5,6 +5,7 @@ import Calendar from "../screens/Calendar";
 import { useColorScheme } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import Stack from "./Stack";
+import LG from "../screens/LG";
 
 const Tab = createBottomTabNavigator();
 
@@ -49,6 +50,15 @@ const Tabs = () => {
           tabBarBadge: 0, // 홈화면 옆에 숫자
           tabBarIcon: ({ color, size }) => {
             return <Ionicons name="home" size={size} color={color} />;
+          },
+        }}
+      />
+      <Tab.Screen
+        name="LG"
+        component={LG}
+        options={{
+          tabBarIcon: ({ color, size }) => {
+            return <Ionicons name="person" size={size} color={color} />;
           },
         }}
       />
