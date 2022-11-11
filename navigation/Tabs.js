@@ -23,7 +23,10 @@ const Tabs = () => {
           backgroundColor: isDark ? "#1e272e" : "white",
         },
         headerTitleStyle: {
+          // 화면 헤더 타이틀
           color: isDark ? "white" : "#1e272e",
+          fontSize: 19,
+          fontWeight: "bold",
         },
         tabBarLabelPosition: "below-icon",
         tabBarLabelStyle: {
@@ -37,7 +40,7 @@ const Tabs = () => {
         name="Recoding"
         component={Recoding}
         options={{
-          headerShown: false,
+          //headerShown: false,
           tabBarIcon: ({ color, size }) => {
             return <Ionicons name="mic" size={size} color={color} />;
           },

@@ -7,6 +7,8 @@ const Title = styled.Text`
   font-size: 30px;
   font-weight: bold;
   margin-bottom: 10px;
+  margin-top: 20px;
+  text-align: center;
 `;
 
 const Body = styled.View`
@@ -22,6 +24,12 @@ const Target = styled.TouchableOpacity`
   background-color: #ffda79;
   border-radius: 10px;
   margin-bottom: 50px;
+  padding: 10px;
+`;
+const Txt = styled.Text`
+  font-size: 20px;
+  font-weight: bold;
+  padding: 10px;
 `;
 
 const Days = ({ navigation: { navigate } }) => (
@@ -37,63 +45,97 @@ const Days = ({ navigation: { navigate } }) => (
   </View>
 );
 const Infos = ({ navigation: { navigate } }) => (
-  <Body>
+  <Body style={{ flex: 1 }}>
+    <TouchableOpacity
+      style={{ marginTop: 20, marginLeft: 0 }}
+      onPress={() => navigate("Tabs", { screen: "Home" })}
+    >
+      <Text style={{ fontSize: 30 }}>🔙</Text>
+    </TouchableOpacity>
     <Title>The Information</Title>
-    <Text style={{ marginTop: 10, marginBottom: 10 }}>
-      이하늘은 치매에 걸린 것이 분명하다
+    <Text style={{ marginTop: 10, marginBottom: 10, textAlign: "center" }}>
+      첫번째 줄
     </Text>
-    <Text style={{ marginTop: 10, marginBottom: 10 }}>
-      이유는 없다 그냥 치매에 걸린 것 같다
+    <Text style={{ marginTop: 10, marginBottom: 10, textAlign: "center" }}>
+      두번째 줄
     </Text>
-    <Text style={{ marginTop: 10, marginBottom: 100 }}>
-      그는 영츠하이머 초기 증상을 가지고 있다 나는 아무튼 아니다
+    <Text style={{ marginTop: 10, marginBottom: 100, textAlign: "center" }}>
+      세번째 줄
     </Text>
-    <Target onPress={() => navigate("Stack", { screen: "Next" })}>
-      <Text style={{ fontSize: 20, fontWeight: "bold" }}>
-        👉 치매 위험성 👈
-      </Text>
+    <Target
+      //style={{ alignItems: "flex-start" }}
+      onPress={() => navigate("Stack", { screen: "Next" })}
+    >
+      <Txt>💡 치매 위험성</Txt>
     </Target>
-    <Target onPress={() => navigate("Stack", { screen: "Next2" })}>
-      <Text style={{ fontSize: 20, fontWeight: "bold" }}>
-        👉 치매 2021 현황 👈
-      </Text>
+    <Target
+      //style={{ alignItems: "flex-start" }}
+      onPress={() => navigate("Stack", { screen: "Next2" })}
+    >
+      <Txt>💡 치매 현황</Txt>
     </Target>
-    <Target onPress={() => navigate("Stack", { screen: "Next3" })}>
-      <Text style={{ fontSize: 20, fontWeight: "bold" }}>
-        👉 치매 예방 방법 👈
-      </Text>
+    <Target
+      //style={{ alignItems: "flex-start" }}
+      onPress={() => navigate("Stack", { screen: "Next3" })}
+    >
+      <Txt>💡 치매 예방 방법</Txt>
     </Target>
   </Body>
 );
 const Next = ({ navigation: { navigate } }) => (
   <View
     //onPress={() => navigate("Tabs", { screen: "Home" })}
-    style={{ flex: 1, justifyContent: "center", alignContent: "flex-start" }}
+    style={{ justifyContent: "center", alignContent: "flex-start" }}
   >
+    <TouchableOpacity
+      style={{ marginTop: 40, marginLeft: 10 }}
+      onPress={() => navigate("Stack", { screen: "Infos" })}
+    >
+      <Text style={{ fontSize: 30 }}>🔙</Text>
+    </TouchableOpacity>
     <Text>치매의 위험성을 소개하는 농담곰</Text>
   </View>
 );
 const Next2 = ({ navigation: { navigate } }) => (
   <View
     //onPress={() => navigate("Tabs", { screen: "Home" })}
-    style={{ flex: 1, justifyContent: "center", alignContent: "flex-start" }}
+    style={{ justifyContent: "center", alignContent: "flex-start" }}
   >
+    <TouchableOpacity
+      style={{ marginTop: 40, marginLeft: 10 }}
+      onPress={() => navigate("Stack", { screen: "Infos" })}
+    >
+      <Text style={{ fontSize: 30 }}>🔙</Text>
+    </TouchableOpacity>
     <Text>치매의 현황을 소개하는 농담곰</Text>
   </View>
 );
 const Next3 = ({ navigation: { navigate } }) => (
   <View
     //onPress={() => navigate("Tabs", { screen: "Home" })}
-    style={{ flex: 1, justifyContent: "center", alignContent: "flex-start" }}
+    style={{ justifyContent: "center", alignContent: "flex-start" }}
   >
+    <TouchableOpacity
+      style={{ marginTop: 40, marginLeft: 10 }}
+      onPress={() => navigate("Stack", { screen: "Infos" })}
+    >
+      <Text style={{ fontSize: 30 }}>🔙</Text>
+    </TouchableOpacity>
     <Text>치매를 예방하는 방법을 소개하는 농담곰</Text>
   </View>
 );
 const Game = ({ navigation: { navigate } }) => (
   <View
     //onPress={() => navigate("Tabs", { screen: "Home" })}
-    style={{ flex: 1, justifyContent: "center", alignContent: "flex-start" }}
+    style={{ justifyContent: "center", alignContent: "flex-start" }}
   >
+    <TouchableOpacity
+      style={{ marginTop: 40, marginLeft: 10 }}
+      onPress={() => navigate("Tabs", { screen: "Home" })}
+    >
+      <Text style={{ fontSize: 30 }}>🔙</Text>
+    </TouchableOpacity>
+
     <Text>게임이 여기에 있어야 해요</Text>
   </View>
 );

@@ -14,12 +14,12 @@ const Target = styled.TouchableOpacity`
   margin: 5px;
   flex: 1;
   border: 2px solid black;
-`;
+`; // margin: 두 버튼 사이 간격
 
 const Txt = styled.Text`
   font-size: 20px;
   font-weight: bold;
-  padding: 10px;
+  padding: 5px;
   padding-top: 20px;
   padding-bottom: 20px;
   padding-left: 0px;
@@ -47,6 +47,14 @@ const CalendarView = ({ navigation: { navigate } }) => {
           arrowColor: "#ffda79",
           dotColor: "#ffda79",
           todayButtonFontWeight: "bold",
+          //textDayFontWeight: "bold",
+          //textDayHeaderFontSize: 14,
+          textDayHeaderFontWeight: "bold",
+          textMonthFontWeight: "bold",
+          arrowWidth: 100,
+          arrowStyle: { padding: 10, margin: 10 },
+          textMonthFontSize: 20,
+          textDayFontSize: 15,
         }}
       ></Calendar>
       <Footer
@@ -56,14 +64,10 @@ const CalendarView = ({ navigation: { navigate } }) => {
         }}
       >
         <Target onPress={() => navigate("Stack", { screen: "Infos" })}>
-          <Txt>
-            💡{"\n"} 영츠하이머 {"\n"} 예방 방법
-          </Txt>
+          <Txt>영츠하이머 {"\n"} 예방 방법</Txt>
         </Target>
         <Target onPress={() => navigate("Stack", { screen: "Game" })}>
-          <Txt>
-            💡{"\n"} 영츠하이머 {"\n"} 게임
-          </Txt>
+          <Txt>영츠하이머 {"\n"} 예방 게임</Txt>
         </Target>
       </Footer>
     </Body>

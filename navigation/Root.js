@@ -7,7 +7,8 @@ import { TouchableOpacity } from "react-native";
 const Nav = createNativeStackNavigator();
 
 const Root = () => (
-  <Nav.Navigator screenOptions={{ headerShown: false, presentation: "modal" }}>
+  //presentation: "modal"
+  <Nav.Navigator screenOptions={{ headerShown: false }}>
     <Nav.Screen name="Tabs" component={Tabs} />
     <Nav.Screen name="Stack" component={Stack} />
   </Nav.Navigator>
