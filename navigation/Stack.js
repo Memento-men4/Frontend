@@ -30,25 +30,31 @@ const Txt = styled.Text`
   font-size: 20px;
   font-weight: bold;
   padding: 10px;
-`;
+  padding-left: 0px;
+  padding-right: 3px;
+`; // 💡 아이콘에 디폴트 패딩이 있어서 오른쪽 패딩 넣어서 보정해줬음
 
 const Days = ({ navigation: { navigate } }) => (
-  <View
+  <Body
     //onPress={() => navigate("Tabs", { screen: "Home" })}
     style={{
       flex: 1,
-      justifyContent: "center",
-      alignItems: "center",
     }}
   >
+    <TouchableOpacity
+      style={{ marginTop: 20, marginLeft: 0 }}
+      onPress={() => navigate("Main", { screen: "Home" })} // Root에 있는 name=""을 앞에 적어줘야함
+    >
+      <Text style={{ fontSize: 30 }}>🔙</Text>
+    </TouchableOpacity>
     <Title>타임라인 들어가야하고..</Title>
-  </View>
+  </Body>
 );
 const Infos = ({ navigation: { navigate } }) => (
   <Body style={{ flex: 1 }}>
     <TouchableOpacity
       style={{ marginTop: 20, marginLeft: 0 }}
-      onPress={() => navigate("Tabs", { screen: "Home" })}
+      onPress={() => navigate("Main", { screen: "Home" })} // Root에 있는 name=""을 앞에 적어줘야함
     >
       <Text style={{ fontSize: 30 }}>🔙</Text>
     </TouchableOpacity>
@@ -66,7 +72,7 @@ const Infos = ({ navigation: { navigate } }) => (
       //style={{ alignItems: "flex-start" }}
       onPress={() => navigate("Stack", { screen: "Next" })}
     >
-      <Txt>💡 치매 위험성</Txt>
+      <Txt style={{ backgroundColor: "skyblue" }}>💡 치매 위험성</Txt>
     </Target>
     <Target
       //style={{ alignItems: "flex-start" }}
@@ -131,7 +137,7 @@ const Game = ({ navigation: { navigate } }) => (
   >
     <TouchableOpacity
       style={{ marginTop: 40, marginLeft: 10 }}
-      onPress={() => navigate("Tabs", { screen: "Home" })}
+      onPress={() => navigate("Main", { screen: "Home" })}
     >
       <Text style={{ fontSize: 30 }}>🔙</Text>
     </TouchableOpacity>

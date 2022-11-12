@@ -1,5 +1,5 @@
 import React from "react";
-import Recoding from "../screens/Recoding";
+import Recording from "../screens/Recording";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Calendar from "../screens/Calendar";
 import { useColorScheme } from "react-native";
@@ -19,6 +19,7 @@ const Tabs = () => {
         tabBarStyle: { backgroundColor: isDark ? "#1e272e" : "white" },
         tabBarActiveTintColor: isDark ? "#ffa801" : "#1e272e",
         tabBarInactiveTintColor: isDark ? "#d2dae2" : "#808e9b",
+        headerShown: false, // 헤더 중첩 방지
         headerStyle: {
           backgroundColor: isDark ? "#1e272e" : "white",
         },
@@ -37,8 +38,8 @@ const Tabs = () => {
       }}
     >
       <Tab.Screen
-        name="Recoding"
-        component={Recoding}
+        name="Recording"
+        component={Recording}
         options={{
           //headerShown: false,
           tabBarIcon: ({ color, size }) => {

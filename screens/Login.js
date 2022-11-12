@@ -1,9 +1,8 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
-const LG = ({ navigation: { navigate } }) => (
+const Login = ({ navigation: { navigate } }) => (
   <View style={styles.container}>
-    <Text style={styles.text}>LGLGLGLGLGLGL</Text>
-    <Text style={styles.text}>ㅋㅋㅋㅋ</Text>
+    <Text style={styles.text}>로그인 페이지</Text>
   </View>
 );
 
@@ -21,4 +20,4 @@ const styles = StyleSheet.create({
     backgroundColor: "black",
   },
 });
-export default LG;
+export default Login;
