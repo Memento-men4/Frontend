@@ -23,6 +23,8 @@ const Target = styled.TouchableOpacity`
   align-items: center;
   background-color: #ffda79;
   border-radius: 10px;
+  margin-left:10px;
+  margin-right:10px
   margin-bottom: 50px;
   padding: 10px;
 `;
@@ -69,22 +71,22 @@ const Infos = ({ navigation: { navigate } }) => (
       세번째 줄
     </Text>
     <Target
-      //style={{ alignItems: "flex-start" }}
+      style={{ alignItems: "flex-start" }}
       onPress={() => navigate("Stack", { screen: "Next" })}
     >
-      <Txt style={{ backgroundColor: "skyblue" }}>💡 치매 위험성</Txt>
+      <Txt style={{ marginLeft: 30 }}>💡 치매 위험성</Txt>
     </Target>
     <Target
-      //style={{ alignItems: "flex-start" }}
+      style={{ alignItems: "flex-start" }}
       onPress={() => navigate("Stack", { screen: "Next2" })}
     >
-      <Txt>💡 치매 현황</Txt>
+      <Txt style={{ marginLeft: 30 }}>💡 치매 현황</Txt>
     </Target>
     <Target
-      //style={{ alignItems: "flex-start" }}
+      style={{ alignItems: "flex-start" }}
       onPress={() => navigate("Stack", { screen: "Next3" })}
     >
-      <Txt>💡 치매 예방 방법</Txt>
+      <Txt style={{ marginLeft: 30 }}>💡 치매 예방 방법</Txt>
     </Target>
   </Body>
 );

@@ -1,9 +1,17 @@
 import React from "react";
 import { Calendar } from "react-native-calendars";
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
 import styled from "styled-components/native";
 
 const Body = styled.View``;
+const Header = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 10px;
+  margin-bottom: 0px;
+`;
 const Footer = styled.View``;
 const Target = styled.TouchableOpacity`
   justify-content: center;
@@ -27,6 +35,11 @@ const Txt = styled.Text`
   text-align: center;
 `;
 
+const Gom = styled.Image`
+  width: 100px;
+  height: 100px;
+`;
+
 const CalendarView = ({ navigation: { navigate } }) => {
   const markedDates = {
     "2022-11-01": { selected: true, marked: true, selectedColor: "#ffda79" },
@@ -36,6 +49,17 @@ const CalendarView = ({ navigation: { navigate } }) => {
   };
   return (
     <Body>
+      <Header>
+        <Gom
+          source={require("/Users/leesukcheol/noovies/assets/images/gom-unscreen.gif")}
+        />
+        <Text style={{ fontSize: 20, marginTop: 30, fontWeight: "bold" }}>
+          안녕하세요 {"\n"} 이하늘 님!
+        </Text>
+        <Gom
+          source={require("/Users/leesukcheol/noovies/assets/images/gom.png")}
+        />
+      </Header>
       <Calendar
         onDayPress={(day) => navigate("Stack", { screen: "Days" })} // 날짜 클릭하면 스택으로 이동
         //onDayPress={(day) => console.log("selected day", day)}
