@@ -3,7 +3,9 @@ import { Calendar } from "react-native-calendars";
 import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
 import styled from "styled-components/native";
 
-const Body = styled.View``;
+const Body = styled.View`
+  background-color: white;
+`;
 const Header = styled.View`
   flex-direction: row;
   justify-content: space-between;
@@ -11,6 +13,7 @@ const Header = styled.View`
   margin-right: 10px;
   margin-top: 10px;
   margin-bottom: 0px;
+  border: 2px solid black;
 `;
 const Footer = styled.View``;
 const Target = styled.TouchableOpacity`
@@ -60,27 +63,29 @@ const CalendarView = ({ navigation: { navigate } }) => {
           source={require("/Users/leesukcheol/noovies/assets/images/gom.png")}
         />
       </Header>
-      <Calendar
-        onDayPress={(day) => navigate("Stack", { screen: "Days" })} // 날짜 클릭하면 스택으로 이동
-        //onDayPress={(day) => console.log("selected day", day)}
-        markedDates={markedDates}
-        hideExtraDays={true}
-        style={styles.calendar}
-        theme={{
-          selectedDayBackgroundColor: "#ffda79",
-          arrowColor: "#ffda79",
-          dotColor: "#ffda79",
-          todayButtonFontWeight: "bold",
-          //textDayFontWeight: "bold",
-          //textDayHeaderFontSize: 14,
-          textDayHeaderFontWeight: "bold",
-          textMonthFontWeight: "bold",
-          arrowWidth: 100,
-          arrowStyle: { padding: 10, margin: 10 },
-          textMonthFontSize: 20,
-          textDayFontSize: 15,
-        }}
-      ></Calendar>
+      <Footer>
+        <Calendar
+          onDayPress={(day) => navigate("Stack", { screen: "Days" })} // 날짜 클릭하면 스택으로 이동
+          //onDayPress={(day) => console.log("selected day", day)}
+          markedDates={markedDates}
+          hideExtraDays={true}
+          style={styles.calendar}
+          theme={{
+            selectedDayBackgroundColor: "#ffda79",
+            arrowColor: "#ffda79",
+            dotColor: "#ffda79",
+            todayButtonFontWeight: "bold",
+            //textDayFontWeight: "bold",
+            //textDayHeaderFontSize: 14,
+            textDayHeaderFontWeight: "bold",
+            textMonthFontWeight: "bold",
+            arrowWidth: 100,
+            arrowStyle: { padding: 10, margin: 10 },
+            textMonthFontSize: 20,
+            textDayFontSize: 15,
+          }}
+        ></Calendar>
+      </Footer>
       <Footer
         style={{
           flexDirection: "row",
@@ -103,7 +108,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 20,
     borderBottomWidth: 1,
-    borderBottomColor: "#e0e0e0",
+    borderBottomColor: "black",
     borderRadius: 10,
   },
 });

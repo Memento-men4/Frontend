@@ -35,7 +35,7 @@ const Footer = styled.View`
 `;
 
 const LG = ({ navigation: { navigate } }) => (
-  <Body style={{ flex: 1 }}>
+  <Body style={{ flex: 1, backgroundColor: "white" }}>
     <Title>우리 집 LG 가전</Title>
     <Text style={{ marginTop: 10, marginBottom: 10, textAlign: "center" }}>
       첫번째 줄
