@@ -16,7 +16,7 @@ import Stack from "./navigation/Stack";
 import Root from "./navigation/Root";
 import { ThemeProvider } from "styled-components/native";
 import { useColorScheme } from "react-native";
-import { darkTheme, lightTheme } from "./styled";
+import { darkTheme, lightTheme } from "./mystyled";
 import "react-native-gesture-handler"; // drawer navigation
 
 const loadFonts = (fonts) => fonts.map((font) => Font.loadAsync(font));

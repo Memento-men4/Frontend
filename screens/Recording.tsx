@@ -14,12 +14,13 @@ const Btn = styled.TouchableOpacity`
   padding: 10px;
   border-radius: 100px;
 `;
-//background-color: ${(props) => props.theme.mainBgColor};
-
+// 다크모드
+// background-color: ${(props) => props.theme.mainBgColor};
 const Txt = styled.Text`
   font-size: 20px;
   color: ${(props) => props.theme.textColor};
 `;
+
 //color: ${(props) => (props.selected ? "red" : "blue")};
 //selected={true}
 const Recording = ({ navigation: { navigate } }) => (
