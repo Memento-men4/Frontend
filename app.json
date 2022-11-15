@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "noovies",
-    "slug": "noovies",
+    "name": "memento",
+    "slug": "memento",
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"
     ]
   },
-  "name": "noovies"
+  "name": "memento"
 }

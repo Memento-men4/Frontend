@@ -2,6 +2,7 @@ import React from "react";
 import { Calendar } from "react-native-calendars";
 import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
 import styled from "styled-components/native";
+import { Ionicons } from "@expo/vector-icons";
 
 const Body = styled.View`
   background-color: white;
@@ -31,7 +32,6 @@ const Txt = styled.Text`
   font-size: 20px;
   font-weight: bold;
   padding: 5px;
-  padding-top: 20px;
   padding-bottom: 20px;
   padding-left: 0px;
   padding-right: 0px;
@@ -96,6 +96,7 @@ const CalendarView = ({ navigation: { navigate } }) => {
           <Txt>영츠하이머 {"\n"} 예방 방법</Txt>
         </Target>
         <Target onPress={() => navigate("Stack", { screen: "Game" })}>
+          <Ionicons name="game-controller" size={24} color="black" />
           <Txt>영츠하이머 {"\n"} 예방 게임</Txt>
         </Target>
       </Footer>
