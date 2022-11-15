@@ -43,7 +43,7 @@ const DrawerComponent = ({ navigation }) => {
               onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}
             >
               <Image
-                source={require("/Users/leesukcheol/noovies/assets/images/logo_J.png")}
+                source={require("/Users/leesukcheol/memento/assets/images/logo_J.png")}
                 style={[styles.icon]}
               />
             </TouchableOpacity>
@@ -60,7 +60,7 @@ const DrawerComponent = ({ navigation }) => {
               onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}
             >
               <Image
-                source={require("/Users/leesukcheol/noovies/assets/images/logo_J.png")}
+                source={require("/Users/leesukcheol/memento/assets/images/logo_J.png")}
                 style={[styles.icon]}
               />
             </TouchableOpacity>
@@ -77,7 +77,7 @@ const DrawerComponent = ({ navigation }) => {
               onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}
             >
               <Image
-                source={require("/Users/leesukcheol/noovies/assets/images/logo_J.png")}
+                source={require("/Users/leesukcheol/memento/assets/images/logo_J.png")}
                 style={[styles.icon]}
               />
             </TouchableOpacity>

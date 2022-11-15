@@ -54,13 +54,13 @@ const CalendarView = ({ navigation: { navigate } }) => {
     <Body>
       <Header>
         <Gom
-          source={require("/Users/leesukcheol/noovies/assets/images/gom-unscreen.gif")}
+          source={require("/Users/leesukcheol/memento/assets/images/gom-unscreen.gif")}
         />
         <Text style={{ fontSize: 20, marginTop: 30, fontWeight: "bold" }}>
           안녕하세요 {"\n"} 이하늘 님!
         </Text>
         <Gom
-          source={require("/Users/leesukcheol/noovies/assets/images/gom.png")}
+          source={require("/Users/leesukcheol/memento/assets/images/gom.png")}
         />
       </Header>
       <Footer>
