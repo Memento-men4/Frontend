@@ -3,9 +3,9 @@ import Recording from "../screens/Recording";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Calendar from "../screens/Calendar";
 import { useColorScheme } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
 import Stack from "./Stack";
 import LG from "../screens/LG";
+import { Ionicons } from "@expo/vector-icons";
 
 const Tab = createBottomTabNavigator();
 

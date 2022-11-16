@@ -57,3 +57,6 @@ target 'memento' do
     end
   end
 end
+
+pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons' 
+# 이건 아이콘을 사용하기 위한 라이브러리입니다.

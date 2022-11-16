@@ -2,7 +2,8 @@ import React from "react";
 import { Calendar } from "react-native-calendars";
 import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
 import styled from "styled-components/native";
-import { Ionicons } from "@expo/vector-icons";
+import Ionicons from "@expo/vector-icons/Ionicons";
+import { imageName } from "/Users/leesukcheol/memento/images.js"; // 실제 디바이스에서 돌릴 때 에러 뜨길래..
 
 const Body = styled.View`
   background-color: white;
@@ -32,7 +33,6 @@ const Txt = styled.Text`
   font-size: 20px;
   font-weight: bold;
   padding: 5px;
-  padding-bottom: 20px;
   padding-left: 0px;
   padding-right: 0px;
   text-align: center;
@@ -93,10 +93,9 @@ const CalendarView = ({ navigation: { navigate } }) => {
         }}
       >
         <Target onPress={() => navigate("Stack", { screen: "Infos" })}>
-          <Txt>영츠하이머 {"\n"} 예방 방법</Txt>
+          <Txt>영츠하이머 {"\n"} 그게 뭔데?</Txt>
         </Target>
         <Target onPress={() => navigate("Stack", { screen: "Game" })}>
-          <Ionicons name="game-controller" size={24} color="black" />
           <Txt>영츠하이머 {"\n"} 예방 게임</Txt>
         </Target>
       </Footer>
