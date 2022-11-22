@@ -70,6 +70,7 @@ const Write = ({ navigation: { goBack, navigate } }) => {
     if (serialNumber === "" || selectedProduct == null) {
       return Alert.alert("Please complete form.");
     }
+    console.log(serialNumber, selectedProduct); // 콘솔에 텍스트랑 이모지 출력
     //AsyncStorage.clear();
     //console.log("이모지 클리어");
     AsyncStorage.setItem("Product", selectedProduct, () => {
@@ -118,3 +119,8 @@ const Write = ({ navigation: { goBack, navigate } }) => {
   );
 };
 export default Write;
+
+/* 
+write.js 페이지에 새로운 시간 추가 기능 구현해서, 이걸 포스트로 백에 넘겨야지
+엘지 스크린에서 시간 수정해서 설정버튼 누를 때 백에서 수정만 하면 됨
+*/
