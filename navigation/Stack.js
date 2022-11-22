@@ -1,18 +1,16 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import {
   Text,
   View,
   TouchableOpacity,
-  Button,
-  StyleSheet,
   ScrollView,
   SafeAreaView,
 } from "react-native";
 import styled from "styled-components/native";
-
+import AsyncStorage from "@react-native-async-storage/async-storage";
 const Title = styled.Text`
-  font-size: 30px;
+  font-size: 20px;
   font-weight: bold;
   margin-bottom: 10px;
   margin-top: 20px;
@@ -50,17 +48,38 @@ const TextArea = styled.ScrollView`
   background-color: #ffda79;
 `;
 
-const Days = ({ navigation: { navigate } }) => (
-  <Body style={{ flex: 1 }}>
-    <Back
-      style={{ marginTop: 20, marginLeft: 10 }}
-      onPress={() => navigate("Main", { screen: "Home" })} // Root에 있는 name=""을 앞에 적어줘야함
-    >
-      <Text style={{ fontSize: 30 }}>🔙</Text>
-    </Back>
-    <Title>타임라인 들어가야하고..</Title>
-  </Body>
-);
+const Days = ({ navigation: { navigate } }) => {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    AsyncStorage.getItem("Text", (err, result) => {
+      //array.push(result);
+      setData(result);
+    });
+  }, []);
+  const Timeline = () => (
+    <View style={{ flexDirection: "row" }}>
+      <Title style={{ flex: 2, backgroundColor: "white" }}>
+        ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ
+      </Title>
+      <View style={{ flex: 4, backgroundColor: "#D4D4D4" }}>
+        <Title style={{ flexDirection: "column" }}>{data}</Title>
+      </View>
+    </View>
+  );
+  return (
+    <Body style={{ flex: 1 }}>
+      <Back
+        style={{ marginTop: 20, marginLeft: 10 }}
+        onPress={() => navigate("Main", { screen: "Home" })} // Root에 있는 name=""을 앞에 적어줘야함
+      >
+        <Text style={{ fontSize: 30 }}>🔙</Text>
+      </Back>
+      <ScrollView style={{ flexDirection: "column" }}>
+        <Timeline />
+      </ScrollView>
+    </Body>
+  );
+};
 const Infos = ({ navigation: { navigate } }) => (
   <Body style={{ flex: 1 }}>
     <Back

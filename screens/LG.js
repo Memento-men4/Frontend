@@ -63,45 +63,7 @@ const Content = styled.View`
   flex-direction: row;
   margin-left: 5px;
 `;
-const Airplane = () => {
-  <Content style={{ marginTop: 10 }}>
-    <Footer style={{ backgroundColor: "#ffda79" }}>
-      <Btn style={{ padding: 20 }}>
-        <Ionicons name="ios-airplane" size={24} color="black" />
-      </Btn>
-      <Btn style={{ padding: 20 }} onPress={onPressDate}>
-        <ShowDate style={{ fontSize: 15 }}>
-          {format(new Date(date), "PPP", { locale: ko })}{" "}
-        </ShowDate>
-      </Btn>
-      <Btn style={{ padding: 20 }} onPress={onPressTime}>
-        <ShowDate style={{ fontSize: 15 }}>
-          {format(new Date(date), "p", { locale: ko })}
-        </ShowDate>
-      </Btn>
-      <DateTimePickerModal
-        isVisible={visible}
-        mode={mode}
-        onConfirm={onConfirm}
-        onCancel={onCancel}
-        date={date}
-      />
-    </Footer>
-    <Btn
-      style={{
-        padding: 15,
-        borderRadius: 30,
-        marginLeft: 5,
-        backgroundColor: "#D4D4D4",
-      }}
-    >
-      <Text>설정</Text>
-    </Btn>
-  </Content>;
-};
-
 export var array = [];
-
 // justify-content: center, align-items: center; 갈기면 상하좌우 센터
 const LG = ({ navigation: { navigate } }) => {
   const [data, setData] = useState([]);
