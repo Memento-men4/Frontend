@@ -58,9 +58,9 @@
   <string>Description of why you require the use of the speech recognition</string>
   <!--석철: Ionicons 내 디바이스에서-->
   <key>UIAppFonts</key>
-  <!--석철: GeoLocation 앱 사용중일 때만 위치 정보 가져오기-->
-  <!--<key>NSLocationWhenInUseUsageDescription</key>
-  <string/> -->
+  <!--석철: GeoLocation 앱 사용중일 때만 위치 정보 가져오기
+  <key>NSLocationAlwaysUsageDescription</key>
+  <string>My description about why I need this capability</string>-->
 	<array>
 		<string>AntDesign.ttf</string>
 		<string>Entypo.ttf</string>

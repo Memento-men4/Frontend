@@ -10,6 +10,9 @@ install! 'cocoapods',
   :deterministic_uuids => false
 
 target 'memento' do
+  #Trouble Shooting: no permissions handler detected 
+  #permissions_path = '../node_modules/react-native-permissions/ios'
+  
   use_expo_modules!
   config = use_native_modules!
 
