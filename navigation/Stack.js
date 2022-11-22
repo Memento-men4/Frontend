@@ -42,7 +42,7 @@ const Txt = styled.Text`
   padding-left: 0px;
   padding-right: 3px;
 `; // 💡 아이콘에 디폴트 패딩이 있어서 오른쪽 패딩 넣어서 보정해줬음
-
+const Back = styled.TouchableOpacity``;
 const TextArea = styled.ScrollView`
   margin-top: 20px;
   margin-bottom: 50px;
@@ -51,29 +51,24 @@ const TextArea = styled.ScrollView`
 `;
 
 const Days = ({ navigation: { navigate } }) => (
-  <Body
-    //onPress={() => navigate("Tabs", { screen: "Home" })}
-    style={{
-      flex: 1,
-    }}
-  >
-    <TouchableOpacity
+  <Body style={{ flex: 1 }}>
+    <Back
       style={{ marginTop: 20, marginLeft: 10 }}
       onPress={() => navigate("Main", { screen: "Home" })} // Root에 있는 name=""을 앞에 적어줘야함
     >
       <Text style={{ fontSize: 30 }}>🔙</Text>
-    </TouchableOpacity>
+    </Back>
     <Title>타임라인 들어가야하고..</Title>
   </Body>
 );
 const Infos = ({ navigation: { navigate } }) => (
   <Body style={{ flex: 1 }}>
-    <TouchableOpacity
+    <Back
       style={{ marginTop: 20, marginLeft: 10 }}
       onPress={() => navigate("Main", { screen: "Home" })} // Root에 있는 name=""을 앞에 적어줘야함
     >
       <Text style={{ fontSize: 30 }}>🔙</Text>
-    </TouchableOpacity>
+    </Back>
     <Title>영츠하이머 예방 방법</Title>
     <SafeAreaView>
       <TextArea>
@@ -119,12 +114,12 @@ const Next = ({ navigation: { navigate } }) => (
     //onPress={() => navigate("Tabs", { screen: "Home" })}
     style={{ justifyContent: "center", alignContent: "flex-start" }}
   >
-    <TouchableOpacity
+    <Back
       style={{ marginTop: 40, marginLeft: 10 }}
       onPress={() => navigate("Stack", { screen: "Infos" })}
     >
       <Text style={{ fontSize: 30 }}>🔙</Text>
-    </TouchableOpacity>
+    </Back>
     <Title>치매 위험성</Title>
   </View>
 );
@@ -133,12 +128,12 @@ const Next2 = ({ navigation: { navigate } }) => (
     //onPress={() => navigate("Tabs", { screen: "Home" })}
     style={{ justifyContent: "center", alignContent: "flex-start" }}
   >
-    <TouchableOpacity
+    <Back
       style={{ marginTop: 40, marginLeft: 10 }}
       onPress={() => navigate("Stack", { screen: "Infos" })}
     >
       <Text style={{ fontSize: 30 }}>🔙</Text>
-    </TouchableOpacity>
+    </Back>
     <Text>치매의 현황을 소개하는 농담곰</Text>
   </View>
 );
@@ -161,16 +156,17 @@ const Game = ({ navigation: { navigate } }) => (
     //onPress={() => navigate("Tabs", { screen: "Home" })}
     style={{ justifyContent: "center", alignContent: "flex-start" }}
   >
-    <TouchableOpacity
+    <Back
       style={{ marginTop: 40, marginLeft: 10 }}
       onPress={() => navigate("Main", { screen: "Home" })}
     >
       <Text style={{ fontSize: 30 }}>🔙</Text>
-    </TouchableOpacity>
+    </Back>
 
     <Text>게임이 여기에 있어야 해요</Text>
   </View>
 );
+
 const NativeStack = createNativeStackNavigator();
 
 const Stack = () => (

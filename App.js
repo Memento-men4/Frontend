@@ -1,12 +1,5 @@
 import AppLoading from "expo-app-loading";
 import React, { useState } from "react";
-import {
-  StyleSheet,
-  Text,
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-} from "react-native";
 import * as Font from "expo-font";
 import { Ionicons } from "@expo/vector-icons";
 import { Asset } from "expo-asset";
@@ -29,6 +22,7 @@ const loadImages = (images) =>
       return Asset.loadAsync(image);
     }
   });
+
 export default function App() {
   const [ready, setReady] = useState(false);
   const onFinish = () => setReady(true);

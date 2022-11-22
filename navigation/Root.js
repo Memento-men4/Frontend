@@ -3,20 +3,14 @@ import "react-native-gesture-handler";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Tabs from "./Tabs";
 import Stack from "./Stack";
-import {
-  TouchableOpacity,
-  View,
-  Text,
-  StyleSheet,
-  Image,
-  Button,
-} from "react-native";
+import { TouchableOpacity, StyleSheet, Image } from "react-native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { DrawerActions, useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
 import Recording from "../screens/Recording";
 import Login from "../screens/Login";
 import Diagnosis from "../screens/Diagnosis";
+import Write from "./Write";
 const Nav = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
 
@@ -91,6 +85,19 @@ const DrawerComponent = ({ navigation }) => {
     // 그리고 로그인 성공하면 드로우 네비 바에서 로그아웃 뜨게 해야함
   );
 };
+const NativeStack = createNativeStackNavigator();
+
+const Stack2 = ({ navigation }) => (
+  <NativeStack.Navigator
+    screenOptions={{ headerBackTitleVisible: false, presentation: "modal" }}
+  >
+    <NativeStack.Screen
+      name="Stack2"
+      component={Days}
+      options={{ headerShown: false }}
+    />
+  </NativeStack.Navigator>
+);
 
 const Root = () => (
   //presentation: "modal"
@@ -100,6 +107,7 @@ const Root = () => (
       component={DrawerComponent} // const 이름이 들어가야함
     />
     <Nav.Screen name="Stack" options={{}} component={Stack} />
+    <Nav.Screen name="Write" options={{}} component={Write} />
   </Nav.Navigator>
 );
 
