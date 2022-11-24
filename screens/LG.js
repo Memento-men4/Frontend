@@ -63,33 +63,41 @@ const Content = styled.View`
   flex-direction: row;
   margin-left: 5px;
 `;
-export var array = [];
+
 // justify-content: center, align-items: center; 갈기면 상하좌우 센터
 const LG = ({ navigation: { navigate } }) => {
   const [data, setData] = useState([]);
-  useEffect(() => {
-    AsyncStorage.getItem("Product", (err, result) => {
-      //array.push(result);
-      //array.includes("🤯"
+  const loadData = async (value) => {
+    await AsyncStorage.getItem("Product", (err, result) => {
       if (result == "🤯") {
-        setData((data) => [...data, 1]);
+        setData((data) => [...data, 0]);
       } else if (result == "🥲") {
-        setData((data) => [...data, 2]);
+        setData((data) => [...data, 1]);
       } else if (result == "🤬") {
-        setData((data) => [...data, 3]);
+        setData((data) => [...data, 2]);
       } else if (result == "🤗") {
-        setData((data) => [...data, 4]);
+        setData((data) => [...data, 3]);
       } else if (result == "🥰") {
-        setData((data) => [...data, 5]);
+        setData((data) => [...data, 4]);
       } else if (result == "😊") {
-        setData((data) => [...data, 6]);
+        setData((data) => [...data, 5]);
       } else if (result == "🤩") {
-        setData((data) => [...data, 7]);
+        setData((data) => [...data, 6]);
       }
     });
+  };
+  const storeData = async () => {
+    await AsyncStorage.setItem("Product", tmp);
+  };
+
+  useEffect(() => {
+    loadData();
+    //storeData();
+    console.log(data);
+    //AsyncStorage.setItem("Product", JSON.stringify(data));
   }, []);
-  array = data;
-  console.log(array);
+  //useEffect(() => {}, [setData, data]);
+  console.log("okok");
   const [date, onChangeDate] = useState(new Date()); // 선택 날짜
   const [mode, setMode] = useState("date"); // 모달 유형
   const [visible, setVisible] = useState(false); // 모달 노출 여부
@@ -98,19 +106,16 @@ const LG = ({ navigation: { navigate } }) => {
     setMode("date"); // 모달 유형을 date로 변경
     setVisible(true); // 모달 open
   };
-
   const onPressTime = () => {
     // 시간 클릭 시
     setMode("time"); // 모달 유형을 time으로 변경
     setVisible(true); // 모달 open
   };
-
   const onConfirm = (selectedDate) => {
     // 날짜 또는 시간 선택 시
     setVisible(false); // 모달 close
     onChangeDate(selectedDate); // 선택한 날짜 변경
   };
-
   const onCancel = () => {
     // 취소 시
     setVisible(false); // 모달 close
@@ -212,13 +217,13 @@ const LG = ({ navigation: { navigate } }) => {
     <Body style={{ flex: 1, backgroundColor: "white" }}>
       <Title>우리 집 LG 가전</Title>
       <ScrollView style={{ backgroundColor: "white" }}>
-        {array.includes(1) ? <Airplane /> : null}
-        {array.includes(2) ? <TV /> : null}
-        {array.includes(3) ? <Drum /> : null}
-        {array.includes(4) ? <Airplane /> : null}
-        {array.includes(5) ? <Airplane /> : null}
-        {array.includes(6) ? <Airplane /> : null}
-        {array.includes(7) ? <Airplane /> : null}
+        {data.includes(0) ? <Airplane /> : null}
+        {data.includes(1) ? <TV /> : null}
+        {data.includes(2) ? <Drum /> : null}
+        {data.includes(3) ? <Airplane /> : null}
+        {data.includes(4) ? <Airplane /> : null}
+        {data.includes(5) ? <Airplane /> : null}
+        {data.includes(6) ? <Airplane /> : null}
       </ScrollView>
       <AddBtn onPress={() => navigate("Write", { screen: "Write" })}>
         <AddBtnText>+</AddBtnText>

@@ -59,8 +59,11 @@
   <!--석철: Ionicons 내 디바이스에서-->
   <key>UIAppFonts</key>
   <!--석철: GeoLocation 앱 사용중일 때만 위치 정보 가져오기
-  <key>NSLocationAlwaysUsageDescription</key>
+  <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+  <string>Location is required to provide you with the best experience</string>
+  <key>NSLocationWhenInUseUsageDescription</key>
   <string>My description about why I need this capability</string>-->
+  <!-- 엑스포 지오로케이션 써야할 것 같음-->
 	<array>
 		<string>AntDesign.ttf</string>
 		<string>Entypo.ttf</string>

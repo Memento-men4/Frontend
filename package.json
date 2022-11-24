@@ -18,6 +18,7 @@
     "@react-navigation/drawer": "^6.5.0",
     "@react-navigation/native": "^6.0.13",
     "@react-navigation/native-stack": "^6.9.1",
+    "axios": "^1.2.0",
     "date-fns": "^2.29.3",
     "expo": "~46.0.16",
     "expo-app-loading": "~2.1.0",
@@ -37,6 +38,7 @@
     "react-native-reanimated": "^2.12.0",
     "react-native-safe-area-context": "^4.4.1",
     "react-native-screens": "~3.15.0",
+    "react-native-timeline-flatlist": "^0.8.0",
     "react-native-voice": "^0.3.0",
     "react-native-web": "~0.18.7",
     "styled-components": "^5.3.6"
