@@ -9,6 +9,8 @@ import {
 } from "react-native";
 import styled from "styled-components/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import Timeline from "react-native-timeline-flatlist";
+
 const Title = styled.Text`
   font-size: 20px;
   font-weight: bold;
@@ -48,6 +50,40 @@ const TextArea = styled.ScrollView`
   background-color: #ffda79;
 `;
 
+const ddd = [
+  {
+    time: "09:00",
+    title: "Event 1",
+    description: "ddd",
+  },
+];
+const TimeLine = () => {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    loadData();
+  }, []);
+
+  return (
+    <Timeline
+      data={ddd}
+      isUsingFlatlist={true}
+      lineColor="rgb(45,156,219)"
+      innerCircle={"dot"}
+      circleColor="rgb(45,156,219)"
+      circleSize={20}
+      descriptionStyle={{ color: "gray" }}
+      options={{
+        style: { padding: 20 },
+      }}
+      onEventPress={(event) => {
+        if (event.title === "Event 1") {
+          alert("Event 1");
+        }
+      }}
+    />
+  );
+};
+
 const Days = ({ navigation: { navigate } }) => {
   const [data, setData] = useState([]);
   useEffect(() => {
@@ -56,7 +92,9 @@ const Days = ({ navigation: { navigate } }) => {
       setData(result);
     });
   }, []);
-  const Timeline = () => (
+
+  /*
+  const Time_line = () => (
     <View style={{ flexDirection: "row" }}>
       <Title style={{ flex: 2, backgroundColor: "white" }}>
         ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ
@@ -66,6 +104,12 @@ const Days = ({ navigation: { navigate } }) => {
       </View>
     </View>
   );
+  */
+  // 하늘: 서버로부터 추천 목록이랑 실제 실행 목록 두가지 api가 넘어온다.
+  // 실제실행: [세탁기] 전체(=추천): [세탁기, 스타일러]인데
+  // 둘 다 띄워주면 세탁기 세탁기 스타일러. 이렇게 뜨면 안되니까
+  // 전체에 있는 세탁기가 실제실행 리스트에 있을 경우 전체에서 빼주는 식으로 해야할듯
+
   return (
     <Body style={{ flex: 1 }}>
       <Back
@@ -74,8 +118,9 @@ const Days = ({ navigation: { navigate } }) => {
       >
         <Text style={{ fontSize: 30 }}>🔙</Text>
       </Back>
-      <ScrollView style={{ flexDirection: "column" }}>
-        <Timeline />
+      <Title style={{ marginBottom: 30 }}>Basic TimeLine Example</Title>
+      <ScrollView>
+        <TimeLine />
       </ScrollView>
     </Body>
   );
@@ -143,10 +188,7 @@ const Next = ({ navigation: { navigate } }) => (
   </View>
 );
 const Next2 = ({ navigation: { navigate } }) => (
-  <View
-    //onPress={() => navigate("Tabs", { screen: "Home" })}
-    style={{ justifyContent: "center", alignContent: "flex-start" }}
-  >
+  <View style={{ justifyContent: "center", alignContent: "flex-start" }}>
     <Back
       style={{ marginTop: 40, marginLeft: 10 }}
       onPress={() => navigate("Stack", { screen: "Infos" })}
@@ -157,10 +199,7 @@ const Next2 = ({ navigation: { navigate } }) => (
   </View>
 );
 const Next3 = ({ navigation: { navigate } }) => (
-  <View
-    //onPress={() => navigate("Tabs", { screen: "Home" })}
-    style={{ justifyContent: "center", alignContent: "flex-start" }}
-  >
+  <View style={{ justifyContent: "center", alignContent: "flex-start" }}>
     <TouchableOpacity
       style={{ marginTop: 40, marginLeft: 10 }}
       onPress={() => navigate("Stack", { screen: "Infos" })}
