@@ -20,6 +20,13 @@
 ## 🛠 Project Setup
 Server should be running before running the app.
 
+```
+$ npm install
+$ cd ios
+$ pod install
+$ npm start react-native run-ios (or react-native run-android)
+```
+
 ## 📦 Packages 
     "@react-native-async-storage/async-storage": "^1.17.11",
     "@react-native-community/datetimepicker": "^6.7.0",
