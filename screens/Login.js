@@ -2,11 +2,14 @@ import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import styled from "styled-components/native";
 
-const Login = ({ navigation: { navigate } }) => (
-  <View style={styles.container}>
-    <Text style={styles.text}>로그인 페이지</Text>
-  </View>
-);
+const Login = () => {
+  //{ navigation: { navigate } }
+  return (
+    <View>
+      <Text>로그인 페이지</Text>
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {

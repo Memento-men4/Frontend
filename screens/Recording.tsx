@@ -40,24 +40,6 @@ const Recording = () => {
     : isRecord
     ? "Recording..."
     : "버튼을 누르면 음성인식이 시작됩니다.";
-  const [latitude, setLatitude] = useState(null);
-  const [longitude, setLogitude] = useState(null);
-
-  const geoLocation = () => {
-    Geolocation.getCurrentPosition(
-      (position) => {
-        const latitude = JSON.stringify(position.coords.latitude);
-        const longitude = JSON.stringify(position.coords.longitude);
-
-        setLatitude(latitude);
-        setLogitude(longitude);
-      },
-      (error) => {
-        console.log(error.code, error.message);
-      },
-      { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
-    );
-  };
 
   const _onSpeechStart = () => {
     // 음성인식 시작
@@ -108,12 +90,6 @@ const Recording = () => {
     <Container>
       <VoiceText>{voiceLabel}</VoiceText>
       <ButtonRecord onPress={_onRecordVoice} title={buttonLabel} />
-
-      <TouchableOpacity onPress={() => geoLocation()}>
-        <Text> Get GeoLocation </Text>
-      </TouchableOpacity>
-      <Text>latitude: {latitude}</Text>
-      <Text>longitude: {longitude}</Text>
     </Container>
   );
 };

@@ -3,7 +3,6 @@ import { View, Text, FlatList, TouchableOpacity } from "react-native";
 import styled from "styled-components/native";
 import { useNavigation } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import Write from "../navigation/Write";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { format } from "date-fns";
 import ko from "date-fns/esm/locale/ko/index.js";
@@ -69,6 +68,7 @@ const LG = ({ navigation: { navigate } }) => {
   const [data, setData] = useState([]);
   const loadData = async (value) => {
     await AsyncStorage.getItem("Product", (err, result) => {
+      console.log("hihi", data);
       if (result == "🤯") {
         setData((data) => [...data, 0]);
       } else if (result == "🥲") {
@@ -91,9 +91,9 @@ const LG = ({ navigation: { navigate } }) => {
   };
 
   useEffect(() => {
+    console.log(data);
     loadData();
     //storeData();
-    console.log(data);
     //AsyncStorage.setItem("Product", JSON.stringify(data));
   }, []);
   //useEffect(() => {}, [setData, data]);
@@ -217,13 +217,13 @@ const LG = ({ navigation: { navigate } }) => {
     <Body style={{ flex: 1, backgroundColor: "white" }}>
       <Title>우리 집 LG 가전</Title>
       <ScrollView style={{ backgroundColor: "white" }}>
-        {data.includes(0) ? <Airplane /> : null}
-        {data.includes(1) ? <TV /> : null}
-        {data.includes(2) ? <Drum /> : null}
-        {data.includes(3) ? <Airplane /> : null}
-        {data.includes(4) ? <Airplane /> : null}
-        {data.includes(5) ? <Airplane /> : null}
-        {data.includes(6) ? <Airplane /> : null}
+        {data.includes(0) && <Airplane />}
+        {data.includes(1) && <TV />}
+        {data.includes(2) && <Drum />}
+        {data.includes(3) && <Airplane />}
+        {data.includes(4) && <Airplane />}
+        {data.includes(5) && <Airplane />}
+        {data.includes(6) && <Airplane />}
       </ScrollView>
       <AddBtn onPress={() => navigate("Write", { screen: "Write" })}>
         <AddBtnText>+</AddBtnText>

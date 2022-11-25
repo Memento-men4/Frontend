@@ -2,14 +2,18 @@ import React, { useState } from "react";
 import { Alert, Text, View } from "react-native";
 import styled from "styled-components/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-
+import DateTimePickerModal from "react-native-modal-datetime-picker";
+import { format } from "date-fns";
+import ko from "date-fns/esm/locale/ko/index.js";
 const Body = styled.View`
   background-color: #ffda79;
   flex: 1;
   flex-direction: column;
   background-color: white;
 `;
-
+const ShowDate = styled.Text`
+  font-size: 10px;
+`;
 const Title = styled.Text`
   color: black;
   margin: 25px 0px;
@@ -26,7 +30,6 @@ const TextInput = styled.TextInput`
 `;
 const Btn = styled.TouchableOpacity`
   margin: 20px;
-  background-color: black;
   padding: 10px 20px;
   align-items: center;
   border-radius: 20px;
@@ -68,6 +71,7 @@ const EmotionText = styled.Text`
 const DayBtnText = styled.Text`
   font-size: 20px;
 `;
+
 const week = ["월", "화", "수", "목", "금", "토", "일"];
 const products = ["🤯", "🥲", "🤬", "🤗", "🥰", "😊", "🤩"];
 
@@ -90,6 +94,24 @@ const Write = ({ navigation: { goBack, navigate } }) => {
   const onFriPress = () => setFri(!fri);
   const onSatPress = () => setSat(!sat);
   const onSunPress = () => setSun(!sun);
+  const [date, onChangeDate] = useState(new Date()); // 선택 날짜
+  const [mode, setMode] = useState("date"); // 모달 유형
+  const [visible, setVisible] = useState(false); // 모달 노출 여부
+  const onPressTime = () => {
+    // 시간 클릭 시
+    setMode("time"); // 모달 유형을 time으로 변경
+    setVisible(true); // 모달 open
+  };
+  const onConfirm = (selectedDate) => {
+    // 날짜 또는 시간 선택 시
+    console.log(selectedDate);
+    setVisible(false); // 모달 close
+    onChangeDate(selectedDate); // 선택한 날짜 변경
+  };
+  const onCancel = () => {
+    // 취소 시
+    setVisible(false); // 모달 close
+  };
   const storeData = () => {
     AsyncStorage.setItem("Product", selectedProduct);
     // JSON으로 바꿔줘야함. 시간 추가기능
@@ -105,7 +127,9 @@ const Write = ({ navigation: { goBack, navigate } }) => {
     //console.log("이모지 클리어");
     //storeData();
     storeData();
-    goBack();
+    //goBack();
+    console.log("navigatemainLg");
+    navigate("Main", { screen: "LG" });
   };
   return (
     <Body>
@@ -165,8 +189,20 @@ const Write = ({ navigation: { goBack, navigate } }) => {
           <DayBtnText>일</DayBtnText>
         </DayBtn>
       </List>
-      <Title>가전을 실행할 요일을 선택해주세요</Title>
-      <Btn onPress={onSubmit}>
+      <Title>가전을 실행할 시간을 선택해주세요</Title>
+      <Btn style={{ padding: 20 }} onPress={onPressTime}>
+        <ShowDate style={{ fontSize: 15 }}>
+          {format(new Date(date), "p", { locale: ko })}
+        </ShowDate>
+      </Btn>
+      <DateTimePickerModal
+        isVisible={visible}
+        mode={mode}
+        onConfirm={onConfirm}
+        onCancel={onCancel}
+        date={date}
+      />
+      <Btn style={{ backgroundColor: "black" }} onPress={onSubmit}>
         <BtnText>Save</BtnText>
       </Btn>
     </Body>

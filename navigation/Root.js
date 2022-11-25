@@ -10,7 +10,7 @@ import { Ionicons } from "@expo/vector-icons";
 import Recording from "../screens/Recording";
 import Login from "../screens/Login";
 import Diagnosis from "../screens/Diagnosis";
-import Write from "./Write";
+import Write from "../screens/Write";
 const Nav = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
 
