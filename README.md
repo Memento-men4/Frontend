@@ -60,3 +60,14 @@ $ npm start react-native run-ios (or react-native run-android)
     "react-native-voice": "^0.3.0",
     "react-native-web": "~0.18.7",
     "styled-components": "^5.3.6"
+
+
+
+## 🔥 Contributors 🔥
+
+- 🇰🇷 [이하늘](https://github.com/hanueleee)
+- 🇰🇷 [정세희](https://github.com/sehee-jeong)
+- 🇰🇷 [조준상](https://github.com/wnstkd0622)
+
+## 🔗  Related Repositories 
+- [Memento](https://github.com/Memento-men4)
