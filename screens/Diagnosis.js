@@ -30,7 +30,7 @@ const Question = styled.Text`
   margin-left: 5px;
   margin-right: 10px;
   font-size: 15px;
-  font-weight: 400;
+  font-weight: 500;
 `;
 const Submit = styled.TouchableOpacity`
   background-color: #ffda79;
@@ -39,7 +39,8 @@ const Submit = styled.TouchableOpacity`
   margin: 30px;
   margin-left: 120px;
   margin-right: 120px;
-  border: 2px solid black;
+  border: 1px solid black;
+  box-shadow: 1px 1px 3px rgba(41, 30, 95, 0.9);
 `;
 const NewLine = styled.Text`
   font-size: 5px;
@@ -51,6 +52,7 @@ const T = styled.View`
   background-color: #d4d4d4;
   border-radius: 10px;
   margin: 10px;
+  box-shadow: 1px 1px 3px rgba(41, 30, 95, 0.9);
 `;
 const goAlert = () => {
   Alert.alert(
@@ -94,12 +96,12 @@ var cnt = 0;
 const Diagnosis = ({ navigation: { navigate } }) => (
   <SafeAreaView>
     <Header>
-      <View style={{ flexDirection: "row" }}>
+      <View style={{ flexDirection: "row", marginBottom: 15 }}>
         <View style={{ flex: 1, alignItems: "center" }}>
           <Text style={{ fontSize: 60 }}>🤦‍♂️</Text>
         </View>
         <T>
-          <Text style={{ fontSize: 19, fontWeight: "600" }}>
+          <Text style={{ fontSize: 17, fontWeight: "600" }}>
             자꾸 깜빡하는 나, 혹시 영츠하이머?
           </Text>
         </T>

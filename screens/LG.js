@@ -14,18 +14,21 @@ import Login from "./Login";
 const Title = styled.Text`
   font-size: 30px;
   font-weight: bold;
-  margin-bottom: 50px;
-  margin-top: 20px;
+  margin-bottom: 28px;
+  margin-top: 25px;
   text-align: center;
 `;
-
 const Body = styled.View`
   flex-direction: column;
   padding: 10px;
   padding-top: 20px;
-  background-color: "#D8D8D8";
+  background-color: white;
 `;
-
+const Container = styled.View`
+  border: 1px solid gray;
+  border-radius: 1px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+`;
 const Btn = styled.TouchableOpacity`
   justify-content: center;
   align-items: center;
@@ -61,6 +64,7 @@ const ShowDate = styled.Text`
 const Content = styled.View`
   flex-direction: row;
   margin-left: 5px;
+  align-items: center;
 `;
 
 // justify-content: center, align-items: center; 갈기면 상하좌우 센터
@@ -133,17 +137,24 @@ const LG = ({ navigation: { navigate } }) => {
     </Btn>
   );
   const Airplane = () => (
-    <Content style={{ marginTop: 10 }}>
-      <Footer style={{ backgroundColor: "#ffda79" }}>
-        <Btn style={{ padding: 20 }}>
+    <Content style={{ marginTop: 20, padding: 15 }}>
+      <Footer
+        style={{
+          backgroundColor: "#ffda79",
+          marginRight: 7,
+          padding: 7,
+          borderRadius: 12,
+        }}
+      >
+        <Btn style={{ padding: 10 }}>
           <Ionicons name="ios-airplane" size={24} color="black" />
         </Btn>
-        <Btn style={{ padding: 20 }} onPress={onPressDate}>
+        <Btn style={{ padding: 10 }} onPress={onPressDate}>
           <ShowDate style={{ fontSize: 15 }}>
             {format(new Date(date), "PPP", { locale: ko })}{" "}
           </ShowDate>
         </Btn>
-        <Btn style={{ padding: 20 }} onPress={onPressTime}>
+        <Btn style={{ padding: 10 }} onPress={onPressTime}>
           <ShowDate style={{ fontSize: 15 }}>
             {format(new Date(date), "p", { locale: ko })}
           </ShowDate>
@@ -214,17 +225,23 @@ const LG = ({ navigation: { navigate } }) => {
     </Content>
   );
   return (
-    <Body style={{ flex: 1, backgroundColor: "white" }}>
-      <Title>우리 집 LG 가전</Title>
-      <ScrollView style={{ backgroundColor: "white" }}>
-        {data.includes(0) && <Airplane />}
-        {data.includes(1) && <TV />}
-        {data.includes(2) && <Drum />}
-        {data.includes(3) && <Airplane />}
-        {data.includes(4) && <Airplane />}
-        {data.includes(5) && <Airplane />}
-        {data.includes(6) && <Airplane />}
-      </ScrollView>
+    <Body style={{ flex: 1 }}>
+      <Container style={{ flex: 1, margin: 10 }}>
+        <View style={{ backgroundColor: "#f2f2f2" }}>
+          <Title>우리 집 LG 가전</Title>
+        </View>
+      </Container>
+      <Container style={{ marginTop: 50, flex: 5.5 }}>
+        <ScrollView style={{ backgroundColor: "#f2f2f2" }}>
+          {data.includes(0) && <Airplane />}
+          {data.includes(1) && <TV />}
+          {data.includes(2) && <Drum />}
+          {data.includes(3) && <Airplane />}
+          {data.includes(4) && <Airplane />}
+          {data.includes(5) && <Airplane />}
+          {data.includes(6) && <Airplane />}
+        </ScrollView>
+      </Container>
       <AddBtn onPress={() => navigate("Write", { screen: "Write" })}>
         <AddBtnText>+</AddBtnText>
       </AddBtn>

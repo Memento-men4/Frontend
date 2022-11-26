@@ -85,19 +85,6 @@ const DrawerComponent = ({ navigation }) => {
     // 그리고 로그인 성공하면 드로우 네비 바에서 로그아웃 뜨게 해야함
   );
 };
-const NativeStack = createNativeStackNavigator();
-
-const Stack2 = ({ navigation }) => (
-  <NativeStack.Navigator
-    screenOptions={{ headerBackTitleVisible: false, presentation: "modal" }}
-  >
-    <NativeStack.Screen
-      name="Stack2"
-      component={Days}
-      options={{ headerShown: false }}
-    />
-  </NativeStack.Navigator>
-);
 
 const Root = () => (
   //presentation: "modal"

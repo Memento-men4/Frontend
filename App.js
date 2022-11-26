@@ -12,9 +12,7 @@ import { useColorScheme } from "react-native";
 import { darkTheme, lightTheme } from "./mystyled";
 import "react-native-gesture-handler"; // drawer navigation
 import Geolocation from "@react-native-community/geolocation";
-
-//Geolocation.setRNConfiguration(config);
-
+import Login from "./screens/Login";
 const loadFonts = (fonts) => fonts.map((font) => Font.loadAsync(font));
 
 const loadImages = (images) =>

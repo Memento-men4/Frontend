@@ -14,6 +14,7 @@ import Timeline from "react-native-timeline-flatlist";
 import Voice from "react-native-voice";
 import Recording from "../screens/Recording";
 import Login from "../screens/Login";
+import HighlightText from "react-native-highlight-underline-text";
 
 const Title = styled.Text`
   font-size: 20px;
@@ -36,6 +37,7 @@ const Target = styled.TouchableOpacity`
   margin-right: 10px;
   margin-bottom: 50px;
   padding: 10px;
+  box-shadow: 1px 1px 3px rgba(41, 30, 95, 0.9);
 `;
 const Txt = styled.Text`
   font-size: 20px;
@@ -45,11 +47,16 @@ const Txt = styled.Text`
   padding-right: 3px;
 `; // 💡 아이콘에 디폴트 패딩이 있어서 오른쪽 패딩 넣어서 보정해줬음
 const Back = styled.TouchableOpacity``;
+const Intro = styled.View`
+  box-shadow: 1px 1px 3px rgba(41, 30, 95, 0.9);
+`;
 const TextArea = styled.ScrollView`
   margin-top: 20px;
   margin-bottom: 50px;
   padding: 10px;
   background-color: #ffda79;
+  border-top-left-radius: 30px;
+  border-bottom-right-radius: 30px;
 `;
 const ColorList = styled.View`
   flex-direction: row;
@@ -151,6 +158,7 @@ const Days = ({ navigation: { navigate } }) => {
     </Body>
   );
 };
+const Info = "영츠하이머 그게 뭔데?";
 const Infos = ({ navigation: { navigate } }) => (
   <Body style={{ flex: 1 }}>
     <Back
@@ -159,8 +167,17 @@ const Infos = ({ navigation: { navigate } }) => (
     >
       <Text style={{ fontSize: 30 }}>🔙</Text>
     </Back>
-    <Title>영츠하이머 예방 방법</Title>
-    <SafeAreaView>
+    <View style={{ alignItems: "center", margin: 20 }}>
+      <HighlightText
+        isFixed
+        underlineSize={14}
+        underlineColor="#ffda79"
+        textStyle={{ fontSize: 28, fontWeight: "bold", color: "black" }}
+        text={Info}
+      />
+    </View>
+
+    <Intro>
       <TextArea>
         <Text style={{ padding: 10, marginBottom: 10, textAlign: "justify" }}>
           영츠하이머를 예방하기 위해서, 먼저 치매의 위험성을 알 필요가 있습니다.
@@ -178,7 +195,7 @@ const Infos = ({ navigation: { navigate } }) => (
           알아야 합니다.
         </Text>
       </TextArea>
-    </SafeAreaView>
+    </Intro>
     <Target onPress={() => navigate("Stack", { screen: "Next" })}>
       <Txt style={{ marginLeft: 30 }}>💡 치매 위험성</Txt>
     </Target>

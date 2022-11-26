@@ -33,12 +33,13 @@ const TextInput = styled.TextInput`
   box-shadow: 1px 1px 3px rgba(41, 30, 95, 0.2);
   border: 1px solid gray;
 `;
-const Btn = styled.TouchableOpacity`
+const SaveBtn = styled.TouchableOpacity`
   margin: 20px;
   padding: 10px 20px;
   align-items: center;
   border-radius: 20px;
-  box-shadow: 1px 1px 3px rgba(41, 30, 95, 0.2);
+  box-shadow: 1px 1px 1px rgba(41, 30, 95, 0.9);
+  background-color: #1c1c1c;
 `;
 const BtnText = styled.Text`
   color: white;
@@ -88,7 +89,10 @@ const EmotionText = styled.Text`
 const DayBtnText = styled.Text`
   font-size: 20px;
 `;
-
+const Part = styled.View`
+  border: 1px solid gray;
+`;
+const Container = styled.View``;
 const week = ["월", "화", "수", "목", "금", "토", "일"];
 const products = ["🤯", "🥲", "🤬", "🤗", "🥰", "😊", "🤩"];
 
@@ -158,72 +162,80 @@ const Write = ({ navigation: { goBack, navigate } }) => {
           <Text style={{ fontSize: 30 }}>🔙</Text>
         </Back>
       </Header>
-      <Title>제품의 시리얼 넘버를 입력해주세요</Title>
-      <TextInput
-        placeholder="시리얼 넘버를 입력해주세요"
-        onSubmitEditing={onSubmit}
-        onChangeText={onChangeText}
-        autoCorrect={false} // 맞춤법 제안 끔
-        autoCapitalize="characters" // 자동 대문자
-        value={serialNumber}
-        returnKeyType="done"
-        keyboardType="email-address"
-        style={{ marginHorizontal: 30 }}
-      />
-
-      <Title>LG 가전 제품을 선택해주세요</Title>
-      <List>
-        {products.map((product, index) => (
-          <Emotion
-            selected={product === selectedProduct}
-            onPress={() => onProductPress(product)}
-            key={index}
-          >
-            <EmotionText>{product}</EmotionText>
-          </Emotion>
-        ))}
-      </List>
-      <Title style={{ marginBottom: 0 }}>실행할 시간을 선택해주세요</Title>
-      <TimeView>
-        <TimeBtn onPress={onPressTime}>
-          <ShowDate>{format(new Date(date), "p", { locale: ko })}</ShowDate>
-        </TimeBtn>
-        <DateTimePickerModal
-          isVisible={visible}
-          mode={mode}
-          onConfirm={onConfirm}
-          onCancel={onCancel}
-          date={date}
-        />
-      </TimeView>
-      <Title>실행할 요일을 입력해주세요</Title>
-      <List>
-        <DayBtn selected={mon} onPress={() => onMonPress()}>
-          <DayBtnText>월</DayBtnText>
-        </DayBtn>
-        <DayBtn selected={tue} onPress={() => onTuePress()}>
-          <DayBtnText>화</DayBtnText>
-        </DayBtn>
-        <DayBtn selected={wed} onPress={() => onWedPress()}>
-          <DayBtnText>수</DayBtnText>
-        </DayBtn>
-        <DayBtn selected={thu} onPress={() => onThuPress()}>
-          <DayBtnText>목</DayBtnText>
-        </DayBtn>
-        <DayBtn selected={fri} onPress={() => onFriPress()}>
-          <DayBtnText>금</DayBtnText>
-        </DayBtn>
-        <DayBtn selected={sat} onPress={() => onSatPress()}>
-          <DayBtnText>토</DayBtnText>
-        </DayBtn>
-        <DayBtn selected={sun} onPress={() => onSunPress()}>
-          <DayBtnText>일</DayBtnText>
-        </DayBtn>
-      </List>
-
-      <Btn style={{ backgroundColor: "black" }} onPress={onSubmit}>
+      <Container>
+        <Part>
+          <Title>제품의 시리얼 넘버를 입력해주세요</Title>
+          <TextInput
+            placeholder="시리얼 넘버를 입력해주세요"
+            onSubmitEditing={onSubmit}
+            onChangeText={onChangeText}
+            autoCorrect={false} // 맞춤법 제안 끔
+            autoCapitalize="characters" // 자동 대문자
+            value={serialNumber}
+            returnKeyType="done"
+            keyboardType="email-address"
+            style={{ marginHorizontal: 30 }}
+          />
+        </Part>
+      </Container>
+      <Part>
+        <Title>LG 가전 제품을 선택해주세요</Title>
+        <List>
+          {products.map((product, index) => (
+            <Emotion
+              selected={product === selectedProduct}
+              onPress={() => onProductPress(product)}
+              key={index}
+            >
+              <EmotionText>{product}</EmotionText>
+            </Emotion>
+          ))}
+        </List>
+      </Part>
+      <Part>
+        <Title style={{ marginBottom: 0 }}>실행할 시간을 선택해주세요</Title>
+        <TimeView>
+          <TimeBtn onPress={onPressTime}>
+            <ShowDate>{format(new Date(date), "p", { locale: ko })}</ShowDate>
+          </TimeBtn>
+          <DateTimePickerModal
+            isVisible={visible}
+            mode={mode}
+            onConfirm={onConfirm}
+            onCancel={onCancel}
+            date={date}
+          />
+        </TimeView>
+      </Part>
+      <Part>
+        <Title>실행할 요일을 입력해주세요</Title>
+        <List>
+          <DayBtn selected={mon} onPress={() => onMonPress()}>
+            <DayBtnText>월</DayBtnText>
+          </DayBtn>
+          <DayBtn selected={tue} onPress={() => onTuePress()}>
+            <DayBtnText>화</DayBtnText>
+          </DayBtn>
+          <DayBtn selected={wed} onPress={() => onWedPress()}>
+            <DayBtnText>수</DayBtnText>
+          </DayBtn>
+          <DayBtn selected={thu} onPress={() => onThuPress()}>
+            <DayBtnText>목</DayBtnText>
+          </DayBtn>
+          <DayBtn selected={fri} onPress={() => onFriPress()}>
+            <DayBtnText>금</DayBtnText>
+          </DayBtn>
+          <DayBtn selected={sat} onPress={() => onSatPress()}>
+            <DayBtnText>토</DayBtnText>
+          </DayBtn>
+          <DayBtn selected={sun} onPress={() => onSunPress()}>
+            <DayBtnText>일</DayBtnText>
+          </DayBtn>
+        </List>
+      </Part>
+      <SaveBtn onPress={onSubmit}>
         <BtnText>Save</BtnText>
-      </Btn>
+      </SaveBtn>
     </Body>
   );
 };

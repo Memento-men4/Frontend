@@ -4,6 +4,7 @@ import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
 import styled from "styled-components/native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { imageName } from "/Users/leesukcheol/memento/images.js"; // 실제 디바이스에서 돌릴 때 에러 뜨길래..
+import HighlightText from "react-native-highlight-underline-text";
 
 const Body = styled.View`
   background-color: white;
@@ -15,9 +16,14 @@ const Header = styled.View`
   margin-right: 10px;
   margin-top: 10px;
   margin-bottom: 0px;
-  border: 2px solid black;
+  border: 1px solid black;
+  background-color: #f2f2f2;
+  box-shadow: 1px 1px 3px rgba(41, 30, 95, 0.9);
+  border-radius: 10px;
 `;
-const Footer = styled.View``;
+const Footer = styled.View`
+  box-shadow: 1px 1px 3px rgba(41, 30, 95, 0.9);
+`;
 const Target = styled.TouchableOpacity`
   justify-content: center;
   align-items: center;
@@ -26,8 +32,14 @@ const Target = styled.TouchableOpacity`
   padding: 20px;
   margin: 5px;
   flex: 1;
-  border: 2px solid black;
+  border: 1px solid black;
+  box-shadow: 1px 1px 3px rgba(41, 30, 95, 0.7);
 `; // margin: 두 버튼 사이 간격
+const Hello = styled.Text`
+  font-size: 20px;
+  margin-top: 31px;
+  font-weight: bold;
+`;
 
 const Txt = styled.Text`
   font-size: 20px;
@@ -50,15 +62,27 @@ const CalendarView = ({ navigation: { navigate } }) => {
     "2022-11-03": { marked: true, dotColor: "#ffda79", activeOpacity: 0 },
     "2022-11-04": { disabled: true, disableTouchEvent: true },
   };
+  const name = "이하늘 님";
   return (
     <Body>
       <Header>
         <Gom
           source={require("/Users/leesukcheol/memento/assets/images/gom-unscreen.gif")}
         />
-        <Text style={{ fontSize: 20, marginTop: 30, fontWeight: "bold" }}>
-          안녕하세요 {"\n"} 이하늘 님!
-        </Text>
+        <View style={{ alignItems: "center" }}>
+          <Hello>안녕하세요</Hello>
+          <HighlightText
+            isFixed
+            underlineSize={13}
+            underlineColor="#ffda79"
+            textStyle={{
+              fontSize: 20,
+              fontWeight: "bold",
+              color: "black",
+            }}
+            text={name}
+          />
+        </View>
         <Gom
           source={require("/Users/leesukcheol/memento/assets/images/gom.png")}
         />
