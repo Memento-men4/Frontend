@@ -26,23 +26,11 @@ const Footer = styled.View`
   box-shadow: 1px 1px 3px rgba(41, 30, 95, 0.9);
   margin-horizontal: 10px;
 `;
-const Target = styled.TouchableOpacity`
-  justify-content: center;
-  align-items: center;
-  background-color: #ffda79;
-  border-radius: 10px;
-  padding: 20px;
-  margin: 5px;
-  flex: 1;
-  border: 1px solid black;
-  box-shadow: 1px 1px 3px rgba(41, 30, 95, 0.7);
-`; // margin: 두 버튼 사이 간격
 const Hello = styled.Text`
   font-size: 20px;
   margin-top: 31px;
   font-weight: bold;
 `;
-
 const Txt = styled.Text`
   font-size: 20px;
   font-weight: bold;
@@ -51,7 +39,6 @@ const Txt = styled.Text`
   padding-right: 0px;
   text-align: center;
 `;
-
 const Gom = styled.Image`
   width: 100px;
   height: 100px;
@@ -118,19 +105,6 @@ const CalendarView = ({ navigation: { navigate } }) => {
                 textDayFontSize: 15,
               }}
             ></Calendar>
-          </Footer>
-          <Footer
-            style={{
-              flexDirection: "row",
-              justifyContent: "center",
-            }}
-          >
-            <Target onPress={() => navigate("Stack", { screen: "Infos" })}>
-              <Txt>영츠하이머 {"\n"} 그게 뭔데?</Txt>
-            </Target>
-            <Target onPress={() => navigate("Stack", { screen: "Game" })}>
-              <Txt>영츠하이머 {"\n"} 예방 게임</Txt>
-            </Target>
           </Footer>
         </View>
       )}

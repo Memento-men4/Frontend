@@ -72,7 +72,9 @@ const Tabs = () => {
         component={Game}
         options={{
           tabBarIcon: ({ color, size }) => {
-            return <Ionicons name="game" size={size} color={color} />;
+            return (
+              <Ionicons name="game-controller" size={size} color={color} />
+            );
           },
         }}
       />
