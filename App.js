@@ -1,5 +1,5 @@
 import AppLoading from "expo-app-loading";
-import React, { useState } from "react";
+import React, { useState, createContext } from "react";
 import * as Font from "expo-font";
 import { Ionicons } from "@expo/vector-icons";
 import { Asset } from "expo-asset";
@@ -13,6 +13,13 @@ import { darkTheme, lightTheme } from "./mystyled";
 import "react-native-gesture-handler"; // drawer navigation
 import Geolocation from "@react-native-community/geolocation";
 import Login from "./screens/Login";
+import {
+  RecoilRoot,
+  atom,
+  selector,
+  useRecoilState,
+  useRecoilValue,
+} from "recoil";
 const loadFonts = (fonts) => fonts.map((font) => Font.loadAsync(font));
 
 const loadImages = (images) =>
@@ -42,10 +49,12 @@ export default function App() {
     );
   }
   return (
-    <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
-      <NavigationContainer>
-        <Root />
-      </NavigationContainer>
-    </ThemeProvider>
+    <RecoilRoot>
+      <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
+        <NavigationContainer>
+          <Root />
+        </NavigationContainer>
+      </ThemeProvider>
+    </RecoilRoot>
   );
 }

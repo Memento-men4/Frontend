@@ -1,13 +1,20 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, Alert } from "react-native";
 import styled from "styled-components/native";
 import HighlightText from "react-native-highlight-underline-text";
-
+import { loginFlag } from "../atom";
+import { useRecoilState } from "recoil";
 const Login = () => {
-  //{ navigation: { navigate } }
+  const [flag, setFlag] = useRecoilState(loginFlag);
   const line = "로그인 페이지";
   return (
-    <View style={{ alignItems: "center", margin: 20 }}>
+    <TouchableOpacity
+      onPress={() => {
+        Alert.alert("Login");
+        setFlag(1);
+      }}
+      style={{ alignItems: "center", margin: 20 }}
+    >
       <HighlightText
         isFixed
         underlineSize={8}
@@ -15,7 +22,7 @@ const Login = () => {
         textStyle={{ fontSize: 24, fontWeight: "bold", color: "black" }}
         text={line}
       />
-    </View>
+    </TouchableOpacity>
   );
 };
 

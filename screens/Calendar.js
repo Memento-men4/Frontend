@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Calendar } from "react-native-calendars";
 import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
 import styled from "styled-components/native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { imageName } from "/Users/leesukcheol/memento/images.js"; // 실제 디바이스에서 돌릴 때 에러 뜨길래..
 import HighlightText from "react-native-highlight-underline-text";
-
+import { loginFlag } from "../atom";
+import { useRecoilState } from "recoil";
 const Body = styled.View`
   background-color: white;
 `;
@@ -23,6 +24,7 @@ const Header = styled.View`
 `;
 const Footer = styled.View`
   box-shadow: 1px 1px 3px rgba(41, 30, 95, 0.9);
+  margin-horizontal: 10px;
 `;
 const Target = styled.TouchableOpacity`
   justify-content: center;
@@ -63,66 +65,75 @@ const CalendarView = ({ navigation: { navigate } }) => {
     "2022-11-04": { disabled: true, disableTouchEvent: true },
   };
   const name = "이하늘 님";
+  const [login, setLogin] = useRecoilState(loginFlag);
   return (
     <Body>
-      <Header>
-        <Gom
-          source={require("/Users/leesukcheol/memento/assets/images/gom-unscreen.gif")}
-        />
-        <View style={{ alignItems: "center" }}>
-          <Hello>안녕하세요</Hello>
-          <HighlightText
-            isFixed
-            underlineSize={13}
-            underlineColor="#ffda79"
-            textStyle={{
-              fontSize: 20,
-              fontWeight: "bold",
-              color: "black",
+      {login === 0 ? (
+        <View style={{ marginVertical: 320 }}>
+          <Txt style={{ textAlign: "center" }}>로그인이 필요합니다.</Txt>
+        </View> /* 여기에 그림 귀여운 거 들어갔으면 좋겠다! */
+      ) : (
+        <View>
+          <Header>
+            <Gom
+              source={require("/Users/leesukcheol/memento/assets/images/gom-unscreen.gif")}
+            />
+            <View style={{ alignItems: "center" }}>
+              <Hello>안녕하세요</Hello>
+              <HighlightText
+                isFixed
+                underlineSize={13}
+                underlineColor="#ffda79"
+                textStyle={{
+                  fontSize: 20,
+                  fontWeight: "bold",
+                  color: "black",
+                }}
+                text={name}
+              />
+            </View>
+            <Gom
+              source={require("/Users/leesukcheol/memento/assets/images/gom.png")}
+            />
+          </Header>
+          <Footer>
+            <Calendar
+              onDayPress={(day) => navigate("Stack", { screen: "Days" })} // 날짜 클릭하면 스택으로 이동
+              //onDayPress={(day) => console.log("selected day", day)}
+              markedDates={markedDates}
+              hideExtraDays={true}
+              style={styles.calendar}
+              theme={{
+                selectedDayBackgroundColor: "#ffda79",
+                arrowColor: "#ffda79",
+                dotColor: "#ffda79",
+                todayButtonFontWeight: "bold",
+                //textDayFontWeight: "bold",
+                //textDayHeaderFontSize: 14,
+                textDayHeaderFontWeight: "bold",
+                textMonthFontWeight: "bold",
+                arrowWidth: 100,
+                arrowStyle: { padding: 10, margin: 10 },
+                textMonthFontSize: 20,
+                textDayFontSize: 15,
+              }}
+            ></Calendar>
+          </Footer>
+          <Footer
+            style={{
+              flexDirection: "row",
+              justifyContent: "center",
             }}
-            text={name}
-          />
+          >
+            <Target onPress={() => navigate("Stack", { screen: "Infos" })}>
+              <Txt>영츠하이머 {"\n"} 그게 뭔데?</Txt>
+            </Target>
+            <Target onPress={() => navigate("Stack", { screen: "Game" })}>
+              <Txt>영츠하이머 {"\n"} 예방 게임</Txt>
+            </Target>
+          </Footer>
         </View>
-        <Gom
-          source={require("/Users/leesukcheol/memento/assets/images/gom.png")}
-        />
-      </Header>
-      <Footer>
-        <Calendar
-          onDayPress={(day) => navigate("Stack", { screen: "Days" })} // 날짜 클릭하면 스택으로 이동
-          //onDayPress={(day) => console.log("selected day", day)}
-          markedDates={markedDates}
-          hideExtraDays={true}
-          style={styles.calendar}
-          theme={{
-            selectedDayBackgroundColor: "#ffda79",
-            arrowColor: "#ffda79",
-            dotColor: "#ffda79",
-            todayButtonFontWeight: "bold",
-            //textDayFontWeight: "bold",
-            //textDayHeaderFontSize: 14,
-            textDayHeaderFontWeight: "bold",
-            textMonthFontWeight: "bold",
-            arrowWidth: 100,
-            arrowStyle: { padding: 10, margin: 10 },
-            textMonthFontSize: 20,
-            textDayFontSize: 15,
-          }}
-        ></Calendar>
-      </Footer>
-      <Footer
-        style={{
-          flexDirection: "row",
-          justifyContent: "center",
-        }}
-      >
-        <Target onPress={() => navigate("Stack", { screen: "Infos" })}>
-          <Txt>영츠하이머 {"\n"} 그게 뭔데?</Txt>
-        </Target>
-        <Target onPress={() => navigate("Stack", { screen: "Game" })}>
-          <Txt>영츠하이머 {"\n"} 예방 게임</Txt>
-        </Target>
-      </Footer>
+      )}
     </Body>
   );
 };
