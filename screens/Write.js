@@ -5,21 +5,25 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { format } from "date-fns";
 import ko from "date-fns/esm/locale/ko/index.js";
+import HighlightText from "react-native-highlight-underline-text";
+
 const Body = styled.View`
   background-color: #ffda79;
   flex: 1;
   flex-direction: column;
   background-color: white;
 `;
+const Header = styled.View``;
 const ShowDate = styled.Text`
-  font-size: 10px;
+  font-size: 15px;
+  color: black;
 `;
 const Title = styled.Text`
   color: black;
-  margin: 25px 0px;
   text-align: center;
   font-size: 24px;
   font-weight: 500;
+  margin: 30px;
 `;
 const TextInput = styled.TextInput`
   background-color: white;
@@ -27,6 +31,7 @@ const TextInput = styled.TextInput`
   padding: 10px 20px;
   font-size: 18px;
   box-shadow: 1px 1px 3px rgba(41, 30, 95, 0.2);
+  border: 1px solid gray;
 `;
 const Btn = styled.TouchableOpacity`
   margin: 20px;
@@ -40,12 +45,24 @@ const BtnText = styled.Text`
   font-weight: 500;
   font-size: 18px;
 `;
+const TimeBtn = styled.TouchableOpacity`
+  margin: 20px;
+  padding: 10px 20px;
+  align-items: center;
+  border-radius: 20px;
+  box-shadow: 1px 1px 3px rgba(41, 30, 95, 0.3);
+  border: 1px solid;
+`;
 const Back = styled.TouchableOpacity``;
 const List = styled.View`
   flex-direction: row;
   justify-content: space-between;
-  margin-bottom: 20px;
   padding: 10px;
+`;
+const TimeView = styled.View`
+  align-items: center;
+  margin-horizontal: 120px;
+  border-radius: 20px;
 `;
 const Emotion = styled.TouchableOpacity`
   background-color: white;
@@ -133,15 +150,15 @@ const Write = ({ navigation: { goBack, navigate } }) => {
   };
   return (
     <Body>
-      <View>
+      <Header>
         <Back
           style={{ marginTop: 40, marginLeft: 10 }}
           onPress={() => navigate("Main", { screen: "LG" })}
         >
           <Text style={{ fontSize: 30 }}>🔙</Text>
         </Back>
-      </View>
-      <Title>시리얼 넘버를 입력해주세요</Title>
+      </Header>
+      <Title>제품의 시리얼 넘버를 입력해주세요</Title>
       <TextInput
         placeholder="시리얼 넘버를 입력해주세요"
         onSubmitEditing={onSubmit}
@@ -151,9 +168,10 @@ const Write = ({ navigation: { goBack, navigate } }) => {
         value={serialNumber}
         returnKeyType="done"
         keyboardType="email-address"
-        style={{ margin: 10 }}
+        style={{ marginHorizontal: 30 }}
       />
-      <Title>어떤 LG 가전 제품을 가지고 있나요?</Title>
+
+      <Title>LG 가전 제품을 선택해주세요</Title>
       <List>
         {products.map((product, index) => (
           <Emotion
@@ -165,7 +183,20 @@ const Write = ({ navigation: { goBack, navigate } }) => {
           </Emotion>
         ))}
       </List>
-      <Title>가전을 실행할 요일을 선택해주세요</Title>
+      <Title style={{ marginBottom: 0 }}>실행할 시간을 선택해주세요</Title>
+      <TimeView>
+        <TimeBtn onPress={onPressTime}>
+          <ShowDate>{format(new Date(date), "p", { locale: ko })}</ShowDate>
+        </TimeBtn>
+        <DateTimePickerModal
+          isVisible={visible}
+          mode={mode}
+          onConfirm={onConfirm}
+          onCancel={onCancel}
+          date={date}
+        />
+      </TimeView>
+      <Title>실행할 요일을 입력해주세요</Title>
       <List>
         <DayBtn selected={mon} onPress={() => onMonPress()}>
           <DayBtnText>월</DayBtnText>
@@ -189,19 +220,7 @@ const Write = ({ navigation: { goBack, navigate } }) => {
           <DayBtnText>일</DayBtnText>
         </DayBtn>
       </List>
-      <Title>가전을 실행할 시간을 선택해주세요</Title>
-      <Btn style={{ padding: 20 }} onPress={onPressTime}>
-        <ShowDate style={{ fontSize: 15 }}>
-          {format(new Date(date), "p", { locale: ko })}
-        </ShowDate>
-      </Btn>
-      <DateTimePickerModal
-        isVisible={visible}
-        mode={mode}
-        onConfirm={onConfirm}
-        onCancel={onCancel}
-        date={date}
-      />
+
       <Btn style={{ backgroundColor: "black" }} onPress={onSubmit}>
         <BtnText>Save</BtnText>
       </Btn>

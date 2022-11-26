@@ -78,11 +78,15 @@ const VoiceText = styled.Text`
 //var tmp2 = "";
 const TimeLine = () => {
   const dummy = [
-    { time: "09:00", title: "Event 1", description: `${tmp}` },
-    { time: "10:45", title: "Event 2", description: "Event 2 Description" },
-    { time: "12:00", title: "Event 3", description: "Event 3 Description" },
-    { time: "14:00", title: "Event 4", description: "Event 4 Description" },
-    { time: "16:30", title: "Event 5", description: `${tmp2}` },
+    { time: "09:00", title: "한양대학교", description: `${tmp}` },
+    { time: "10:45", title: "세탁기", description: "실행하러 고고" },
+    {
+      time: "12:00",
+      title: "마쿠마라탕",
+      description: "마쿠마라탕에서 마라탕을 먹었다",
+    },
+    { time: "14:00", title: "스타일러", description: "실행하러 고고" },
+    { time: "16:30", title: "집", description: `${tmp2}` },
   ];
   const [data, setData] = useState([]);
   const [tmp, setTmp] = useState("");
@@ -90,11 +94,11 @@ const TimeLine = () => {
   useEffect(() => {
     AsyncStorage.getItem("Text", (err, result) => {
       if (result != null) {
+        //setData(result);
         setData((data) => [...data, result]);
         setTmp(result);
         setTmp2(result);
       }
-      console.log(data);
     });
   }, []);
   //tmp = data[0];
@@ -103,9 +107,9 @@ const TimeLine = () => {
     <Timeline
       data={dummy}
       separator={true}
-      lineColor="rgb(45,156,219)"
+      lineColor="#ffda79"
       innerCircle={"dot"}
-      circleColor="rgb(45,156,219)"
+      circleColor="#ffda79"
       circleSize={20}
       descriptionStyle={{ color: "gray" }}
       options={{
@@ -257,20 +261,28 @@ const Record = () => {
   const _onSpeechStart = () => {
     // 음성인식 시작
     console.log("onSpeechStart");
-    setText("");
+    console.log("Answer:", AnswerText);
   };
   const _onSpeechEnd = () => {
     // 녹음이 끝나면
     console.log("onSpeechEnd");
-    console.log(AnswerText);
+    if (text === AnswerText) {
+      console.log(text, AnswerText, "정답");
+      //Alert.alert(text, AnswerText);
+    }
+    if (text !== AnswerText) {
+      console.log(text, AnswerText, "오답");
+      //Alert.alert(AnswerText, text);
+    }
     Alert.alert("녹음 끝! 타임라인에 반영됩니다.");
   };
   const _onSpeechResults = (event) => {
     // 음성인식 결과
-    //console.log("onSpeechResults");
-    setText(event.value[0]); // 음성인식 결과를 text에 저장
+    console.log("onSpeechResults");
+    setText(event.value[0]);
+    // 음성인식 결과를 text에 저장
     //console.log(event.value[0]); // 음성인식 결과 출력
-    //console.log(event.value[0].length); // 음성인식 결과 길이
+    console.log(event.value[0].length); // 음성인식 결과 길이
   };
   const _onSpeechError = (event) => {
     // 에러 발생시
@@ -311,7 +323,7 @@ const Game1 = ({ navigation: { navigate } }) => {
   const [count, setCount] = useState(0);
   useEffect(() => {
     setCount(count + 1);
-    AnswerText = answer[count % 2];
+    AnswerText = answer[(count + 1) % 2];
   }, []);
   const words = {
     red: ["파랑", "노랑", "검정", "초록"],

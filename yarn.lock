@@ -9957,6 +9957,11 @@
   "resolved" "https://registry.npmjs.org/react-native-gradle-plugin/-/react-native-gradle-plugin-0.0.7.tgz"
   "version" "0.0.7"
 
+"react-native-highlight-underline-text@^1.0.4":
+  "integrity" "sha512-quCGqcmFth7h9DFhd4esxzHNw3yatzuK1uaDNhuGCFktJ1zi+4/WNp25FaH8/34yCaxLuODh/jNXRusxyKlrhg=="
+  "resolved" "https://registry.npmjs.org/react-native-highlight-underline-text/-/react-native-highlight-underline-text-1.0.4.tgz"
+  "version" "1.0.4"
+
 "react-native-modal-datetime-picker@^14.0.0":
   "integrity" "sha512-orI0BMgX9uooSZWYIILmMaZXqi8Ebr0vqsLUFL03zORpv9NvkBlLMQ8dZVdDxWUc1Lbx/N5DJskC16AOypPy8Q=="
   "resolved" "https://registry.npmjs.org/react-native-modal-datetime-picker/-/react-native-modal-datetime-picker-14.0.0.tgz"
