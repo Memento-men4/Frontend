@@ -6,6 +6,7 @@ import { useColorScheme } from "react-native";
 import Stack from "./Stack";
 import LG from "../screens/LG";
 import { Ionicons } from "@expo/vector-icons";
+import Game from "../stack/game/Game";
 
 const Tab = createBottomTabNavigator();
 
@@ -38,16 +39,6 @@ const Tabs = () => {
       }}
     >
       <Tab.Screen
-        name="Recording"
-        component={Recording}
-        options={{
-          //headerShown: false,
-          tabBarIcon: ({ color, size }) => {
-            return <Ionicons name="mic" size={size} color={color} />;
-          },
-        }}
-      />
-      <Tab.Screen
         name="Home"
         component={Calendar}
         options={{
@@ -58,11 +49,30 @@ const Tabs = () => {
         }}
       />
       <Tab.Screen
+        name="Recording"
+        component={Recording}
+        options={{
+          //headerShown: false,
+          tabBarIcon: ({ color, size }) => {
+            return <Ionicons name="mic" size={size} color={color} />;
+          },
+        }}
+      />
+      <Tab.Screen
         name="LG"
         component={LG}
         options={{
           tabBarIcon: ({ color, size }) => {
             return <Ionicons name="person" size={size} color={color} />;
+          },
+        }}
+      />
+      <Tab.Screen
+        name="Game"
+        component={Game}
+        options={{
+          tabBarIcon: ({ color, size }) => {
+            return <Ionicons name="game" size={size} color={color} />;
           },
         }}
       />

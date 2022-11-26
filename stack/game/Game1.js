@@ -158,7 +158,7 @@ const Game1 = ({ navigation: { navigate } }) => {
     >
       <Back
         style={{ marginTop: 40, marginLeft: 10 }}
-        onPress={() => navigate("Stack", { screen: "Game" })}
+        onPress={() => navigate("Main", { screen: "Home" })}
       >
         <Text style={{ fontSize: 30 }}>🔙</Text>
       </Back>

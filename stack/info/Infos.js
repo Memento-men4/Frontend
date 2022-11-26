@@ -8,7 +8,6 @@ const Body = styled.View`
   padding-top: 20px;
   background-color: white;
 `;
-const Back = styled.TouchableOpacity``;
 const Target = styled.TouchableOpacity`
   justify-content: center;
   align-items: flex-start;

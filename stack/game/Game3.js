@@ -5,7 +5,7 @@ const Game3 = ({ navigation: { navigate } }) => (
   <View style={{ justifyContent: "center", alignContent: "flex-start" }}>
     <TouchableOpacity
       style={{ marginTop: 40, marginLeft: 10 }}
-      onPress={() => navigate("Stack", { screen: "Game" })}
+      onPress={() => navigate("Main", { screen: "Home" })}
     >
       <Text style={{ fontSize: 30 }}>🔙</Text>
     </TouchableOpacity>
