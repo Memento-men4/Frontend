@@ -47,7 +47,6 @@ const Recording = () => {
   };
   const _onSpeechEnd = () => {
     // 녹음이 끝나면
-
     console.log("onSpeechEnd");
     Alert.alert("녹음 끝! 타임라인에 반영됩니다.");
   };

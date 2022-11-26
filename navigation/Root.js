@@ -26,6 +26,7 @@ import Write from "../screens/Write";
 import { Flag } from "../App.js";
 import { loginFlag } from "../atom";
 import { useRecoilState, atom } from "recoil";
+import Infos from "../stack/info/Infos";
 const Nav = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
 
@@ -115,7 +116,23 @@ const DrawerComponent = ({ navigation }) => {
           component={Login}
         />
       ) : null}
-
+      <Drawer.Screen
+        options={{
+          title: "정보",
+          headerLeft: () => (
+            <TouchableOpacity
+              onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}
+            >
+              <Image
+                source={require("/Users/leesukcheol/memento/assets/images/logo_J.png")}
+                style={[styles.icon]}
+              />
+            </TouchableOpacity>
+          ),
+        }}
+        name="Infos"
+        component={Infos}
+      />
       <Drawer.Screen
         options={{
           title: "자가 진단",

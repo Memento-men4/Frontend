@@ -1,19 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { Text, View, TouchableOpacity, ScrollView } from "react-native";
+import { View, Text, TouchableOpacity, ScrollView } from "react-native";
 import { AsyncStorage } from "@react-native-async-storage/async-storage";
 import Timeline from "react-native-timeline-flatlist";
 import styled from "styled-components/native";
-
-//import Days from "../stack/calendarDay/Days";
-import Infos from "../stack/info/Infos";
-import Risk from "../stack/info/Risk";
-import CurrentSituation from "../stack/info/CurrentSituation";
-import Prevent from "../stack/info/Prevent";
-import Game from "../stack/game/Game";
-import Game1 from "../stack/game/Game1";
-import Game2 from "../stack/game/Game2";
-import Game3 from "../stack/game/Game3";
 
 const Body = styled.View`
   flex-direction: column;
@@ -105,57 +94,4 @@ const Days = ({ navigation: { navigate } }) => {
     </Body>
   );
 };
-
-const NativeStack = createNativeStackNavigator();
-
-const Stack = () => (
-  <NativeStack.Navigator screenOptions={{ headerBackTitleVisible: false }}>
-    <NativeStack.Screen
-      name="Days"
-      component={Days}
-      options={{ headerShown: false }}
-    />
-    <NativeStack.Screen
-      name="Infos"
-      component={Infos}
-      options={{ headerShown: false }}
-    />
-    <NativeStack.Screen
-      name="Risk"
-      component={Risk}
-      options={{ headerShown: false }}
-    />
-    <NativeStack.Screen
-      name="CurrentSituation"
-      component={CurrentSituation}
-      options={{ headerShown: false }}
-    />
-    <NativeStack.Screen
-      name="Prevent"
-      component={Prevent}
-      options={{ headerShown: false }}
-    />
-    <NativeStack.Screen
-      name="Game"
-      component={Game}
-      options={{ headerShown: false }}
-    />
-    <NativeStack.Screen
-      name="Game1"
-      component={Game1}
-      options={{ headerShown: false }}
-    />
-    <NativeStack.Screen
-      name="Game2"
-      component={Game2}
-      options={{ headerShown: false }}
-    />
-    <NativeStack.Screen
-      name="Game3"
-      component={Game3}
-      options={{ headerShown: false }}
-    />
-  </NativeStack.Navigator>
-);
-
-export default Stack;
+export default Days;
