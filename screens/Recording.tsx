@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { TouchableOpacity, Text, View, Alert, StyleSheet } from "react-native";
-import Geolocation from "@react-native-community/geolocation";
 import styled from "styled-components/native";
 import { Ionicons } from "@expo/vector-icons";
 import Voice from "react-native-voice";
