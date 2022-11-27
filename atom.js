@@ -20,15 +20,5 @@ const RecordText4 = atom({
   key: "RecordText4",
   default: "",
 });
-const RecordCount = atom({
-  key: "RecordCount",
-  default: "0",
-});
-export {
-  loginFlag,
-  RecordText1,
-  RecordText2,
-  RecordText3,
-  RecordText4,
-  RecordCount,
-};
+
+export { loginFlag, RecordText1, RecordText2, RecordText3, RecordText4 };
