@@ -117,8 +117,13 @@ const CalendarView = ({ navigation: { navigate } }) => {
             <Target onPress={() => navigate("Stack", { screen: "HomeInfos" })}>
               <Txt>영츠하이머 그게 뭔데?</Txt>
             </Target>
-            <Target onPress={() => navigate("Stack", { screen: "Game" })}>
-              <Txt>영츠하이머 예방 게임</Txt>
+            <Target onPress={() => navigate("Stack", { screen: "HomeGame" })}>
+              <Txt>영츠하이머 예방 게임!</Txt>
+            </Target>
+            <Target
+              onPress={() => navigate("Stack", { screen: "HomeDiagnosis" })}
+            >
+              <Txt>영츠하이머 자가 진단!</Txt>
             </Target>
           </Footer>
         </View>

@@ -9,7 +9,7 @@ const Risk = ({ navigation: { navigate } }) => (
     >
       <Text style={{ fontSize: 30 }}>🔙</Text>
     </TouchableOpacity>
-    <Text>치매 위험성</Text>
+    <Text>치매 위험성!!!</Text>
   </View>
 );
 

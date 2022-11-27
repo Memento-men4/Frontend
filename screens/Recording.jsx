@@ -2,14 +2,8 @@ import React, { useState, useEffect, useRef } from "react";
 import { Alert } from "react-native";
 import styled from "styled-components/native";
 import Voice from "react-native-voice";
-import {
-  RecordText1,
-  RecordText2,
-  RecordText3,
-  RecordText4,
-  RecordCount,
-} from "../atom";
-import { useRecoilState, atom } from "recoil";
+import { RecordText1, RecordText2, RecordText3, RecordText4 } from "../atom";
+import { useRecoilState } from "recoil";
 
 const Container = styled.View`
   flex: 1;
@@ -33,8 +27,7 @@ const Recording = () => {
   const [text2, setText2] = useRecoilState(RecordText2); // 녹음한 텍스트 두번째
   const [text3, setText3] = useRecoilState(RecordText3); // 녹음한 텍스트 세번째
   const [text4, setText4] = useRecoilState(RecordText4); // 녹음한 텍스트 네번째
-  //const [count, setCount] = useRecoilState(RecordCount); // 녹음 횟수 카운트
-  const cnt = useRef(0);
+  const cnt = useRef(0); // 녹음한 횟수 카운트
 
   const buttonLabel = isRecord ? "녹음 끝! 전송하기" : "녹음 시작하기"; // 녹음 중이면 전송, 아니면 시작
   const voiceLabel = text ? text : isRecord ? "Recording..." : "음성인식 시작";
