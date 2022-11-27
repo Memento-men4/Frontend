@@ -14,6 +14,7 @@ import Game from "../stack/game/Game";
 import Game1 from "../stack/game/Game1";
 import Game2 from "../stack/game/Game2";
 import Game3 from "../stack/game/Game3";
+import HomeInfos from "../screens/home/HomeInfos";
 
 const Body = styled.View`
   flex-direction: column;
@@ -30,6 +31,8 @@ const Title = styled.Text`
 `;
 //var tmp = "";
 //var tmp2 = "";
+const TimeLine = () => {};
+/*
 const TimeLine = () => {
   const dummy = [
     { time: "09:00", title: "한양대학교", description: `${tmp}` },
@@ -76,6 +79,7 @@ const TimeLine = () => {
     />
   );
 };
+*/
 
 const Days = ({ navigation: { navigate } }) => {
   const [data, setData] = useState([]);
@@ -153,6 +157,11 @@ const Stack = () => (
     <NativeStack.Screen
       name="Game3"
       component={Game3}
+      options={{ headerShown: false }}
+    />
+    <NativeStack.Screen
+      name="HomeInfos"
+      component={HomeInfos}
       options={{ headerShown: false }}
     />
   </NativeStack.Navigator>

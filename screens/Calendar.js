@@ -13,30 +13,37 @@ const Body = styled.View`
 const Header = styled.View`
   flex-direction: row;
   justify-content: space-between;
-  margin-left: 10px;
-  margin-right: 10px;
-  margin-top: 10px;
-  margin-bottom: 0px;
+  margin-horizontal: 20px;
+  margin-top: 20px;
   border: 1px solid black;
   background-color: #f2f2f2;
   box-shadow: 1px 1px 3px rgba(41, 30, 95, 0.9);
   border-radius: 10px;
 `;
+const Container = styled.View`
+  box-shadow: 1px 1px 3px rgba(41, 30, 95, 0.9);
+  margin-horizontal: 20px;
+`;
 const Footer = styled.View`
   box-shadow: 1px 1px 3px rgba(41, 30, 95, 0.9);
-  margin-horizontal: 10px;
+  margin-horizontal: 20px;
 `;
+const Target = styled.TouchableOpacity`
+  background-color: #ffda79;
+  border-radius: 10px;
+  padding: 5px;
+  border: 1px solid black;
+  box-shadow: 1px 1px 3px rgba(41, 30, 95, 0.7);
+  margin-vertical: 5px;
+`; // margin: 두 버튼 사이 간격
 const Hello = styled.Text`
   font-size: 20px;
   margin-top: 31px;
   font-weight: bold;
 `;
 const Txt = styled.Text`
-  font-size: 20px;
+  font-size: 15px;
   font-weight: bold;
-  padding: 5px;
-  padding-left: 0px;
-  padding-right: 0px;
   text-align: center;
 `;
 const Gom = styled.Image`
@@ -83,7 +90,7 @@ const CalendarView = ({ navigation: { navigate } }) => {
               source={require("/Users/leesukcheol/memento/assets/images/gom.png")}
             />
           </Header>
-          <Footer>
+          <Container>
             <Calendar
               onDayPress={(day) => navigate("Stack", { screen: "Days" })} // 날짜 클릭하면 스택으로 이동
               //onDayPress={(day) => console.log("selected day", day)}
@@ -105,6 +112,14 @@ const CalendarView = ({ navigation: { navigate } }) => {
                 textDayFontSize: 15,
               }}
             ></Calendar>
+          </Container>
+          <Footer>
+            <Target onPress={() => navigate("Stack", { screen: "HomeInfos" })}>
+              <Txt>영츠하이머 그게 뭔데?</Txt>
+            </Target>
+            <Target onPress={() => navigate("Stack", { screen: "Game" })}>
+              <Txt>영츠하이머 예방 게임</Txt>
+            </Target>
           </Footer>
         </View>
       )}
