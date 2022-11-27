@@ -5,6 +5,9 @@ import { AsyncStorage } from "@react-native-async-storage/async-storage";
 import Timeline from "react-native-timeline-flatlist";
 import styled from "styled-components/native";
 
+import { RecordText1, RecordText2, RecordText3, RecordText4 } from "../atom";
+import { useRecoilState, atom } from "recoil";
+
 //import Days from "../stack/calendarDay/Days";
 import Infos from "../stack/info/Infos";
 import Risk from "../stack/info/Risk";
@@ -31,33 +34,35 @@ const Title = styled.Text`
 `;
 //var tmp = "";
 //var tmp2 = "";
-const TimeLine = () => {};
-/*
 const TimeLine = () => {
+  const [text, setText] = useRecoilState(RecordText1);
+  const [text2, setText2] = useRecoilState(RecordText2);
+  const [text3, setText3] = useRecoilState(RecordText3);
+  const [text4, setText4] = useRecoilState(RecordText4);
   const dummy = [
-    { time: "09:00", title: "한양대학교", description: `${tmp}` },
-    { time: "10:45", title: "세탁기", description: "실행하러 고고" },
+    { time: "09:00", title: "한양대학교", description: `${text}` },
+    { time: "10:45", title: "세탁기", description: `${text2}` },
     {
       time: "12:00",
       title: "마쿠마라탕",
       description: "마쿠마라탕에서 마라탕을 먹었다",
     },
-    { time: "14:00", title: "스타일러", description: "실행하러 고고" },
-    { time: "16:30", title: "집", description: `${tmp2}` },
+    { time: "14:00", title: "스타일러", description: `${text3}` },
+    { time: "16:30", title: "집", description: `${text4}` },
   ];
-  const [data, setData] = useState([]);
-  const [tmp, setTmp] = useState("");
-  const [tmp2, setTmp2] = useState("");
-  useEffect(() => {
+
+  /*useEffect(() => {
     AsyncStorage.getItem("Text", (err, result) => {
       if (result != null) {
-        //setData(result);
+        //setData(여기당);
         setData((data) => [...data, result]);
         setTmp(result);
         setTmp2(result);
       }
     });
   }, []);
+  */
+
   //tmp = data[0];
   //tmp2 = data[1];
   return (
@@ -74,15 +79,14 @@ const TimeLine = () => {
       }}
       onEventPress={(event) => {
         console.log(event);
-        alert(tmp2);
+        alert();
       }}
     />
   );
 };
-*/
 
 const Days = ({ navigation: { navigate } }) => {
-  const [data, setData] = useState([]);
+  /*const [data, setData] = useState([]);
   useEffect(() => {
     AsyncStorage.getItem("Text", (err, result) => {
       //array.push(result);
@@ -93,7 +97,7 @@ const Days = ({ navigation: { navigate } }) => {
   // 실제실행: [세탁기] 전체(=추천): [세탁기, 스타일러]인데
   // 둘 다 띄워주면 세탁기 세탁기 스타일러. 이렇게 뜨면 안되니까
   // 전체에 있는 세탁기가 실제실행 리스트에 있을 경우 전체에서 빼주는 식으로 해야할듯
-
+*/
   return (
     <Body style={{ flex: 1 }}>
       <Back
@@ -102,10 +106,8 @@ const Days = ({ navigation: { navigate } }) => {
       >
         <Text style={{ fontSize: 30 }}>🔙</Text>
       </Back>
-      <Title style={{ marginBottom: 30 }}>{data}</Title>
-      <ScrollView>
-        <TimeLine />
-      </ScrollView>
+      <Title style={{ marginBottom: 30 }}>안녕하냐 자식아</Title>
+      <TimeLine />
     </Body>
   );
 };

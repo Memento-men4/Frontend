@@ -94,4 +94,5 @@ const Days = ({ navigation: { navigate } }) => {
     </Body>
   );
 };
+
 export default Days;
