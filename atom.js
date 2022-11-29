@@ -30,7 +30,13 @@ const RecordText4 = atom({
 });*/
 const WriteFormat = atom({
   key: "WriteFormat",
-  default: {},
+  default: {
+    current: {
+      name: "",
+      time: "",
+      selectDay: [false, false, false, false, false, false, false],
+    },
+  },
 });
 export {
   loginFlag,

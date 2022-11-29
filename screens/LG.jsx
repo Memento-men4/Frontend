@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { View, Text, FlatList, TouchableOpacity } from "react-native";
 import styled from "styled-components/native";
 import { useNavigation } from "@react-navigation/native";
@@ -72,9 +72,10 @@ const Content = styled.View`
 // justify-content: center, align-items: center; 갈기면 상하좌우 센터
 const LG = ({ navigation: { navigate } }) => {
   const isFocused = useIsFocused();
-  const [data, setData] = useState([]);
   const [writeFormat, setWriteFormat] = useRecoilState(WriteFormat);
-  const loadData = async (value) => {
+  const check = useRef([0, 0, 0, 0, 0, 0, 0]);
+
+  /*const loadData = async (value) => {
     await AsyncStorage.getItem("Product", (err, result) => {
       console.log("hihi", data);
       if (result == "🤯") {
@@ -96,11 +97,26 @@ const LG = ({ navigation: { navigate } }) => {
   };
   const storeData = async () => {
     await AsyncStorage.setItem("Product", tmp);
-  };
+  };*/
   /* 리렌더링 뒤지게 안 되길래 내가 만듦 */
+
   useEffect(() => {
-    console.log(writeFormat);
-  }, [isFocused]);
+    if (writeFormat["current"]["name"] == "🤯") {
+      check.current[0] = 1;
+    } else if (writeFormat["current"]["name"] == "🥲") {
+      check.current[1] = 1;
+    } else if (writeFormat["current"]["name"] == "🤬") {
+      check.current[2] = 1;
+    } else if (writeFormat["current"]["name"] == "🤗") {
+      check.current[3] = 1;
+    } else if (writeFormat["current"]["name"] == "🥰") {
+      check.current[4] = 1;
+    } else if (writeFormat["current"]["name"] == "😊") {
+      check.current[5] = 1;
+    } else if (writeFormat["current"]["name"] == "🤩") {
+      check.current[6] = 1;
+    }
+  }, [writeFormat]);
 
   const [date, onChangeDate] = useState(new Date()); // 선택 날짜
   const [mode, setMode] = useState("date"); // 모달 유형
@@ -233,13 +249,10 @@ const LG = ({ navigation: { navigate } }) => {
       </Container>
       <Container style={{ marginTop: 50, flex: 5.5 }}>
         <ScrollView style={{ backgroundColor: "#f2f2f2" }}>
-          {data.includes(0) && <Airplane />}
-          {data.includes(1) && <TV />}
-          {data.includes(2) && <Drum />}
-          {data.includes(3) && <Airplane />}
-          {data.includes(4) && <Airplane />}
-          {data.includes(5) && <Airplane />}
-          {data.includes(6) && <Airplane />}
+          {console.log("Hello", check.current)}
+          {check.current[0] !== 0 ? <Airplane /> : null}
+          {check.current[1] !== 0 ? <TV /> : null}
+          {check.current[2] !== 0 ? <Drum /> : null}
         </ScrollView>
       </Container>
       <AddBtn onPress={() => navigate("Stack", { screen: "Write" })}>
