@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Calendar } from "react-native-calendars";
 import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
 import styled from "styled-components/native";
@@ -7,6 +7,10 @@ import { imageName } from "/Users/leesukcheol/memento/images.js"; // 실제 디�
 import HighlightText from "react-native-highlight-underline-text";
 import { loginFlag } from "../atom";
 import { useRecoilState } from "recoil";
+import axios from "axios";
+import { UserIDNumber, UserName } from "../atom";
+import { useIsFocused } from "@react-navigation/native";
+
 const Body = styled.View`
   background-color: white;
 `;
@@ -52,14 +56,54 @@ const Gom = styled.Image`
 `;
 
 const CalendarView = ({ navigation: { navigate } }) => {
+  const isFocused = useIsFocused();
+  const [userName, setUserName] = useRecoilState(UserName);
+  const [userIDNumber, setUserIDNumber] = useRecoilState(UserIDNumber);
+  const getUserIDNumber = () => {
+    //const [loading, setLoading] = useState(false);
+    //const [error, setError] = useState(null);
+    const userInfo = {
+      id: "test123",
+      password: "hitoriudon1",
+      name: "test123",
+      phoneNumber: "010-3454-2326",
+      gender: "MALE",
+      type: "GENERAL",
+      birthDay: "1997-10-21",
+      email: "tjrcjf9@naver.com",
+    };
+    axios
+      .post(
+        "http://ec2-52-79-187-71.ap-northeast-2.compute.amazonaws.com:8080/member",
+        { userInfo }
+      )
+      .then(function (response) {
+        console.log(response);
+        console.log(response.data);
+        console.log(response.config);
+        setUserIDNumber(response.data);
+        setUserName(userInfo["name"]);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
   const markedDates = {
     "2022-11-01": { selected: true, marked: true, selectedColor: "#ffda79" },
     "2022-11-02": { marked: true },
     "2022-11-03": { marked: true, dotColor: "#ffda79", activeOpacity: 0 },
     "2022-11-04": { disabled: true, disableTouchEvent: true },
   };
-  const name = "이하늘 님";
   const [login, setLogin] = useRecoilState(loginFlag);
+  useEffect(
+    () => {
+      getUserIDNumber();
+    },
+    [
+      /*isFocused*/
+    ]
+  ); // 주석 풀면 캘린더 스크린에 접속할 때마다 post가 실행됨
+
   return (
     <Body>
       {login === 0 ? (
@@ -83,7 +127,7 @@ const CalendarView = ({ navigation: { navigate } }) => {
                   fontWeight: "bold",
                   color: "black",
                 }}
-                text={name}
+                text={userName}
               />
             </View>
             <Gom

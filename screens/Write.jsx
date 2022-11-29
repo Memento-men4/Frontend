@@ -6,7 +6,7 @@ import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { format } from "date-fns";
 import ko from "date-fns/esm/locale/ko/index.js";
 import HighlightText from "react-native-highlight-underline-text";
-import { WriteFormat } from "../atom";
+import { WriteFormat, UserIDNumber } from "../atom";
 import { useRecoilState } from "recoil";
 const Body = styled.View`
   background-color: #ffda79;
@@ -155,7 +155,35 @@ const Write = ({ navigation: { goBack, navigate } }) => {
     // 취소 시
     setVisible(false); // 모달 close
   };
-
+  const [userIDNumber, setUserIDNumber] = useRecoilState(UserIDNumber);
+  const setLG = () => {
+    //const [loading, setLoading] = useState(false);
+    //const [error, setError] = useState(null);
+    const productInfo = {
+      member_seq: userIDNumber,
+      serialNum: serialNumber,
+      type: "WASHING_MACHINE",
+      settingTime: "10:30",
+      mon: "ON",
+      tue: "OFF",
+      wed: "ON",
+      thr: "ON",
+      fri: "OFF",
+      sat: "OFF",
+      sun: "ON",
+    };
+    axios
+      .post(
+        "http://ec2-52-79-187-71.ap-northeast-2.compute.amazonaws.com:8080/appliance",
+        { productInfo }
+      )
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
   const initialWriteFormat = useRef({
     write: {
       name: "",

@@ -1,34 +1,26 @@
 import { atom } from "recoil";
 
-const loginFlag = atom({
+export const loginFlag = atom({
   key: "loginFlag",
   default: 1,
 });
-const RecordText1 = atom({
+export const RecordText1 = atom({
   key: "RecordText1",
   default: "",
 });
-const RecordText2 = atom({
+export const RecordText2 = atom({
   key: "RecordText2",
   default: "",
 });
-const RecordText3 = atom({
+export const RecordText3 = atom({
   key: "RecordText3",
   default: "",
 });
-const RecordText4 = atom({
+export const RecordText4 = atom({
   key: "RecordText4",
   default: "",
 });
-/*const WriteFormat = atom({
-  key: "WriteFormat",
-  default: {
-    productID: "",
-    selectedDay: [false, false, false, false, false, false, false],
-    //selectedTime: "",
-  },
-});*/
-const WriteFormat = atom({
+export const WriteFormat = atom({
   key: "WriteFormat",
   default: {
     current: {
@@ -38,11 +30,11 @@ const WriteFormat = atom({
     },
   },
 });
-export {
-  loginFlag,
-  RecordText1,
-  RecordText2,
-  RecordText3,
-  RecordText4,
-  WriteFormat,
-};
+export const UserIDNumber = atom({
+  key: "UserIDNumber",
+  default: 0,
+});
+export const UserName = atom({
+  key: "UserName",
+  default: "",
+});

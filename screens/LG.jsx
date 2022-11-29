@@ -9,10 +9,10 @@ import ko from "date-fns/esm/locale/ko/index.js";
 import { Ionicons } from "@expo/vector-icons";
 import { ScrollView } from "react-native-gesture-handler";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { WriteFormat } from "../atom";
+import { WriteFormat, UserIDNumber } from "../atom";
 import { useRecoilState } from "recoil";
 import { useIsFocused } from "@react-navigation/native";
-
+import axios from "axios";
 const Title = styled.Text`
   font-size: 30px;
   font-weight: bold;
@@ -74,7 +74,7 @@ const LG = ({ navigation: { navigate } }) => {
   const isFocused = useIsFocused();
   const [writeFormat, setWriteFormat] = useRecoilState(WriteFormat);
   const check = useRef([0, 0, 0, 0, 0, 0, 0]);
-
+  const [userIDNumber, setUserIDNumber] = useRecoilState(UserIDNumber);
   /*const loadData = async (value) => {
     await AsyncStorage.getItem("Product", (err, result) => {
       console.log("hihi", data);
@@ -116,7 +116,7 @@ const LG = ({ navigation: { navigate } }) => {
     } else if (writeFormat["current"]["name"] == "🤩") {
       check.current[6] = 1;
     }
-  }, [writeFormat]);
+  }, [writeFormat]); // 제발 여기에 꼭 넣어야함!!!
 
   const [date, onChangeDate] = useState(new Date()); // 선택 날짜
   const [mode, setMode] = useState("date"); // 모달 유형
