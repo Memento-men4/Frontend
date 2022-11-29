@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Alert, Text, View } from "react-native";
 import styled from "styled-components/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -6,7 +6,8 @@ import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { format } from "date-fns";
 import ko from "date-fns/esm/locale/ko/index.js";
 import HighlightText from "react-native-highlight-underline-text";
-
+import { WriteFormat } from "../atom";
+import { useRecoilState } from "recoil";
 const Body = styled.View`
   background-color: #ffda79;
   flex: 1;
@@ -108,13 +109,33 @@ const Write = ({ navigation: { goBack, navigate } }) => {
   const [fri, setFri] = useState(false);
   const [sat, setSat] = useState(false);
   const [sun, setSun] = useState(false);
-  const onMonPress = () => setMon(!mon);
-  const onTuePress = () => setTue(!tue);
-  const onWedPress = () => setWed(!wed);
-  const onThuPress = () => setThu(!thu);
-  const onFriPress = () => setFri(!fri);
-  const onSatPress = () => setSat(!sat);
-  const onSunPress = () => setSun(!sun);
+  const [writeFormat, setWriteFormat] = useRecoilState(WriteFormat);
+  /*const onMonPress = () => {
+    setMon(!writeFormat["selectedDay"][0]);
+    writeFormat["selectedDay"][0] = !writeFormat["selectedDay"][0];
+  };*/
+
+  const onMonPress = () => {
+    setMon(!mon);
+  };
+  const onTuePress = () => {
+    setTue(!tue);
+  };
+  const onWedPress = () => {
+    setWed(!wed);
+  };
+  const onThuPress = () => {
+    setThu(!thu);
+  };
+  const onFriPress = () => {
+    setFri(!fri);
+  };
+  const onSatPress = () => {
+    setSat(!sat);
+  };
+  const onSunPress = () => {
+    setSun(!sun);
+  };
   const [date, onChangeDate] = useState(new Date()); // 선택 날짜
   const [mode, setMode] = useState("date"); // 모달 유형
   const [visible, setVisible] = useState(false); // 모달 노출 여부
@@ -122,6 +143,7 @@ const Write = ({ navigation: { goBack, navigate } }) => {
     // 시간 클릭 시
     setMode("time"); // 모달 유형을 time으로 변경
     setVisible(true); // 모달 open
+    //console.log(event.Date); 파라미터에 이벤트 넣으면 잘 나옴
   };
   const onConfirm = (selectedDate) => {
     // 날짜 또는 시간 선택 시
@@ -133,25 +155,71 @@ const Write = ({ navigation: { goBack, navigate } }) => {
     // 취소 시
     setVisible(false); // 모달 close
   };
-  const storeData = () => {
-    AsyncStorage.setItem("Product", selectedProduct);
-    // JSON으로 바꿔줘야함. 시간 추가기능
-  };
+
+  const initialWriteFormat = useRef({
+    write: {
+      name: "",
+      time: "",
+      selectedDay: [false, false, false, false, false, false, false],
+    },
+  });
   const onSubmit = () => {
-    if (serialNumber === "" || selectedProduct == null) {
-      AsyncStorage.clear();
-      console.log(AsyncStorage.getItem("Product"));
+    if (serialNumber === "" || selectedProduct == null || date == null) {
       return Alert.alert("Please complete form.");
+    } else {
+      initialWriteFormat.current = {
+        name: selectedProduct,
+        time: date.getHours() + ":" + date.getMinutes(),
+        selectedDay: [mon, tue, wed, thu, fri, sat, sun],
+      };
+      console.log("Before");
+      console.log(writeFormat);
+      goAlert();
     }
-    console.log(serialNumber, selectedProduct); // 콘솔에 텍스트랑 이모지 출력
-    //AsyncStorage.clear();
-    //console.log("이모지 클리어");
-    //storeData();
-    storeData();
-    //goBack();
-    console.log("navigatemainLg");
-    navigate("Main", { screen: "LG" });
   };
+  const goAlert = () => {
+    Alert.alert(
+      "작성 완료",
+      "나의 LG 목록에 추가하시겠습니까?",
+      [
+        {
+          text: "아니요",
+        },
+        {
+          text: "네",
+          onPress: () => {
+            setWriteFormat(initialWriteFormat);
+            console.log("After");
+            console.log(writeFormat);
+            //navigate("Main", { screen: "LG" });
+            goBack();
+          },
+          style: "cancel",
+        },
+      ],
+      { cancelable: false }
+    );
+  };
+  /*setInfoData((prevState) => ({
+    ...prevState,
+    write: {
+      ...prevState.write,
+      name: selectedProduct,
+      time: date.getHours() + ":" + date.getMinutes(),
+      selectedDay: [mon, tue, wed, thu, fri, sat, sun],
+    },
+  }));
+  setWriteFormat(infoData);
+}
+};
+const [infoData, setInfoData] = useState({
+write: {
+  name: "",
+  time: "",
+  selectedDay: [false, false, false, false, false, false, false],
+},
+});*/
+
   return (
     <Body>
       <Header>
@@ -174,7 +242,7 @@ const Write = ({ navigation: { goBack, navigate } }) => {
             value={serialNumber}
             returnKeyType="done"
             keyboardType="email-address"
-            style={{ marginHorizontal: 30 }}
+            style={{ marginHorizontal: 20, marginVertical: 10 }}
           />
         </Part>
       </Container>

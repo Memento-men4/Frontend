@@ -16,8 +16,7 @@ const Root = () => (
       component={DrawerComponent} // const 이름이 들어가야함
     />
     <Nav.Screen name="Stack" options={{}} component={Stack} />
-    <Nav.Screen name="Write" options={{}} component={Write} />
   </Nav.Navigator>
 );
-
+// <Nav.Screen name="Write" options={{}} component={Write} />
 export default Root;

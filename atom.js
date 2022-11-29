@@ -20,5 +20,23 @@ const RecordText4 = atom({
   key: "RecordText4",
   default: "",
 });
-
-export { loginFlag, RecordText1, RecordText2, RecordText3, RecordText4 };
+/*const WriteFormat = atom({
+  key: "WriteFormat",
+  default: {
+    productID: "",
+    selectedDay: [false, false, false, false, false, false, false],
+    //selectedTime: "",
+  },
+});*/
+const WriteFormat = atom({
+  key: "WriteFormat",
+  default: {},
+});
+export {
+  loginFlag,
+  RecordText1,
+  RecordText2,
+  RecordText3,
+  RecordText4,
+  WriteFormat,
+};

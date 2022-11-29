@@ -19,7 +19,7 @@ const Target = styled.View`
   flex-direction: row;
   margin: 5px;
 `; // 3분할. 1. 질문 2. 예 체크박스 3. 아니오 체크박스
-const Intro = styled.Text`
+const Intro = styled.Text`3
   text-align: right;
   font-weight: bold;
   font-size: 16px;

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Alert } from "react-native";
+import { Alert, ImageBackground, View } from "react-native";
 import styled from "styled-components/native";
 import Voice from "react-native-voice";
 import { RecordText1, RecordText2, RecordText3, RecordText4 } from "../atom";
@@ -9,7 +9,6 @@ const Container = styled.View`
   flex: 1;
   justify-content: center;
   align-items: center;
-  background-color: #f5fcff;
 `;
 const ButtonRecord = styled.Button`
   background-color: black;
@@ -23,6 +22,7 @@ const VoiceText = styled.Text`
 
 const Recording = () => {
   const [isRecord, setIsRecord] = useState(false); // 녹음 중인지 아닌지
+  const [showingText, setShowingText] = useState("");
   const [text, setText] = useRecoilState(RecordText1); // 녹음한 텍스트
   const [text2, setText2] = useRecoilState(RecordText2); // 녹음한 텍스트 두번째
   const [text3, setText3] = useRecoilState(RecordText3); // 녹음한 텍스트 세번째
@@ -30,38 +30,24 @@ const Recording = () => {
   const cnt = useRef(0); // 녹음한 횟수 카운트
 
   const buttonLabel = isRecord ? "녹음 끝! 전송하기" : "녹음 시작하기"; // 녹음 중이면 전송, 아니면 시작
-  const voiceLabel = text ? text : isRecord ? "Recording..." : "음성인식 시작";
-  const voiceLabel2 = text2
-    ? text2
-    : isRecord
-    ? "Recording..."
-    : "음성인식 시작";
-  const voiceLabel3 = text3
-    ? text3
-    : isRecord
-    ? "Recording..."
-    : "음성인식 시작";
-  const voiceLabel4 = text4
-    ? text4
+  const voiceLabel = showingText
+    ? showingText
     : isRecord
     ? "Recording..."
     : "음성인식 시작";
 
   const _onSpeechStart = () => {
     // 음성인식 시작
-    console.log("onSpeechStart");
   };
   const _onSpeechEnd = () => {
     // 녹음이 끝나면
-    console.log("onSpeechEnd");
     Alert.alert("녹음 끝! 타임라인에 반영됩니다.");
     cnt.current = cnt.current + 1;
-    console.log(cnt);
   };
-
   const _onSpeechResults = (event) => {
     // 음성인식 결과
     console.log("onSpeechResults");
+    setShowingText(event.value[0]);
     if (cnt.current === 0) {
       setText(event.value[0]); // 음성인식 결과를 text에 저장
     } else if (cnt.current === 1) {
@@ -77,7 +63,6 @@ const Recording = () => {
   const _onSpeechError = (event) => {
     // 에러 발생시
     Alert.alert("녹음 에러 발생! 다시 시도하세요.");
-    console.log("_onSpeechError");
     console.log(event.error);
   };
 
@@ -101,11 +86,15 @@ const Recording = () => {
   }, []); //[]에 text를 넣으면 text가 바뀔 때마다 useEffect가 실행되는데 그럼 스트링 한 번밖에 못 받아서 빼야함.
   return (
     <Container>
-      {cnt === 0 ? <VoiceText>{voiceLabel}</VoiceText> : null}
-      {cnt === 1 ? <VoiceText>{voiceLabel2}</VoiceText> : null}
-      {cnt === 2 ? <VoiceText>{voiceLabel3}</VoiceText> : null}
-      {cnt === 3 ? <VoiceText>{voiceLabel4}</VoiceText> : null}
-      <ButtonRecord onPress={_onRecordVoice} title={buttonLabel} />
+      <ImageBackground
+        source={require("../assets/images/back1.png")}
+        style={{ width: "105%", height: "100%" }}
+      >
+        <View style={{ marginTop: 250 }}>
+          <VoiceText>{voiceLabel}</VoiceText>
+          <ButtonRecord onPress={_onRecordVoice} title={buttonLabel} />
+        </View>
+      </ImageBackground>
     </Container>
   );
 };

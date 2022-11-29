@@ -9,7 +9,9 @@ import ko from "date-fns/esm/locale/ko/index.js";
 import { Ionicons } from "@expo/vector-icons";
 import { ScrollView } from "react-native-gesture-handler";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import Login from "./Login";
+import { WriteFormat } from "../atom";
+import { useRecoilState } from "recoil";
+import { useIsFocused } from "@react-navigation/native";
 
 const Title = styled.Text`
   font-size: 30px;
@@ -69,7 +71,9 @@ const Content = styled.View`
 
 // justify-content: center, align-items: center; 갈기면 상하좌우 센터
 const LG = ({ navigation: { navigate } }) => {
+  const isFocused = useIsFocused();
   const [data, setData] = useState([]);
+  const [writeFormat, setWriteFormat] = useRecoilState(WriteFormat);
   const loadData = async (value) => {
     await AsyncStorage.getItem("Product", (err, result) => {
       console.log("hihi", data);
@@ -93,15 +97,11 @@ const LG = ({ navigation: { navigate } }) => {
   const storeData = async () => {
     await AsyncStorage.setItem("Product", tmp);
   };
-
+  /* 리렌더링 뒤지게 안 되길래 내가 만듦 */
   useEffect(() => {
-    console.log(data);
-    loadData();
-    //storeData();
-    //AsyncStorage.setItem("Product", JSON.stringify(data));
-  }, []);
-  //useEffect(() => {}, [setData, data]);
-  console.log("okok");
+    console.log(writeFormat);
+  }, [isFocused]);
+
   const [date, onChangeDate] = useState(new Date()); // 선택 날짜
   const [mode, setMode] = useState("date"); // 모달 유형
   const [visible, setVisible] = useState(false); // 모달 노출 여부
@@ -242,7 +242,7 @@ const LG = ({ navigation: { navigate } }) => {
           {data.includes(6) && <Airplane />}
         </ScrollView>
       </Container>
-      <AddBtn onPress={() => navigate("Write", { screen: "Write" })}>
+      <AddBtn onPress={() => navigate("Stack", { screen: "Write" })}>
         <AddBtnText>+</AddBtnText>
       </AddBtn>
     </Body>
