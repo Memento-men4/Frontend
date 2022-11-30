@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { TouchableOpacity, Text, View, Alert, StyleSheet } from "react-native";
 import styled from "styled-components/native";
 import { Ionicons } from "@expo/vector-icons";
 import Voice from "react-native-voice";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useIsFocused } from "@react-navigation/native";
+
 const Container = styled.View`
   flex: 1;
   justify-content: center;
@@ -37,6 +38,7 @@ const ColorList = styled.View`
   margin-right: 25px;
 `;
 const Record = () => {
+  // hook
   const [isRecord, setIsRecord] = useState(false); // 녹음 중인지 아닌지
   const [text, setText] = useState(""); // 녹음한 텍스트
   const buttonLabel = isRecord ? "녹음 끝! 전송하기" : "녹음 시작하기"; // 녹음 중이면 전송, 아니면 시작
@@ -44,8 +46,8 @@ const Record = () => {
     ? text
     : isRecord
     ? "Recording..."
-    : "버튼을 누르면 음성인식이 시작됩니다.";
-
+    : "정답을 말해주세요!";
+  // hook
   const _onSpeechStart = () => {
     // 음성인식 시작
     console.log("onSpeechStart");
@@ -108,18 +110,30 @@ const Record = () => {
 };
 var AnswerText = "";
 const Game1 = ({ navigation: { navigate } }) => {
-  const [count, setCount] = useState(0);
+  // hook
+  const [isRecord, setIsRecord] = useState(false); // 녹음 중인지 아닌지
+  const [text, setText] = useState(""); // 녹음한 텍스트
+  const buttonLabel = isRecord ? "녹음 끝! 전송하기" : "녹음 시작하기"; // 녹음 중이면 전송, 아니면 시작
+  const voiceLabel = text
+    ? text
+    : isRecord
+    ? "Recording..."
+    : "정답을 말해주세요!";
+  // hook
+  const isFocused = useIsFocused();
+  const [count, setCount] = useState(-1);
+  const answer = ["빨강 파랑 노랑 초록", "파랑 빨강 초록 노랑"];
+  const answerText1 = useRef(answer[0]);
+  const answerText2 = useRef(answer[1]);
   useEffect(() => {
     setCount(count + 1);
-    AnswerText = answer[(count + 1) % 2];
-  }, []);
+  }, [isFocused]);
   const words = {
     red: ["파랑", "노랑", "검정", "초록"],
     blue: ["노랑", "검정", "초록", "빨강"],
     yellow: ["검정", "초록", "빨강", "파랑"],
     green: ["빨강", "파랑", "노랑", "검정"],
   };
-  const answer = ["빨강 파랑 노랑 초록", "파랑 빨강 초록 노랑"];
   const Colors = () => (
     <ColorList>
       <Text style={{ fontSize: 25, fontWeight: "bold", color: "red" }}>
@@ -167,7 +181,10 @@ const Game1 = ({ navigation: { navigate } }) => {
         {count % 2 === 0 ? <Colors /> : <Colors2 />}
       </View>
       <View style={{ marginTop: 20 }}>
-        <Text>{count % 2 === 0 ? answer[0] : answer[1]}</Text>
+        <Text>
+          {count % 2 === 0 ? answerText1.current : answerText2.current}
+          {console.log(count)}
+        </Text>
       </View>
       <Record />
     </View>

@@ -63,26 +63,27 @@ const CalendarView = ({ navigation: { navigate } }) => {
     //const [loading, setLoading] = useState(false);
     //const [error, setError] = useState(null);
     const userInfo = {
-      id: "test123",
-      password: "hitoriudon1",
-      name: "test123",
-      phoneNumber: "010-3454-2326",
+      id: "new1",
+      password: "1234",
+      name: "new2",
+      phoneNumber: "010-3333-3333",
       gender: "MALE",
       type: "GENERAL",
-      birthDay: "1997-10-21",
-      email: "tjrcjf9@naver.com",
+      birthDay: "1999-01-01",
+      email: "dltjrcjf9@naver,com",
     };
+
     axios
       .post(
         "http://ec2-52-79-187-71.ap-northeast-2.compute.amazonaws.com:8080/member",
-        { userInfo }
+        userInfo
       )
       .then(function (response) {
         console.log(response);
-        console.log(response.data);
+        /*console.log(response.data);
         console.log(response.config);
         setUserIDNumber(response.data);
-        setUserName(userInfo["name"]);
+        setUserName(userInfo["name"]);*/
       })
       .catch(function (error) {
         console.log(error);
@@ -94,10 +95,11 @@ const CalendarView = ({ navigation: { navigate } }) => {
     "2022-11-03": { marked: true, dotColor: "#ffda79", activeOpacity: 0 },
     "2022-11-04": { disabled: true, disableTouchEvent: true },
   };
+
   const [login, setLogin] = useRecoilState(loginFlag);
   useEffect(
     () => {
-      getUserIDNumber();
+      /*getUserIDNumber();*/
     },
     [
       /*isFocused*/
@@ -137,7 +139,8 @@ const CalendarView = ({ navigation: { navigate } }) => {
           <Container>
             <Calendar
               onDayPress={(day) => navigate("Stack", { screen: "Days" })} // 날짜 클릭하면 스택으로 이동
-              //onDayPress={(day) => console.log("selected day", day)}
+              minDate={"2022-11-01"}
+              //markingType={"multi-dot"}
               markedDates={markedDates}
               hideExtraDays={true}
               style={styles.calendar}
@@ -161,13 +164,13 @@ const CalendarView = ({ navigation: { navigate } }) => {
             <Target onPress={() => navigate("Stack", { screen: "HomeInfos" })}>
               <Txt>영츠하이머 그게 뭔데?</Txt>
             </Target>
-            <Target onPress={() => navigate("Stack", { screen: "HomeGame" })}>
-              <Txt>영츠하이머 예방 게임!</Txt>
-            </Target>
             <Target
               onPress={() => navigate("Stack", { screen: "HomeDiagnosis" })}
             >
               <Txt>영츠하이머 자가 진단!</Txt>
+            </Target>
+            <Target onPress={() => navigate("Stack", { screen: "HomeGame" })}>
+              <Txt>영츠하이머 예방 게임!</Txt>
             </Target>
           </Footer>
         </View>

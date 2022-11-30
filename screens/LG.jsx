@@ -69,35 +69,12 @@ const Content = styled.View`
   align-items: center;
 `;
 
-// justify-content: center, align-items: center; 갈기면 상하좌우 센터
 const LG = ({ navigation: { navigate } }) => {
   const isFocused = useIsFocused();
   const [writeFormat, setWriteFormat] = useRecoilState(WriteFormat);
   const check = useRef([0, 0, 0, 0, 0, 0, 0]);
   const [userIDNumber, setUserIDNumber] = useRecoilState(UserIDNumber);
-  /*const loadData = async (value) => {
-    await AsyncStorage.getItem("Product", (err, result) => {
-      console.log("hihi", data);
-      if (result == "🤯") {
-        setData((data) => [...data, 0]);
-      } else if (result == "🥲") {
-        setData((data) => [...data, 1]);
-      } else if (result == "🤬") {
-        setData((data) => [...data, 2]);
-      } else if (result == "🤗") {
-        setData((data) => [...data, 3]);
-      } else if (result == "🥰") {
-        setData((data) => [...data, 4]);
-      } else if (result == "😊") {
-        setData((data) => [...data, 5]);
-      } else if (result == "🤩") {
-        setData((data) => [...data, 6]);
-      }
-    });
-  };
-  const storeData = async () => {
-    await AsyncStorage.setItem("Product", tmp);
-  };*/
+
   /* 리렌더링 뒤지게 안 되길래 내가 만듦 */
 
   useEffect(() => {

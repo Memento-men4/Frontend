@@ -38,3 +38,16 @@ export const UserName = atom({
   key: "UserName",
   default: "",
 });
+export const SelectQuiz = atom({
+  key: "SelectQuiz",
+  default: 0,
+});
+
+export const QuizList = atom({
+  key: "QuizList",
+  default: ["📺 TV", "🏫 ITBT관", "🐶 강아지", "🥤 커피", "🍕 피자"],
+});
+export const QuizAnswer = atom({
+  key: "QuizAnswer",
+  default: ["LG전자", "학교", "동물", "음료", "음식"],
+});

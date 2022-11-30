@@ -21,7 +21,7 @@ import HomeInfos from "../screens/home/HomeInfos";
 import HomeGame from "../screens/home/HomeGame";
 import HomeDiagnosis from "../screens/home/HomeDiagnosis";
 import Write from "../screens/Write";
-
+import Answer from "../stack/game/Answer";
 const Body = styled.View`
   flex-direction: column;
   padding-top: 20px;
@@ -182,6 +182,11 @@ const Stack = () => (
     <NativeStack.Screen
       name="Write"
       component={Write}
+      options={{ headerShown: false }}
+    />
+    <NativeStack.Screen
+      name="Answer"
+      component={Answer}
       options={{ headerShown: false }}
     />
   </NativeStack.Navigator>

@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Alert, Text, View } from "react-native";
 import styled from "styled-components/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -8,6 +8,7 @@ import ko from "date-fns/esm/locale/ko/index.js";
 import HighlightText from "react-native-highlight-underline-text";
 import { WriteFormat, UserIDNumber } from "../atom";
 import { useRecoilState } from "recoil";
+import axios from "axios";
 const Body = styled.View`
   background-color: #ffda79;
   flex: 1;
@@ -110,11 +111,6 @@ const Write = ({ navigation: { goBack, navigate } }) => {
   const [sat, setSat] = useState(false);
   const [sun, setSun] = useState(false);
   const [writeFormat, setWriteFormat] = useRecoilState(WriteFormat);
-  /*const onMonPress = () => {
-    setMon(!writeFormat["selectedDay"][0]);
-    writeFormat["selectedDay"][0] = !writeFormat["selectedDay"][0];
-  };*/
-
   const onMonPress = () => {
     setMon(!mon);
   };
@@ -161,21 +157,21 @@ const Write = ({ navigation: { goBack, navigate } }) => {
     //const [error, setError] = useState(null);
     const productInfo = {
       member_seq: userIDNumber,
-      serialNum: serialNumber,
+      serialNum: "123456789",
       type: "WASHING_MACHINE",
-      settingTime: "10:30",
+      settingTime: "11:00",
       mon: "ON",
-      tue: "OFF",
-      wed: "ON",
-      thr: "ON",
+      tue: "ON",
+      wed: "OFF",
+      thr: "OFF",
       fri: "OFF",
       sat: "OFF",
-      sun: "ON",
+      sun: "OFF",
     };
     axios
       .post(
         "http://ec2-52-79-187-71.ap-northeast-2.compute.amazonaws.com:8080/appliance",
-        { productInfo }
+        productInfo
       )
       .then(function (response) {
         console.log(response);
@@ -184,6 +180,9 @@ const Write = ({ navigation: { goBack, navigate } }) => {
         console.log(error);
       });
   };
+  useEffect(() => {
+    setLG();
+  }, []);
   const initialWriteFormat = useRef({
     write: {
       name: "",
@@ -193,7 +192,7 @@ const Write = ({ navigation: { goBack, navigate } }) => {
   });
   const onSubmit = () => {
     if (serialNumber === "" || selectedProduct == null || date == null) {
-      return Alert.alert("Please complete form.");
+      return Alert.alert("모든 항목을 입력해주세요.");
     } else {
       initialWriteFormat.current = {
         name: selectedProduct,
@@ -201,7 +200,9 @@ const Write = ({ navigation: { goBack, navigate } }) => {
         selectedDay: [mon, tue, wed, thu, fri, sat, sun],
       };
       console.log("Before");
+      console.log(initialWriteFormat.time);
       console.log(writeFormat);
+
       goAlert();
     }
   };

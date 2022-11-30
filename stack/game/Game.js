@@ -30,13 +30,13 @@ const Game = ({ navigation: { navigate } }) => (
   <Body style={{ flex: 1 }}>
     <View style={{ justifyContent: "center", alignContent: "flex-start" }}>
       <Target onPress={() => navigate("Stack", { screen: "Game1" })}>
-        <Txt style={{ marginLeft: 30 }}>💡 치매 예방 게임 1</Txt>
+        <Txt style={{ marginLeft: 30 }}>💡 집중력</Txt>
       </Target>
       <Target onPress={() => navigate("Stack", { screen: "Game2" })}>
-        <Txt style={{ marginLeft: 30 }}>💡 치매 예방 게임 2</Txt>
+        <Txt style={{ marginLeft: 30 }}>💡 기억력</Txt>
       </Target>
       <Target onPress={() => navigate("Stack", { screen: "Game3" })}>
-        <Txt style={{ marginLeft: 30 }}>💡 치매 예방 게임 3</Txt>
+        <Txt style={{ marginLeft: 30 }}>💡 계산력</Txt>
       </Target>
     </View>
   </Body>
