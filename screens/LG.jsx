@@ -1,14 +1,15 @@
 import React, { useState, useEffect, useRef } from "react";
-import { View, Text, FlatList, TouchableOpacity } from "react-native";
+import { View, Text, Alert } from "react-native";
 import styled from "styled-components/native";
-import { useNavigation } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { format } from "date-fns";
 import ko from "date-fns/esm/locale/ko/index.js";
-import { Ionicons } from "@expo/vector-icons";
+import {
+  Ionicons,
+  MaterialCommunityIcons,
+  MaterialIcons,
+} from "@expo/vector-icons";
 import { ScrollView } from "react-native-gesture-handler";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import {
   WriteFormat,
   UserIDNumber,
@@ -27,6 +28,8 @@ const LG = ({ navigation: { navigate } }) => {
   const [writeFormat, setWriteFormat] = useRecoilState(WriteFormat);
   const check = useRef([0, 0, 0, 0, 0, 0, 0]); // 가전제품 종류별 렌더링
   const [userIDNumber, setUserIDNumber] = useRecoilState(UserIDNumber);
+  /*
+  12/4에 문제 없으면 삭제
   const [mon, setMon] = useState(false);
   const [tue, setTue] = useState(false);
   const [wed, setWed] = useState(false);
@@ -34,6 +37,7 @@ const LG = ({ navigation: { navigate } }) => {
   const [fri, setFri] = useState(false);
   const [sat, setSat] = useState(false);
   const [sun, setSun] = useState(false);
+  */
 
   useEffect(() => {
     if (writeFormat["name"] == "🤯") {
@@ -56,11 +60,14 @@ const LG = ({ navigation: { navigate } }) => {
   const [date, onChangeDate] = useState(new Date()); // 선택 날짜
   const [mode, setMode] = useState("date"); // 모달 유형
   const [visible, setVisible] = useState(false); // 모달 노출 여부
+  /*
+  12/4에 문제 없으면 삭제
   const onPressDate = () => {
     // 날짜 클릭 시
     setMode("date"); // 모달 유형을 date로 변경
     setVisible(true); // 모달 open
   };
+  */
   const onPressTime = () => {
     // 시간 클릭 시
     setMode("time"); // 모달 유형을 time으로 변경
@@ -76,7 +83,7 @@ const LG = ({ navigation: { navigate } }) => {
     setVisible(false); // 모달 close
   };
   const onSubmit = () => {
-    console.log(writeFormat);
+    Alert.alert("설정이 완료되었습니다.");
     //타임라인으로 전송 구현해야함
   };
   const SetBtn = () => (
@@ -86,8 +93,12 @@ const LG = ({ navigation: { navigate } }) => {
         borderRadius: 10,
         marginLeft: 5,
         backgroundColor: "#D4D4D4",
+        justifyContent: "center",
       }}
       onPress={() => {
+        /* 
+        setWriteFormat으로 값 변경해줘야함...
+        */
         onSubmit();
       }}
     >
@@ -98,6 +109,7 @@ const LG = ({ navigation: { navigate } }) => {
   const [second, setSecond] = useRecoilState(SecondData);
   const [third, setThird] = useRecoilState(ThirdData);
   const [fourth, setFourth] = useRecoilState(FourthData);
+
   const Airplane = () => {
     const [monday, setMonday] = useState(first.mon);
     const [tuesday, setTuesday] = useState(first.tue);
@@ -127,6 +139,24 @@ const LG = ({ navigation: { navigate } }) => {
     const onSunPress = () => {
       setSunday(!sunday);
     };
+    const [date1, onChangeDate1] = useState(new Date()); // 선택 날짜
+    const [mode1, setMode1] = useState("date"); // 모달 유형
+    const [visible1, setVisible1] = useState(false); // 모달 노출 여부
+    const onPressTime1 = () => {
+      // 시간 클릭 시
+      setMode1("time"); // 모달 유형을 time으로 변경
+      setVisible1(true); // 모달 open
+    };
+    const onConfirm1 = (selectedDate) => {
+      // 날짜 또는 시간 선택 시
+      setVisible1(false); // 모달 close
+      onChangeDate1(selectedDate); // 선택한 날짜 변경
+      //console.log(selectedDate);
+    };
+    const onCancel1 = () => {
+      // 취소 시
+      setVisible1(false); // 모달 close
+    };
     return (
       <Content style={{ marginTop: 20, padding: 15 }}>
         <View style={{ flex: 1, flexDirection: "row" }}>
@@ -140,7 +170,11 @@ const LG = ({ navigation: { navigate } }) => {
           >
             <View style={{ flexDirection: "row" }}>
               <View style={{ flex: 1, marginLeft: 10, marginTop: 13 }}>
-                <Ionicons name="ios-airplane" size={30} color="black" />
+                <MaterialCommunityIcons
+                  name="washing-machine"
+                  size={30}
+                  color="black"
+                />
               </View>
               <View
                 style={{
@@ -149,9 +183,9 @@ const LG = ({ navigation: { navigate } }) => {
                   flex: 3,
                 }}
               >
-                <Btn style={{ flex: 1 }} onPress={onPressTime}>
+                <Btn style={{ flex: 1 }} onPress={onPressTime1}>
                   <ShowDate style={{ fontSize: 20 }}>
-                    {format(new Date(date), "p", { locale: ko })}
+                    {format(new Date(date1), "p", { locale: ko })}
                   </ShowDate>
                 </Btn>
                 <View style={{ flex: 1, flexDirection: "row", marginRight: 5 }}>
@@ -179,11 +213,11 @@ const LG = ({ navigation: { navigate } }) => {
                 </View>
               </View>
               <DateTimePickerModal
-                isVisible={visible}
-                mode={mode}
-                onConfirm={onConfirm}
-                onCancel={onCancel}
-                date={date}
+                isVisible={visible1}
+                mode={mode1}
+                onConfirm={onConfirm1}
+                onCancel={onCancel1}
+                date={date1}
               />
             </View>
           </Footer>
@@ -221,6 +255,24 @@ const LG = ({ navigation: { navigate } }) => {
     const onSunPress = () => {
       setSunday(!sunday);
     };
+    const [date2, onChangeDate2] = useState(new Date()); // 선택 날짜
+    const [mode2, setMode2] = useState("date"); // 모달 유형
+    const [visible2, setVisible2] = useState(false); // 모달 노출 여부
+    const onPressTime2 = () => {
+      // 시간 클릭 시
+      setMode2("time"); // 모달 유형을 time으로 변경
+      setVisible2(true); // 모달 open
+    };
+    const onConfirm2 = (selectedDate) => {
+      // 날짜 또는 시간 선택 시
+      setVisible2(false); // 모달 close
+      onChangeDate2(selectedDate); // 선택한 날짜 변경
+      //console.log(selectedDate);
+    };
+    const onCancel2 = () => {
+      // 취소 시
+      setVisible2(false); // 모달 close
+    };
     return (
       <Content style={{ marginTop: 20, padding: 15 }}>
         <View style={{ flex: 1, flexDirection: "row" }}>
@@ -234,7 +286,11 @@ const LG = ({ navigation: { navigate } }) => {
           >
             <View style={{ flexDirection: "row" }}>
               <View style={{ flex: 1, marginLeft: 10, marginTop: 13 }}>
-                <Ionicons name="ios-tv" size={30} color="black" />
+                <MaterialCommunityIcons
+                  name="air-purifier"
+                  size={30}
+                  color="black"
+                />
               </View>
               <View
                 style={{
@@ -243,9 +299,9 @@ const LG = ({ navigation: { navigate } }) => {
                   flex: 3,
                 }}
               >
-                <Btn style={{ flex: 1 }} onPress={onPressTime}>
+                <Btn style={{ flex: 1 }} onPress={onPressTime2}>
                   <ShowDate style={{ fontSize: 20 }}>
-                    {format(new Date(date), "p", { locale: ko })}
+                    {format(new Date(date2), "p", { locale: ko })}
                   </ShowDate>
                 </Btn>
                 <View style={{ flex: 1, flexDirection: "row", marginRight: 5 }}>
@@ -273,11 +329,11 @@ const LG = ({ navigation: { navigate } }) => {
                 </View>
               </View>
               <DateTimePickerModal
-                isVisible={visible}
-                mode={mode}
-                onConfirm={onConfirm}
-                onCancel={onCancel}
-                date={date}
+                isVisible={visible2}
+                mode={mode2}
+                onConfirm={onConfirm2}
+                onCancel={onCancel2}
+                date={date2}
               />
             </View>
           </Footer>
@@ -328,7 +384,7 @@ const LG = ({ navigation: { navigate } }) => {
           >
             <View style={{ flexDirection: "row" }}>
               <View style={{ flex: 1, marginLeft: 10, marginTop: 13 }}>
-                <Ionicons name="home" size={30} color="black" />
+                <Ionicons name="water" size={30} color="black" />
               </View>
               <View
                 style={{
@@ -422,7 +478,7 @@ const LG = ({ navigation: { navigate } }) => {
           >
             <View style={{ flexDirection: "row" }}>
               <View style={{ flex: 1, marginLeft: 10, marginTop: 13 }}>
-                <Ionicons name="clothes" size={30} color="black" />
+                <MaterialIcons name="dry-cleaning" size={30} color="black" />
               </View>
               <View
                 style={{
@@ -522,9 +578,11 @@ const Btn = styled.TouchableOpacity`
 `;
 const DayBtn = styled.TouchableOpacity`
   align-items: center;
-  padding-horizontal: 4px;
+  padding-horizontal: 2px;
+  margin-horizontal: 2px;
   padding-vertical: 3px;
   border-width: 1px;
+  border-radius: 5px;
   background-color: ${(props) => (props.selected ? "black" : "transparent")};
 `;
 const Footer = styled.View`
