@@ -136,18 +136,26 @@ const Game1 = ({ navigation: { navigate } }) => {
   };
   const Colors = () => (
     <ColorList>
-      <Text style={{ fontSize: 25, fontWeight: "bold", color: "red" }}>
-        {words["red"][count % 3]}
-      </Text>
-      <Text style={{ fontSize: 25, fontWeight: "bold", color: "blue" }}>
-        {words["blue"][count % 3]}
-      </Text>
-      <Text style={{ fontSize: 25, fontWeight: "bold", color: "yellow" }}>
-        {words["yellow"][count % 3]}
-      </Text>
-      <Text style={{ fontSize: 25, fontWeight: "bold", color: "green" }}>
-        {words["green"][count % 3]}
-      </Text>
+      <View>
+        <Text style={{ fontSize: 25, fontWeight: "bold", color: "red" }}>
+          {words["red"][count % 3]}
+        </Text>
+      </View>
+      <View>
+        <Text style={{ fontSize: 25, fontWeight: "bold", color: "blue" }}>
+          {words["blue"][count % 3]}
+        </Text>
+      </View>
+      <View>
+        <Text style={{ fontSize: 25, fontWeight: "bold", color: "yellow" }}>
+          {words["yellow"][count % 3]}
+        </Text>
+      </View>
+      <View>
+        <Text style={{ fontSize: 25, fontWeight: "bold", color: "green" }}>
+          {words["green"][count % 3]}
+        </Text>
+      </View>
     </ColorList>
   );
   const Colors2 = () => (

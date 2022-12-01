@@ -9,71 +9,20 @@ import ko from "date-fns/esm/locale/ko/index.js";
 import { Ionicons } from "@expo/vector-icons";
 import { ScrollView } from "react-native-gesture-handler";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { WriteFormat, UserIDNumber } from "../atom";
+import {
+  WriteFormat,
+  UserIDNumber,
+  FirstData,
+  SecondData,
+  ThirdData,
+  FourthData,
+} from "../atom";
 import { useRecoilState } from "recoil";
 import { useIsFocused } from "@react-navigation/native";
 import axios from "axios";
-const Title = styled.Text`
-  font-size: 30px;
-  font-weight: bold;
-  margin-bottom: 28px;
-  margin-top: 25px;
-  text-align: center;
-`;
-const Body = styled.View`
-  flex-direction: column;
-  padding: 10px;
-  padding-top: 20px;
-  background-color: white;
-`;
-const Container = styled.View`
-  border: 1px solid gray;
-  border-radius: 1px;
-  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
-`;
-const Btn = styled.TouchableOpacity`
-  align-items: center;
-  background-color: #ffda79;
-  padding-horizontal: 5px;
-  padding-vertical: 3px;
-`;
-const DayBtn = styled.TouchableOpacity`
-  align-items: center;
-  padding-horizontal: 4px;
-  padding-vertical: 3px;
-  border-width: 1px;
-  background-color: ${(props) => (props.selected ? "black" : "transparent")};
-`;
-const Footer = styled.View`
-  border: 2px solid black;
-`;
-//box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.15);
-// 차라리 테두리 라인 주기
-const AddBtn = styled.TouchableOpacity`
-  position: absolute;
-  bottom: 50px;
-  right: 50px;
-  background-color: #ffda79;
-  width: 80px;
-  height: 80px;
-  border-radius: 40px;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
-`;
-const AddBtnText = styled.Text`
-  font-size: 30px;
-`;
-const ShowDate = styled.Text`
-  font-size: 10px;
-`;
-const Content = styled.View`
-  flex-direction: row;
-  margin-left: 5px;
-  align-items: center;
-`;
 
 const LG = ({ navigation: { navigate } }) => {
+  const count = useRef(0);
   const isFocused = useIsFocused();
   const [writeFormat, setWriteFormat] = useRecoilState(WriteFormat);
   const check = useRef([0, 0, 0, 0, 0, 0, 0]); // 가전제품 종류별 렌더링
@@ -85,6 +34,7 @@ const LG = ({ navigation: { navigate } }) => {
   const [fri, setFri] = useState(false);
   const [sat, setSat] = useState(false);
   const [sun, setSun] = useState(false);
+  /*
   const onMonPress = () => {
     setMon(!mon);
   };
@@ -106,8 +56,35 @@ const LG = ({ navigation: { navigate } }) => {
   const onSunPress = () => {
     setSun(!sun);
   };
+*/
   useEffect(() => {
-    console.log(writeFormat);
+    /*
+    setMon(writeFormat["selectDay"]["mon"]);
+    setTue(writeFormat["selectDay"]["tue"]);
+    setWed(writeFormat["selectDay"]["wed"]);
+    setThu(writeFormat["selectDay"]["thr"]);
+    setFri(writeFormat["selectDay"]["fri"]);
+    setSat(writeFormat["selectDay"]["sat"]);
+    setSun(writeFormat["selectDay"]["sun"]);
+    */
+    if (writeFormat["name"] == "🤯") {
+      check.current[0] = 1;
+    } else if (writeFormat["name"] == "🥲") {
+      check.current[1] = 1;
+    } else if (writeFormat["name"] == "🤬") {
+      check.current[2] = 1;
+    } else if (writeFormat["name"] == "🤗") {
+      check.current[3] = 1;
+    } else if (writeFormat["name"] == "🥰") {
+      check.current[4] = 1;
+    } else if (writeFormat["name"] == "😊") {
+      check.current[5] = 1;
+    } else if (writeFormat["name"] == "🤩") {
+      check.current[6] = 1;
+    }
+  }, [writeFormat]); // 제발 여기에 꼭 넣어야함!!!
+
+  /*useEffect(() => {
     console.log("useEffectmon", writeFormat["current"]["selectDay"]["mon"]);
     setMon(writeFormat["current"]["selectDay"]["mon"]);
     setTue(writeFormat["current"]["selectDay"]["tue"]);
@@ -131,7 +108,7 @@ const LG = ({ navigation: { navigate } }) => {
     } else if (writeFormat["current"]["name"] == "🤩") {
       check.current[6] = 1;
     }
-  }, [writeFormat]); // 제발 여기에 꼭 넣어야함!!!
+  }, [writeFormat]); // 제발 여기에 꼭 넣어야함!!!*/
 
   const [date, onChangeDate] = useState(new Date()); // 선택 날짜
   const [mode, setMode] = useState("date"); // 모달 유형
@@ -157,6 +134,7 @@ const LG = ({ navigation: { navigate } }) => {
   };
   const onSubmit = () => {
     console.log(writeFormat);
+    //타임라인으로 전송 구현해야함
   };
   const SetBtn = () => (
     <Btn
@@ -173,7 +151,39 @@ const LG = ({ navigation: { navigate } }) => {
       <Text>설정</Text>
     </Btn>
   );
+  const [first, setFirst] = useRecoilState(FirstData);
+  const [second, setSecond] = useRecoilState(SecondData);
+  const [third, setThird] = useRecoilState(ThirdData);
+  const [fourth, setFourth] = useRecoilState(FourthData);
   const Airplane = () => {
+    const [monday, setMonday] = useState(first.mon);
+    const [tuesday, setTuesday] = useState(first.tue);
+    const [wednesday, setWednesday] = useState(first.wed);
+    const [thursday, setThursday] = useState(first.thr);
+    const [friday, setFriday] = useState(first.fri);
+    const [saturday, setSaturday] = useState(first.sat);
+    const [sunday, setSunday] = useState(first.sun);
+    const onMonPress = () => {
+      setMonday(!monday);
+    };
+    const onTuePress = () => {
+      setTuesday(!tuesday);
+    };
+    const onWedPress = () => {
+      setWednesday(!wednesday);
+    };
+    const onThuPress = () => {
+      setThursday(!thursday);
+    };
+    const onFriPress = () => {
+      setFriday(!friday);
+    };
+    const onSatPress = () => {
+      setSaturday(!saturday);
+    };
+    const onSunPress = () => {
+      setSunday(!sunday);
+    };
     return (
       <Content style={{ marginTop: 20, padding: 15 }}>
         <View style={{ flex: 1, flexDirection: "row" }}>
@@ -202,25 +212,25 @@ const LG = ({ navigation: { navigate } }) => {
                   </ShowDate>
                 </Btn>
                 <View style={{ flex: 1, flexDirection: "row", marginRight: 5 }}>
-                  <DayBtn selected={mon} onPress={() => onMonPress()}>
+                  <DayBtn selected={monday} onPress={() => onMonPress()}>
                     <Text style={{ fontSize: 20 }}>월</Text>
                   </DayBtn>
-                  <DayBtn selected={tue} onPress={() => onTuePress()}>
+                  <DayBtn selected={tuesday} onPress={() => onTuePress()}>
                     <Text style={{ fontSize: 20 }}>화</Text>
                   </DayBtn>
-                  <DayBtn selected={wed} onPress={() => onWedPress()}>
+                  <DayBtn selected={wednesday} onPress={() => onWedPress()}>
                     <Text style={{ fontSize: 20 }}>수</Text>
                   </DayBtn>
-                  <DayBtn selected={thu} onPress={() => onThuPress()}>
+                  <DayBtn selected={thursday} onPress={() => onThuPress()}>
                     <Text style={{ fontSize: 20 }}>목</Text>
                   </DayBtn>
-                  <DayBtn selected={fri} onPress={() => onFriPress()}>
+                  <DayBtn selected={friday} onPress={() => onFriPress()}>
                     <Text style={{ fontSize: 20 }}>금</Text>
                   </DayBtn>
-                  <DayBtn selected={sat} onPress={() => onSatPress()}>
+                  <DayBtn selected={saturday} onPress={() => onSatPress()}>
                     <Text style={{ fontSize: 20 }}>토</Text>
                   </DayBtn>
-                  <DayBtn selected={sun} onPress={() => onSunPress()}>
+                  <DayBtn selected={sunday} onPress={() => onSunPress()}>
                     <Text style={{ fontSize: 20 }}>일</Text>
                   </DayBtn>
                 </View>
@@ -240,6 +250,13 @@ const LG = ({ navigation: { navigate } }) => {
     );
   };
   const TV = () => {
+    const monday1 = second.mon;
+    const tuesday1 = second.tue;
+    const wednesday1 = second.wed;
+    const thursday1 = second.thr;
+    const friday1 = second.fri;
+    const saturday1 = second.sat;
+    const sunday1 = second.sun;
     return (
       <Content style={{ marginTop: 20, padding: 15 }}>
         <View style={{ flex: 1, flexDirection: "row" }}>
@@ -268,25 +285,25 @@ const LG = ({ navigation: { navigate } }) => {
                   </ShowDate>
                 </Btn>
                 <View style={{ flex: 1, flexDirection: "row", marginRight: 5 }}>
-                  <DayBtn selected={mon} onPress={() => onMonPress()}>
+                  <DayBtn selected={monday1} onPress={() => onMonPress()}>
                     <Text style={{ fontSize: 20 }}>월</Text>
                   </DayBtn>
-                  <DayBtn selected={tue} onPress={() => onTuePress()}>
+                  <DayBtn selected={tuesday1} onPress={() => onTuePress()}>
                     <Text style={{ fontSize: 20 }}>화</Text>
                   </DayBtn>
-                  <DayBtn selected={wed} onPress={() => onWedPress()}>
+                  <DayBtn selected={wednesday1} onPress={() => onWedPress()}>
                     <Text style={{ fontSize: 20 }}>수</Text>
                   </DayBtn>
-                  <DayBtn selected={thu} onPress={() => onThuPress()}>
+                  <DayBtn selected={thursday1} onPress={() => onThuPress()}>
                     <Text style={{ fontSize: 20 }}>목</Text>
                   </DayBtn>
-                  <DayBtn selected={fri} onPress={() => onFriPress()}>
+                  <DayBtn selected={friday1} onPress={() => onFriPress()}>
                     <Text style={{ fontSize: 20 }}>금</Text>
                   </DayBtn>
-                  <DayBtn selected={sat} onPress={() => onSatPress()}>
+                  <DayBtn selected={saturday1} onPress={() => onSatPress()}>
                     <Text style={{ fontSize: 20 }}>토</Text>
                   </DayBtn>
-                  <DayBtn selected={sun} onPress={() => onSunPress()}>
+                  <DayBtn selected={sunday1} onPress={() => onSunPress()}>
                     <Text style={{ fontSize: 20 }}>일</Text>
                   </DayBtn>
                 </View>
@@ -353,5 +370,64 @@ const LG = ({ navigation: { navigate } }) => {
     </Body>
   );
 };
+const Title = styled.Text`
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 28px;
+  margin-top: 25px;
+  text-align: center;
+`;
+const Body = styled.View`
+  flex-direction: column;
+  padding: 10px;
+  padding-top: 20px;
+  background-color: white;
+`;
+const Container = styled.View`
+  border: 1px solid gray;
+  border-radius: 1px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+`;
+const Btn = styled.TouchableOpacity`
+  align-items: center;
+  background-color: #ffda79;
+  padding-horizontal: 5px;
+  padding-vertical: 3px;
+`;
+const DayBtn = styled.TouchableOpacity`
+  align-items: center;
+  padding-horizontal: 4px;
+  padding-vertical: 3px;
+  border-width: 1px;
+  background-color: ${(props) => (props.selected ? "black" : "transparent")};
+`;
+const Footer = styled.View`
+  border: 2px solid black;
+`;
+//box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.15);
+// 차라리 테두리 라인 주기
+const AddBtn = styled.TouchableOpacity`
+  position: absolute;
+  bottom: 50px;
+  right: 50px;
+  background-color: #ffda79;
+  width: 80px;
+  height: 80px;
+  border-radius: 40px;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+`;
+const AddBtnText = styled.Text`
+  font-size: 30px;
+`;
+const ShowDate = styled.Text`
+  font-size: 10px;
+`;
+const Content = styled.View`
+  flex-direction: row;
+  margin-left: 5px;
+  align-items: center;
+`;
 
 export default LG;

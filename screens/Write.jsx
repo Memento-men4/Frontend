@@ -6,99 +6,24 @@ import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { format } from "date-fns";
 import ko from "date-fns/esm/locale/ko/index.js";
 import HighlightText from "react-native-highlight-underline-text";
-import { WriteFormat, UserIDNumber } from "../atom";
+import {
+  WriteFormat,
+  UserIDNumber,
+  FirstData,
+  SecondData,
+  ThirdData,
+  FourthData,
+  WriteNumber,
+} from "../atom";
 import { useRecoilState } from "recoil";
 import axios from "axios";
-const Body = styled.View`
-  background-color: #ffda79;
-  flex: 1;
-  flex-direction: column;
-  background-color: white;
-`;
-const Header = styled.View``;
-const ShowDate = styled.Text`
-  font-size: 15px;
-  color: black;
-`;
-const Title = styled.Text`
-  color: black;
-  text-align: center;
-  font-size: 24px;
-  font-weight: 500;
-  margin: 30px;
-`;
-const TextInput = styled.TextInput`
-  background-color: white;
-  border-radius: 20px;
-  padding: 10px 20px;
-  font-size: 18px;
-  box-shadow: 1px 1px 3px rgba(41, 30, 95, 0.2);
-  border: 1px solid gray;
-`;
-const SaveBtn = styled.TouchableOpacity`
-  margin: 20px;
-  padding: 10px 20px;
-  align-items: center;
-  border-radius: 20px;
-  box-shadow: 1px 1px 1px rgba(41, 30, 95, 0.9);
-  background-color: #1c1c1c;
-`;
-const BtnText = styled.Text`
-  color: white;
-  font-weight: 500;
-  font-size: 18px;
-`;
-const TimeBtn = styled.TouchableOpacity`
-  margin: 20px;
-  padding: 10px 20px;
-  align-items: center;
-  border-radius: 20px;
-  box-shadow: 1px 1px 3px rgba(41, 30, 95, 0.3);
-  border: 1px solid;
-`;
-const Back = styled.TouchableOpacity``;
-const List = styled.View`
-  flex-direction: row;
-  justify-content: space-between;
-  padding: 10px;
-`;
-const TimeView = styled.View`
-  align-items: center;
-  margin-horizontal: 120px;
-  border-radius: 20px;
-`;
-const Emotion = styled.TouchableOpacity`
-  background-color: white;
-  box-shadow: 1px 1px 3px rgba(41, 30, 95, 0.2);
-  padding: 10px;
-  border-radius: 10px;
-  border-width: 1px;
-  border-color: ${(props) =>
-    props.selected ? "rgba(41, 30, 95, 1);" : "transparent"};
-`;
-const DayBtn = styled.TouchableOpacity`
-  background-color: white;
-  box-shadow: 1px 1px 3px rgba(41, 30, 95, 0.2);
-  padding: 11px 14px;
-  border-radius: 10px;
-  border-width: 1px;
-  border-color: ${(props) =>
-    props.selected ? "rgba(41, 30, 95, 1);" : "transparent"};
-`;
-const EmotionText = styled.Text`
-  font-size: 20px;
-`;
-const DayBtnText = styled.Text`
-  font-size: 20px;
-`;
-const Part = styled.View`
-  border: 1px solid gray;
-`;
-const Container = styled.View``;
+import { useIsFocused } from "@react-navigation/native";
+
 const week = ["월", "화", "수", "목", "금", "토", "일"];
 const products = ["🤯", "🥲", "🤬", "🤗", "🥰", "😊", "🤩"];
 
 const Write = ({ navigation: { goBack, navigate } }) => {
+  const isFocused = useIsFocused();
   const [selectedProduct, setProduct] = useState(null);
   const [serialNumber, setSerialNumber] = useState("");
   const onChangeText = (text) => setSerialNumber(text);
@@ -111,6 +36,19 @@ const Write = ({ navigation: { goBack, navigate } }) => {
   const [fri, setFri] = useState(false);
   const [sat, setSat] = useState(false);
   const [sun, setSun] = useState(false);
+  //const [count, setCount] = useState(0);
+  //const count = useRef(0);
+  const [count, setCount] = useRecoilState(WriteNumber);
+  const [first, setFirst] = useRecoilState(FirstData); //해지자
+  const [second, setSecond] = useRecoilState(SecondData);
+  const [Third, setThird] = useRecoilState(ThirdData);
+  const [Fourth, setFourth] = useRecoilState(FourthData);
+  useEffect(() => {
+    //hi
+    console.log("refresh");
+    setCount((count) => count + 1);
+  }, [isFocused]);
+
   const onMonPress = () => {
     setMon(!mon);
   };
@@ -181,18 +119,16 @@ const Write = ({ navigation: { goBack, navigate } }) => {
       });*/
   };
   const initialWriteFormat = useRef({
-    write: {
-      name: "",
-      time: "",
-      selectDay: {
-        mon: false,
-        tue: false,
-        wed: false,
-        thr: false,
-        fri: false,
-        sat: false,
-        sun: false,
-      },
+    name: "",
+    time: "",
+    selectDay: {
+      mon: false,
+      tue: false,
+      wed: false,
+      thr: false,
+      fri: false,
+      sat: false,
+      sun: false,
     },
   });
   const onSubmit = () => {
@@ -214,6 +150,53 @@ const Write = ({ navigation: { goBack, navigate } }) => {
       };
       console.log("Before");
       console.log(writeFormat);
+      if (count === 1) {
+        const tmp = {
+          mon: mon,
+          tue: tue,
+          wed: wed,
+          thr: thu,
+          fri: fri,
+          sat: sat,
+          sun: sun,
+        };
+        setFirst(tmp);
+        console.log(typeof count);
+      } else if (count === 2) {
+        const tmp2 = {
+          mon: mon,
+          tue: tue,
+          wed: wed,
+          thr: thu,
+          fri: fri,
+          sat: sat,
+          sun: sun,
+        };
+        setSecond(tmp2);
+        console.log(count);
+      } else if (count === 3) {
+        const tmp3 = {
+          mon: mon,
+          tue: tue,
+          wed: wed,
+          thr: thu,
+          fri: fri,
+          sat: sat,
+          sun: sun,
+        };
+        setThird(tmp3);
+      } else if (count === 4) {
+        const tmp4 = {
+          mon: mon,
+          tue: tue,
+          wed: wed,
+          thr: thu,
+          fri: fri,
+          sat: sat,
+          sun: sun,
+        };
+        setFourth(tmp4);
+      }
       goAlert();
     }
   };
@@ -228,8 +211,12 @@ const Write = ({ navigation: { goBack, navigate } }) => {
         {
           text: "네",
           onPress: () => {
-            setWriteFormat(initialWriteFormat);
-            setLG();
+            /** 가전제품은 이것으로 4개까지만 */
+            setWriteFormat(initialWriteFormat.current);
+            //setWriteFormat(...writeFormat, initialWriteFormat.current);
+            console.log("write종료", writeFormat);
+            console.log("first", first);
+            //setLG();
             //navigate("Main", { screen: "LG" });
             goBack();
           },
@@ -328,7 +315,92 @@ const Write = ({ navigation: { goBack, navigate } }) => {
   );
 };
 export default Write;
-
+const Body = styled.View`
+  background-color: #ffda79;
+  flex: 1;
+  flex-direction: column;
+  background-color: white;
+`;
+const Header = styled.View``;
+const ShowDate = styled.Text`
+  font-size: 15px;
+  color: black;
+`;
+const Title = styled.Text`
+  color: black;
+  text-align: center;
+  font-size: 24px;
+  font-weight: 500;
+  margin: 30px;
+`;
+const TextInput = styled.TextInput`
+  background-color: white;
+  border-radius: 20px;
+  padding: 10px 20px;
+  font-size: 18px;
+  box-shadow: 1px 1px 3px rgba(41, 30, 95, 0.2);
+  border: 1px solid gray;
+`;
+const SaveBtn = styled.TouchableOpacity`
+  margin: 20px;
+  padding: 10px 20px;
+  align-items: center;
+  border-radius: 20px;
+  box-shadow: 1px 1px 1px rgba(41, 30, 95, 0.9);
+  background-color: #1c1c1c;
+`;
+const BtnText = styled.Text`
+  color: white;
+  font-weight: 500;
+  font-size: 18px;
+`;
+const TimeBtn = styled.TouchableOpacity`
+  margin: 20px;
+  padding: 10px 20px;
+  align-items: center;
+  border-radius: 20px;
+  box-shadow: 1px 1px 3px rgba(41, 30, 95, 0.3);
+  border: 1px solid;
+`;
+const Back = styled.TouchableOpacity``;
+const List = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 10px;
+`;
+const TimeView = styled.View`
+  align-items: center;
+  margin-horizontal: 120px;
+  border-radius: 20px;
+`;
+const Emotion = styled.TouchableOpacity`
+  background-color: white;
+  box-shadow: 1px 1px 3px rgba(41, 30, 95, 0.2);
+  padding: 10px;
+  border-radius: 10px;
+  border-width: 1px;
+  border-color: ${(props) =>
+    props.selected ? "rgba(41, 30, 95, 1);" : "transparent"};
+`;
+const DayBtn = styled.TouchableOpacity`
+  background-color: white;
+  box-shadow: 1px 1px 3px rgba(41, 30, 95, 0.2);
+  padding: 11px 14px;
+  border-radius: 10px;
+  border-width: 1px;
+  border-color: ${(props) =>
+    props.selected ? "rgba(41, 30, 95, 1);" : "transparent"};
+`;
+const EmotionText = styled.Text`
+  font-size: 20px;
+`;
+const DayBtnText = styled.Text`
+  font-size: 20px;
+`;
+const Part = styled.View`
+  border: 1px solid gray;
+`;
+const Container = styled.View``;
 /* 
 write.js 페이지에 새로운 시간이랑 요일 추가 기능 구현해서, 이걸 포스트로 백에 넘겨야지
 엘지 스크린에서 시간 수정해서 설정버튼 누를 때 백에서 수정만 하면 됨

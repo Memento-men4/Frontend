@@ -23,7 +23,45 @@ export const RecordText4 = atom({
 export const WriteFormat = atom({
   key: "WriteFormat",
   default: {
-    current: {
+    name: "",
+    time: "",
+    selectDay: {
+      mon: false,
+      tue: false,
+      wed: false,
+      thu: false,
+      fri: false,
+      sat: false,
+      sun: false,
+    },
+  },
+});
+export const FirstData = atom({
+  key: "FirstData",
+  default: {},
+});
+export const SecondData = atom({
+  key: "SecondData",
+  default: {},
+});
+export const ThirdData = atom({
+  key: "ThirdData",
+  default: {},
+});
+export const FourthData = atom({
+  key: "ForthData",
+  default: {},
+});
+export const WriteNumber = atom({
+  key: "WriteNumber",
+  default: 0,
+});
+
+/*
+export const WriteFormat = atom({
+  key: "WriteFormat",
+  default: [
+    {
       name: "",
       time: "",
       selectDay: {
@@ -36,8 +74,8 @@ export const WriteFormat = atom({
         sun: false,
       },
     },
-  },
-});
+  ],
+});*/
 export const UserIDNumber = atom({
   key: "UserIDNumber",
   default: 0,
