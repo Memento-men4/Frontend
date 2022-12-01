@@ -103,6 +103,7 @@ const Write = ({ navigation: { goBack, navigate } }) => {
   const [serialNumber, setSerialNumber] = useState("");
   const onChangeText = (text) => setSerialNumber(text);
   const onProductPress = (idx) => setProduct(idx);
+  const [writeFormat, setWriteFormat] = useRecoilState(WriteFormat);
   const [mon, setMon] = useState(false);
   const [tue, setTue] = useState(false);
   const [wed, setWed] = useState(false);
@@ -110,7 +111,6 @@ const Write = ({ navigation: { goBack, navigate } }) => {
   const [fri, setFri] = useState(false);
   const [sat, setSat] = useState(false);
   const [sun, setSun] = useState(false);
-  const [writeFormat, setWriteFormat] = useRecoilState(WriteFormat);
   const onMonPress = () => {
     setMon(!mon);
   };
@@ -157,7 +157,7 @@ const Write = ({ navigation: { goBack, navigate } }) => {
     //const [error, setError] = useState(null);
     const productInfo = {
       member_seq: userIDNumber,
-      serialNum: "123456789",
+      serialNum: serialNumber,
       type: "WASHING_MACHINE",
       settingTime: "11:00",
       mon: "ON",
@@ -168,7 +168,7 @@ const Write = ({ navigation: { goBack, navigate } }) => {
       sat: "OFF",
       sun: "OFF",
     };
-    axios
+    /*axios
       .post(
         "http://ec2-52-79-187-71.ap-northeast-2.compute.amazonaws.com:8080/appliance",
         productInfo
@@ -178,16 +178,21 @@ const Write = ({ navigation: { goBack, navigate } }) => {
       })
       .catch(function (error) {
         console.log(error);
-      });
+      });*/
   };
-  useEffect(() => {
-    setLG();
-  }, []);
   const initialWriteFormat = useRef({
     write: {
       name: "",
       time: "",
-      selectedDay: [false, false, false, false, false, false, false],
+      selectDay: {
+        mon: false,
+        tue: false,
+        wed: false,
+        thr: false,
+        fri: false,
+        sat: false,
+        sun: false,
+      },
     },
   });
   const onSubmit = () => {
@@ -197,12 +202,18 @@ const Write = ({ navigation: { goBack, navigate } }) => {
       initialWriteFormat.current = {
         name: selectedProduct,
         time: date.getHours() + ":" + date.getMinutes(),
-        selectedDay: [mon, tue, wed, thu, fri, sat, sun],
+        selectDay: {
+          mon: mon,
+          tue: tue,
+          wed: wed,
+          thr: thu,
+          fri: fri,
+          sat: sat,
+          sun: sun,
+        },
       };
       console.log("Before");
-      console.log(initialWriteFormat.time);
       console.log(writeFormat);
-
       goAlert();
     }
   };
@@ -218,8 +229,7 @@ const Write = ({ navigation: { goBack, navigate } }) => {
           text: "네",
           onPress: () => {
             setWriteFormat(initialWriteFormat);
-            console.log("After");
-            console.log(writeFormat);
+            setLG();
             //navigate("Main", { screen: "LG" });
             goBack();
           },
@@ -229,25 +239,6 @@ const Write = ({ navigation: { goBack, navigate } }) => {
       { cancelable: false }
     );
   };
-  /*setInfoData((prevState) => ({
-    ...prevState,
-    write: {
-      ...prevState.write,
-      name: selectedProduct,
-      time: date.getHours() + ":" + date.getMinutes(),
-      selectedDay: [mon, tue, wed, thu, fri, sat, sun],
-    },
-  }));
-  setWriteFormat(infoData);
-}
-};
-const [infoData, setInfoData] = useState({
-write: {
-  name: "",
-  time: "",
-  selectedDay: [false, false, false, false, false, false, false],
-},
-});*/
 
   return (
     <Body>

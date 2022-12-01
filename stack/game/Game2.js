@@ -28,12 +28,6 @@ const Game2 = ({ navigation: { navigate } }) => {
 
   return (
     <View style={{ justifyContent: "center", alignContent: "flex-start" }}>
-      <TouchableOpacity
-        style={{ marginTop: 40, marginLeft: 10, backgroundColor: "white" }}
-        onPress={() => navigate("Main", { screen: "Home" })}
-      >
-        <Text style={{ fontSize: 30 }}>🔙</Text>
-      </TouchableOpacity>
       {flag.current === 1 ? (
         <Body>
           <View

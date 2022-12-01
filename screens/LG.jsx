@@ -32,15 +32,19 @@ const Container = styled.View`
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
 `;
 const Btn = styled.TouchableOpacity`
-  justify-content: center;
   align-items: center;
   background-color: #ffda79;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  flex-direction: row;
+  padding-horizontal: 5px;
+  padding-vertical: 3px;
+`;
+const DayBtn = styled.TouchableOpacity`
+  align-items: center;
+  padding-horizontal: 4px;
+  padding-vertical: 3px;
+  border-width: 1px;
+  background-color: ${(props) => (props.selected ? "black" : "transparent")};
 `;
 const Footer = styled.View`
-  flex-direction: row;
   border: 2px solid black;
 `;
 //box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.15);
@@ -72,12 +76,46 @@ const Content = styled.View`
 const LG = ({ navigation: { navigate } }) => {
   const isFocused = useIsFocused();
   const [writeFormat, setWriteFormat] = useRecoilState(WriteFormat);
-  const check = useRef([0, 0, 0, 0, 0, 0, 0]);
+  const check = useRef([0, 0, 0, 0, 0, 0, 0]); // 가전제품 종류별 렌더링
   const [userIDNumber, setUserIDNumber] = useRecoilState(UserIDNumber);
-
-  /* 리렌더링 뒤지게 안 되길래 내가 만듦 */
-
+  const [mon, setMon] = useState(false);
+  const [tue, setTue] = useState(false);
+  const [wed, setWed] = useState(false);
+  const [thu, setThu] = useState(false);
+  const [fri, setFri] = useState(false);
+  const [sat, setSat] = useState(false);
+  const [sun, setSun] = useState(false);
+  const onMonPress = () => {
+    setMon(!mon);
+  };
+  const onTuePress = () => {
+    setTue(!tue);
+  };
+  const onWedPress = () => {
+    setWed(!wed);
+  };
+  const onThuPress = () => {
+    setThu(!thu);
+  };
+  const onFriPress = () => {
+    setFri(!fri);
+  };
+  const onSatPress = () => {
+    setSat(!sat);
+  };
+  const onSunPress = () => {
+    setSun(!sun);
+  };
   useEffect(() => {
+    console.log(writeFormat);
+    console.log("useEffectmon", writeFormat["current"]["selectDay"]["mon"]);
+    setMon(writeFormat["current"]["selectDay"]["mon"]);
+    setTue(writeFormat["current"]["selectDay"]["tue"]);
+    setWed(writeFormat["current"]["selectDay"]["wed"]);
+    setThu(writeFormat["current"]["selectDay"]["thr"]);
+    setFri(writeFormat["current"]["selectDay"]["fri"]);
+    setSat(writeFormat["current"]["selectDay"]["sat"]);
+    setSun(writeFormat["current"]["selectDay"]["sun"]);
     if (writeFormat["current"]["name"] == "🤯") {
       check.current[0] = 1;
     } else if (writeFormat["current"]["name"] == "🥲") {
@@ -117,79 +155,156 @@ const LG = ({ navigation: { navigate } }) => {
     // 취소 시
     setVisible(false); // 모달 close
   };
+  const onSubmit = () => {
+    console.log(writeFormat);
+  };
   const SetBtn = () => (
     <Btn
       style={{
         padding: 15,
-        borderRadius: 30,
+        borderRadius: 10,
         marginLeft: 5,
         backgroundColor: "#D4D4D4",
+      }}
+      onPress={() => {
+        onSubmit();
       }}
     >
       <Text>설정</Text>
     </Btn>
   );
-  const Airplane = () => (
-    <Content style={{ marginTop: 20, padding: 15 }}>
-      <Footer
-        style={{
-          backgroundColor: "#ffda79",
-          marginRight: 7,
-          padding: 7,
-          borderRadius: 12,
-        }}
-      >
-        <Btn style={{ padding: 10 }}>
-          <Ionicons name="ios-airplane" size={24} color="black" />
-        </Btn>
-        <Btn style={{ padding: 10 }} onPress={onPressDate}>
-          <ShowDate style={{ fontSize: 15 }}>
-            {format(new Date(date), "PPP", { locale: ko })}{" "}
-          </ShowDate>
-        </Btn>
-        <Btn style={{ padding: 10 }} onPress={onPressTime}>
-          <ShowDate style={{ fontSize: 15 }}>
-            {format(new Date(date), "p", { locale: ko })}
-          </ShowDate>
-        </Btn>
-        <DateTimePickerModal
-          isVisible={visible}
-          mode={mode}
-          onConfirm={onConfirm}
-          onCancel={onCancel}
-          date={date}
-        />
-      </Footer>
-      <SetBtn />
-    </Content>
-  );
-  const TV = () => (
-    <Content style={{ marginTop: 10 }}>
-      <Footer style={{ backgroundColor: "#ffda79" }}>
-        <Btn style={{ padding: 20 }}>
-          <Ionicons name="tv" size={24} color="black" />
-        </Btn>
-        <Btn style={{ padding: 20 }} onPress={onPressDate}>
-          <ShowDate style={{ fontSize: 15 }}>
-            {format(new Date(date), "PPP", { locale: ko })}{" "}
-          </ShowDate>
-        </Btn>
-        <Btn style={{ padding: 20 }} onPress={onPressTime}>
-          <ShowDate style={{ fontSize: 15 }}>
-            {format(new Date(date), "p", { locale: ko })}
-          </ShowDate>
-        </Btn>
-        <DateTimePickerModal
-          isVisible={visible}
-          mode={mode}
-          onConfirm={onConfirm}
-          onCancel={onCancel}
-          date={date}
-        />
-      </Footer>
-      <SetBtn />
-    </Content>
-  );
+  const Airplane = () => {
+    return (
+      <Content style={{ marginTop: 20, padding: 15 }}>
+        <View style={{ flex: 1, flexDirection: "row" }}>
+          <Footer
+            style={{
+              backgroundColor: "#ffda79",
+              padding: 7,
+              borderRadius: 12,
+              flex: 1,
+            }}
+          >
+            <View style={{ flexDirection: "row" }}>
+              <View style={{ flex: 1, marginLeft: 10, marginTop: 13 }}>
+                <Ionicons name="ios-airplane" size={30} color="black" />
+              </View>
+              <View
+                style={{
+                  flexDirection: "column",
+                  alignItems: "center",
+                  flex: 3,
+                }}
+              >
+                <Btn style={{ flex: 1 }} onPress={onPressTime}>
+                  <ShowDate style={{ fontSize: 20 }}>
+                    {format(new Date(date), "p", { locale: ko })}
+                  </ShowDate>
+                </Btn>
+                <View style={{ flex: 1, flexDirection: "row", marginRight: 5 }}>
+                  <DayBtn selected={mon} onPress={() => onMonPress()}>
+                    <Text style={{ fontSize: 20 }}>월</Text>
+                  </DayBtn>
+                  <DayBtn selected={tue} onPress={() => onTuePress()}>
+                    <Text style={{ fontSize: 20 }}>화</Text>
+                  </DayBtn>
+                  <DayBtn selected={wed} onPress={() => onWedPress()}>
+                    <Text style={{ fontSize: 20 }}>수</Text>
+                  </DayBtn>
+                  <DayBtn selected={thu} onPress={() => onThuPress()}>
+                    <Text style={{ fontSize: 20 }}>목</Text>
+                  </DayBtn>
+                  <DayBtn selected={fri} onPress={() => onFriPress()}>
+                    <Text style={{ fontSize: 20 }}>금</Text>
+                  </DayBtn>
+                  <DayBtn selected={sat} onPress={() => onSatPress()}>
+                    <Text style={{ fontSize: 20 }}>토</Text>
+                  </DayBtn>
+                  <DayBtn selected={sun} onPress={() => onSunPress()}>
+                    <Text style={{ fontSize: 20 }}>일</Text>
+                  </DayBtn>
+                </View>
+              </View>
+              <DateTimePickerModal
+                isVisible={visible}
+                mode={mode}
+                onConfirm={onConfirm}
+                onCancel={onCancel}
+                date={date}
+              />
+            </View>
+          </Footer>
+          <SetBtn style={{ flex: 1 }} />
+        </View>
+      </Content>
+    );
+  };
+  const TV = () => {
+    return (
+      <Content style={{ marginTop: 20, padding: 15 }}>
+        <View style={{ flex: 1, flexDirection: "row" }}>
+          <Footer
+            style={{
+              backgroundColor: "#ffda79",
+              padding: 7,
+              borderRadius: 12,
+              flex: 1,
+            }}
+          >
+            <View style={{ flexDirection: "row" }}>
+              <View style={{ flex: 1, marginLeft: 10, marginTop: 13 }}>
+                <Ionicons name="ios-tv" size={30} color="black" />
+              </View>
+              <View
+                style={{
+                  flexDirection: "column",
+                  alignItems: "center",
+                  flex: 3,
+                }}
+              >
+                <Btn style={{ flex: 1 }} onPress={onPressTime}>
+                  <ShowDate style={{ fontSize: 20 }}>
+                    {format(new Date(date), "p", { locale: ko })}
+                  </ShowDate>
+                </Btn>
+                <View style={{ flex: 1, flexDirection: "row", marginRight: 5 }}>
+                  <DayBtn selected={mon} onPress={() => onMonPress()}>
+                    <Text style={{ fontSize: 20 }}>월</Text>
+                  </DayBtn>
+                  <DayBtn selected={tue} onPress={() => onTuePress()}>
+                    <Text style={{ fontSize: 20 }}>화</Text>
+                  </DayBtn>
+                  <DayBtn selected={wed} onPress={() => onWedPress()}>
+                    <Text style={{ fontSize: 20 }}>수</Text>
+                  </DayBtn>
+                  <DayBtn selected={thu} onPress={() => onThuPress()}>
+                    <Text style={{ fontSize: 20 }}>목</Text>
+                  </DayBtn>
+                  <DayBtn selected={fri} onPress={() => onFriPress()}>
+                    <Text style={{ fontSize: 20 }}>금</Text>
+                  </DayBtn>
+                  <DayBtn selected={sat} onPress={() => onSatPress()}>
+                    <Text style={{ fontSize: 20 }}>토</Text>
+                  </DayBtn>
+                  <DayBtn selected={sun} onPress={() => onSunPress()}>
+                    <Text style={{ fontSize: 20 }}>일</Text>
+                  </DayBtn>
+                </View>
+              </View>
+              <DateTimePickerModal
+                isVisible={visible}
+                mode={mode}
+                onConfirm={onConfirm}
+                onCancel={onCancel}
+                date={date}
+              />
+            </View>
+          </Footer>
+          <SetBtn style={{ flex: 1 }} />
+        </View>
+      </Content>
+    );
+  };
   const Drum = () => (
     <Content style={{ marginTop: 10 }}>
       <Footer style={{ backgroundColor: "#ffda79" }}>

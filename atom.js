@@ -26,7 +26,15 @@ export const WriteFormat = atom({
     current: {
       name: "",
       time: "",
-      selectDay: [false, false, false, false, false, false, false],
+      selectDay: {
+        mon: false,
+        tue: false,
+        wed: false,
+        thu: false,
+        fri: false,
+        sat: false,
+        sun: false,
+      },
     },
   },
 });
