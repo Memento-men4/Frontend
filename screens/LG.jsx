@@ -34,39 +34,8 @@ const LG = ({ navigation: { navigate } }) => {
   const [fri, setFri] = useState(false);
   const [sat, setSat] = useState(false);
   const [sun, setSun] = useState(false);
-  /*
-  const onMonPress = () => {
-    setMon(!mon);
-  };
-  const onTuePress = () => {
-    setTue(!tue);
-  };
-  const onWedPress = () => {
-    setWed(!wed);
-  };
-  const onThuPress = () => {
-    setThu(!thu);
-  };
-  const onFriPress = () => {
-    setFri(!fri);
-  };
-  const onSatPress = () => {
-    setSat(!sat);
-  };
-  const onSunPress = () => {
-    setSun(!sun);
-  };
-*/
+
   useEffect(() => {
-    /*
-    setMon(writeFormat["selectDay"]["mon"]);
-    setTue(writeFormat["selectDay"]["tue"]);
-    setWed(writeFormat["selectDay"]["wed"]);
-    setThu(writeFormat["selectDay"]["thr"]);
-    setFri(writeFormat["selectDay"]["fri"]);
-    setSat(writeFormat["selectDay"]["sat"]);
-    setSun(writeFormat["selectDay"]["sun"]);
-    */
     if (writeFormat["name"] == "🤯") {
       check.current[0] = 1;
     } else if (writeFormat["name"] == "🥲") {
@@ -83,32 +52,6 @@ const LG = ({ navigation: { navigate } }) => {
       check.current[6] = 1;
     }
   }, [writeFormat]); // 제발 여기에 꼭 넣어야함!!!
-
-  /*useEffect(() => {
-    console.log("useEffectmon", writeFormat["current"]["selectDay"]["mon"]);
-    setMon(writeFormat["current"]["selectDay"]["mon"]);
-    setTue(writeFormat["current"]["selectDay"]["tue"]);
-    setWed(writeFormat["current"]["selectDay"]["wed"]);
-    setThu(writeFormat["current"]["selectDay"]["thr"]);
-    setFri(writeFormat["current"]["selectDay"]["fri"]);
-    setSat(writeFormat["current"]["selectDay"]["sat"]);
-    setSun(writeFormat["current"]["selectDay"]["sun"]);
-    if (writeFormat["current"]["name"] == "🤯") {
-      check.current[0] = 1;
-    } else if (writeFormat["current"]["name"] == "🥲") {
-      check.current[1] = 1;
-    } else if (writeFormat["current"]["name"] == "🤬") {
-      check.current[2] = 1;
-    } else if (writeFormat["current"]["name"] == "🤗") {
-      check.current[3] = 1;
-    } else if (writeFormat["current"]["name"] == "🥰") {
-      check.current[4] = 1;
-    } else if (writeFormat["current"]["name"] == "😊") {
-      check.current[5] = 1;
-    } else if (writeFormat["current"]["name"] == "🤩") {
-      check.current[6] = 1;
-    }
-  }, [writeFormat]); // 제발 여기에 꼭 넣어야함!!!*/
 
   const [date, onChangeDate] = useState(new Date()); // 선택 날짜
   const [mode, setMode] = useState("date"); // 모달 유형
@@ -250,13 +193,34 @@ const LG = ({ navigation: { navigate } }) => {
     );
   };
   const TV = () => {
-    const monday1 = second.mon;
-    const tuesday1 = second.tue;
-    const wednesday1 = second.wed;
-    const thursday1 = second.thr;
-    const friday1 = second.fri;
-    const saturday1 = second.sat;
-    const sunday1 = second.sun;
+    const [monday, setMonday] = useState(second.mon);
+    const [tuesday, setTuesday] = useState(second.tue);
+    const [wednesday, setWednesday] = useState(second.wed);
+    const [thursday, setThursday] = useState(second.thr);
+    const [friday, setFriday] = useState(second.fri);
+    const [saturday, setSaturday] = useState(second.sat);
+    const [sunday, setSunday] = useState(second.sun);
+    const onMonPress = () => {
+      setMonday(!monday);
+    };
+    const onTuePress = () => {
+      setTuesday(!tuesday);
+    };
+    const onWedPress = () => {
+      setWednesday(!wednesday);
+    };
+    const onThuPress = () => {
+      setThursday(!thursday);
+    };
+    const onFriPress = () => {
+      setFriday(!friday);
+    };
+    const onSatPress = () => {
+      setSaturday(!saturday);
+    };
+    const onSunPress = () => {
+      setSunday(!sunday);
+    };
     return (
       <Content style={{ marginTop: 20, padding: 15 }}>
         <View style={{ flex: 1, flexDirection: "row" }}>
@@ -285,25 +249,25 @@ const LG = ({ navigation: { navigate } }) => {
                   </ShowDate>
                 </Btn>
                 <View style={{ flex: 1, flexDirection: "row", marginRight: 5 }}>
-                  <DayBtn selected={monday1} onPress={() => onMonPress()}>
+                  <DayBtn selected={monday} onPress={() => onMonPress()}>
                     <Text style={{ fontSize: 20 }}>월</Text>
                   </DayBtn>
-                  <DayBtn selected={tuesday1} onPress={() => onTuePress()}>
+                  <DayBtn selected={tuesday} onPress={() => onTuePress()}>
                     <Text style={{ fontSize: 20 }}>화</Text>
                   </DayBtn>
-                  <DayBtn selected={wednesday1} onPress={() => onWedPress()}>
+                  <DayBtn selected={wednesday} onPress={() => onWedPress()}>
                     <Text style={{ fontSize: 20 }}>수</Text>
                   </DayBtn>
-                  <DayBtn selected={thursday1} onPress={() => onThuPress()}>
+                  <DayBtn selected={thursday} onPress={() => onThuPress()}>
                     <Text style={{ fontSize: 20 }}>목</Text>
                   </DayBtn>
-                  <DayBtn selected={friday1} onPress={() => onFriPress()}>
+                  <DayBtn selected={friday} onPress={() => onFriPress()}>
                     <Text style={{ fontSize: 20 }}>금</Text>
                   </DayBtn>
-                  <DayBtn selected={saturday1} onPress={() => onSatPress()}>
+                  <DayBtn selected={saturday} onPress={() => onSatPress()}>
                     <Text style={{ fontSize: 20 }}>토</Text>
                   </DayBtn>
-                  <DayBtn selected={sunday1} onPress={() => onSunPress()}>
+                  <DayBtn selected={sunday} onPress={() => onSunPress()}>
                     <Text style={{ fontSize: 20 }}>일</Text>
                   </DayBtn>
                 </View>
@@ -322,33 +286,194 @@ const LG = ({ navigation: { navigate } }) => {
       </Content>
     );
   };
-  const Drum = () => (
-    <Content style={{ marginTop: 10 }}>
-      <Footer style={{ backgroundColor: "#ffda79" }}>
-        <Btn style={{ padding: 20 }}>
-          <Ionicons name="home" size={24} color="black" />
-        </Btn>
-        <Btn style={{ padding: 20 }} onPress={onPressDate}>
-          <ShowDate style={{ fontSize: 15 }}>
-            {format(new Date(date), "PPP", { locale: ko })}{" "}
-          </ShowDate>
-        </Btn>
-        <Btn style={{ padding: 20 }} onPress={onPressTime}>
-          <ShowDate style={{ fontSize: 15 }}>
-            {format(new Date(date), "p", { locale: ko })}
-          </ShowDate>
-        </Btn>
-        <DateTimePickerModal
-          isVisible={visible}
-          mode={mode}
-          onConfirm={onConfirm}
-          onCancel={onCancel}
-          date={date}
-        />
-      </Footer>
-      <SetBtn />
-    </Content>
-  );
+  const Drum = () => {
+    const [monday, setMonday] = useState(third.mon);
+    const [tuesday, setTuesday] = useState(third.tue);
+    const [wednesday, setWednesday] = useState(third.wed);
+    const [thursday, setThursday] = useState(third.thr);
+    const [friday, setFriday] = useState(third.fri);
+    const [saturday, setSaturday] = useState(third.sat);
+    const [sunday, setSunday] = useState(third.sun);
+    const onMonPress = () => {
+      setMonday(!monday);
+    };
+    const onTuePress = () => {
+      setTuesday(!tuesday);
+    };
+    const onWedPress = () => {
+      setWednesday(!wednesday);
+    };
+    const onThuPress = () => {
+      setThursday(!thursday);
+    };
+    const onFriPress = () => {
+      setFriday(!friday);
+    };
+    const onSatPress = () => {
+      setSaturday(!saturday);
+    };
+    const onSunPress = () => {
+      setSunday(!sunday);
+    };
+    return (
+      <Content style={{ marginTop: 20, padding: 15 }}>
+        <View style={{ flex: 1, flexDirection: "row" }}>
+          <Footer
+            style={{
+              backgroundColor: "#ffda79",
+              padding: 7,
+              borderRadius: 12,
+              flex: 1,
+            }}
+          >
+            <View style={{ flexDirection: "row" }}>
+              <View style={{ flex: 1, marginLeft: 10, marginTop: 13 }}>
+                <Ionicons name="home" size={30} color="black" />
+              </View>
+              <View
+                style={{
+                  flexDirection: "column",
+                  alignItems: "center",
+                  flex: 3,
+                }}
+              >
+                <Btn style={{ flex: 1 }} onPress={onPressTime}>
+                  <ShowDate style={{ fontSize: 20 }}>
+                    {format(new Date(date), "p", { locale: ko })}
+                  </ShowDate>
+                </Btn>
+                <View style={{ flex: 1, flexDirection: "row", marginRight: 5 }}>
+                  <DayBtn selected={monday} onPress={() => onMonPress()}>
+                    <Text style={{ fontSize: 20 }}>월</Text>
+                  </DayBtn>
+                  <DayBtn selected={tuesday} onPress={() => onTuePress()}>
+                    <Text style={{ fontSize: 20 }}>화</Text>
+                  </DayBtn>
+                  <DayBtn selected={wednesday} onPress={() => onWedPress()}>
+                    <Text style={{ fontSize: 20 }}>수</Text>
+                  </DayBtn>
+                  <DayBtn selected={thursday} onPress={() => onThuPress()}>
+                    <Text style={{ fontSize: 20 }}>목</Text>
+                  </DayBtn>
+                  <DayBtn selected={friday} onPress={() => onFriPress()}>
+                    <Text style={{ fontSize: 20 }}>금</Text>
+                  </DayBtn>
+                  <DayBtn selected={saturday} onPress={() => onSatPress()}>
+                    <Text style={{ fontSize: 20 }}>토</Text>
+                  </DayBtn>
+                  <DayBtn selected={sunday} onPress={() => onSunPress()}>
+                    <Text style={{ fontSize: 20 }}>일</Text>
+                  </DayBtn>
+                </View>
+              </View>
+              <DateTimePickerModal
+                isVisible={visible}
+                mode={mode}
+                onConfirm={onConfirm}
+                onCancel={onCancel}
+                date={date}
+              />
+            </View>
+          </Footer>
+          <SetBtn style={{ flex: 1 }} />
+        </View>
+      </Content>
+    );
+  };
+  const Clothes = () => {
+    const [monday, setMonday] = useState(fourth.mon);
+    const [tuesday, setTuesday] = useState(fourth.tue);
+    const [wednesday, setWednesday] = useState(fourth.wed);
+    const [thursday, setThursday] = useState(fourth.thr);
+    const [friday, setFriday] = useState(fourth.fri);
+    const [saturday, setSaturday] = useState(fourth.sat);
+    const [sunday, setSunday] = useState(fourth.sun);
+    const onMonPress = () => {
+      setMonday(!monday);
+    };
+    const onTuePress = () => {
+      setTuesday(!tuesday);
+    };
+    const onWedPress = () => {
+      setWednesday(!wednesday);
+    };
+    const onThuPress = () => {
+      setThursday(!thursday);
+    };
+    const onFriPress = () => {
+      setFriday(!friday);
+    };
+    const onSatPress = () => {
+      setSaturday(!saturday);
+    };
+    const onSunPress = () => {
+      setSunday(!sunday);
+    };
+    return (
+      <Content style={{ marginTop: 20, padding: 15 }}>
+        <View style={{ flex: 1, flexDirection: "row" }}>
+          <Footer
+            style={{
+              backgroundColor: "#ffda79",
+              padding: 7,
+              borderRadius: 12,
+              flex: 1,
+            }}
+          >
+            <View style={{ flexDirection: "row" }}>
+              <View style={{ flex: 1, marginLeft: 10, marginTop: 13 }}>
+                <Ionicons name="clothes" size={30} color="black" />
+              </View>
+              <View
+                style={{
+                  flexDirection: "column",
+                  alignItems: "center",
+                  flex: 3,
+                }}
+              >
+                <Btn style={{ flex: 1 }} onPress={onPressTime}>
+                  <ShowDate style={{ fontSize: 20 }}>
+                    {format(new Date(date), "p", { locale: ko })}
+                  </ShowDate>
+                </Btn>
+                <View style={{ flex: 1, flexDirection: "row", marginRight: 5 }}>
+                  <DayBtn selected={monday} onPress={() => onMonPress()}>
+                    <Text style={{ fontSize: 20 }}>월</Text>
+                  </DayBtn>
+                  <DayBtn selected={tuesday} onPress={() => onTuePress()}>
+                    <Text style={{ fontSize: 20 }}>화</Text>
+                  </DayBtn>
+                  <DayBtn selected={wednesday} onPress={() => onWedPress()}>
+                    <Text style={{ fontSize: 20 }}>수</Text>
+                  </DayBtn>
+                  <DayBtn selected={thursday} onPress={() => onThuPress()}>
+                    <Text style={{ fontSize: 20 }}>목</Text>
+                  </DayBtn>
+                  <DayBtn selected={friday} onPress={() => onFriPress()}>
+                    <Text style={{ fontSize: 20 }}>금</Text>
+                  </DayBtn>
+                  <DayBtn selected={saturday} onPress={() => onSatPress()}>
+                    <Text style={{ fontSize: 20 }}>토</Text>
+                  </DayBtn>
+                  <DayBtn selected={sunday} onPress={() => onSunPress()}>
+                    <Text style={{ fontSize: 20 }}>일</Text>
+                  </DayBtn>
+                </View>
+              </View>
+              <DateTimePickerModal
+                isVisible={visible}
+                mode={mode}
+                onConfirm={onConfirm}
+                onCancel={onCancel}
+                date={date}
+              />
+            </View>
+          </Footer>
+          <SetBtn style={{ flex: 1 }} />
+        </View>
+      </Content>
+    );
+  };
   return (
     <Body style={{ flex: 1 }}>
       <Container style={{ flex: 1, margin: 10 }}>
@@ -362,6 +487,7 @@ const LG = ({ navigation: { navigate } }) => {
           {check.current[0] !== 0 ? <Airplane /> : null}
           {check.current[1] !== 0 ? <TV /> : null}
           {check.current[2] !== 0 ? <Drum /> : null}
+          {check.current[3] !== 0 ? <Clothes /> : null}
         </ScrollView>
       </Container>
       <AddBtn onPress={() => navigate("Stack", { screen: "Write" })}>
