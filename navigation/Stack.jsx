@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { Text, View, TouchableOpacity, ScrollView } from "react-native";
-import { AsyncStorage } from "@react-native-async-storage/async-storage";
+import { Text, View } from "react-native";
 import Timeline from "react-native-timeline-flatlist";
 import styled from "styled-components/native";
 
