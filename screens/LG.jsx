@@ -42,6 +42,7 @@ const LG = ({ navigation: { navigate } }) => {
   useEffect(() => {
     if (writeFormat["name"] == "🤯") {
       check.current[0] = 1;
+      console.log();
     } else if (writeFormat["name"] == "🥲") {
       check.current[1] = 1;
     } else if (writeFormat["name"] == "🤬") {
@@ -87,23 +88,17 @@ const LG = ({ navigation: { navigate } }) => {
     //타임라인으로 전송 구현해야함
   };
   const SetBtn = () => (
-    <Btn
-      style={{
-        padding: 15,
-        borderRadius: 10,
-        marginLeft: 5,
-        backgroundColor: "#D4D4D4",
-        justifyContent: "center",
-      }}
+    <LGSetBtn
       onPress={() => {
         /* 
         setWriteFormat으로 값 변경해줘야함...
         */
+        console.log(first);
         onSubmit();
       }}
     >
       <Text>설정</Text>
-    </Btn>
+    </LGSetBtn>
   );
   const [first, setFirst] = useRecoilState(FirstData);
   const [second, setSecond] = useRecoilState(SecondData);
@@ -111,6 +106,7 @@ const LG = ({ navigation: { navigate } }) => {
   const [fourth, setFourth] = useRecoilState(FourthData);
 
   const Airplane = () => {
+    const [productName, setProductName] = useState("");
     const [monday, setMonday] = useState(first.mon);
     const [tuesday, setTuesday] = useState(first.tue);
     const [wednesday, setWednesday] = useState(first.wed);
@@ -221,12 +217,12 @@ const LG = ({ navigation: { navigate } }) => {
               />
             </View>
           </Footer>
-          <SetBtn style={{ flex: 1 }} />
+          <SetBtn key={1} style={{ flex: 1 }} />
         </View>
       </Content>
     );
   };
-  const TV = () => {
+  const Air = () => {
     const [monday, setMonday] = useState(second.mon);
     const [tuesday, setTuesday] = useState(second.tue);
     const [wednesday, setWednesday] = useState(second.wed);
@@ -541,7 +537,7 @@ const LG = ({ navigation: { navigate } }) => {
         <ScrollView style={{ backgroundColor: "#f2f2f2" }}>
           {console.log("Hello", check.current)}
           {check.current[0] !== 0 ? <Airplane /> : null}
-          {check.current[1] !== 0 ? <TV /> : null}
+          {check.current[1] !== 0 ? <Air /> : null}
           {check.current[2] !== 0 ? <Drum /> : null}
           {check.current[3] !== 0 ? <Clothes /> : null}
         </ScrollView>
@@ -613,5 +609,13 @@ const Content = styled.View`
   margin-left: 5px;
   align-items: center;
 `;
-
+const LGSetBtn = styled.TouchableOpacity`
+  padding: 15px;
+  border-radius: 10px;
+  margin-left: 5px;
+  background-color: #d4d4d4;
+  justify-content: center;
+  border: 1.5px solid black;
+  margin-right: 5px;
+`;
 export default LG;

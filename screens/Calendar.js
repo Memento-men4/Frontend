@@ -1,59 +1,13 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Calendar } from "react-native-calendars";
-import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
+import { StyleSheet, View } from "react-native";
 import styled from "styled-components/native";
-import Ionicons from "@expo/vector-icons/Ionicons";
-import { imageName } from "/Users/leesukcheol/memento/images.js"; // 실제 디바이스에서 돌릴 때 에러 뜨길래..
 import HighlightText from "react-native-highlight-underline-text";
 import { loginFlag } from "../atom";
 import { useRecoilState } from "recoil";
 import axios from "axios";
 import { UserIDNumber, UserName } from "../atom";
 import { useIsFocused } from "@react-navigation/native";
-
-const Body = styled.View`
-  background-color: white;
-`;
-const Header = styled.View`
-  flex-direction: row;
-  justify-content: space-between;
-  margin-horizontal: 20px;
-  margin-top: 20px;
-  border: 1px solid black;
-  background-color: #f2f2f2;
-  box-shadow: 1px 1px 3px rgba(41, 30, 95, 0.9);
-  border-radius: 10px;
-`;
-const Container = styled.View`
-  box-shadow: 1px 1px 3px rgba(41, 30, 95, 0.9);
-  margin-horizontal: 20px;
-`;
-const Footer = styled.View`
-  box-shadow: 1px 1px 3px rgba(41, 30, 95, 0.9);
-  margin-horizontal: 20px;
-`;
-const Target = styled.TouchableOpacity`
-  background-color: #ffda79;
-  border-radius: 10px;
-  padding: 5px;
-  border: 1px solid black;
-  box-shadow: 1px 1px 3px rgba(41, 30, 95, 0.7);
-  margin-vertical: 5px;
-`; // margin: 두 버튼 사이 간격
-const Hello = styled.Text`
-  font-size: 20px;
-  margin-top: 31px;
-  font-weight: bold;
-`;
-const Txt = styled.Text`
-  font-size: 15px;
-  font-weight: bold;
-  text-align: center;
-`;
-const Gom = styled.Image`
-  width: 100px;
-  height: 100px;
-`;
 
 const CalendarView = ({ navigation: { navigate } }) => {
   const isFocused = useIsFocused();
@@ -105,7 +59,6 @@ const CalendarView = ({ navigation: { navigate } }) => {
       /*isFocused*/
     ]
   ); // 주석 풀면 캘린더 스크린에 접속할 때마다 post가 실행됨
-
   return (
     <Body>
       {login === 0 ? (
@@ -115,8 +68,8 @@ const CalendarView = ({ navigation: { navigate } }) => {
       ) : (
         <View>
           <Header>
-            <Gom
-              source={require("/Users/leesukcheol/memento/assets/images/gom-unscreen.gif")}
+            <Character
+              source={require("/Users/leesukcheol/memento/assets/images/shy1.png")}
             />
             <View style={{ alignItems: "center" }}>
               <Hello>안녕하세요</Hello>
@@ -132,13 +85,16 @@ const CalendarView = ({ navigation: { navigate } }) => {
                 text={userName}
               />
             </View>
-            <Gom
-              source={require("/Users/leesukcheol/memento/assets/images/gom.png")}
+            <Character
+              source={require("/Users/leesukcheol/memento/assets/images/new1.png")}
             />
           </Header>
           <Container>
             <Calendar
-              onDayPress={(day) => navigate("Stack", { screen: "Days" })} // 날짜 클릭하면 스택으로 이동
+              onDayPress={(day) => {
+                //Get the date of the day that was pressed
+                navigate("Stack", { screen: "Days" });
+              }} // 날짜 클릭하면 스택으로 이동
               minDate={"2022-11-01"}
               //markingType={"multi-dot"}
               markedDates={markedDates}
@@ -188,7 +144,49 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
 });
-
+const Body = styled.View`
+  background-color: white;
+`;
+const Header = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+  margin-horizontal: 20px;
+  margin-top: 20px;
+  border: 1px solid black;
+  background-color: #f2f2f2;
+  box-shadow: 1px 1px 3px rgba(41, 30, 95, 0.9);
+  border-radius: 10px;
+`;
+const Container = styled.View`
+  box-shadow: 1px 1px 3px rgba(41, 30, 95, 0.9);
+  margin-horizontal: 20px;
+`;
+const Footer = styled.View`
+  box-shadow: 1px 1px 3px rgba(41, 30, 95, 0.9);
+  margin-horizontal: 20px;
+`;
+const Target = styled.TouchableOpacity`
+  background-color: #ffda79;
+  border-radius: 10px;
+  padding: 5px;
+  border: 1px solid black;
+  box-shadow: 1px 1px 3px rgba(41, 30, 95, 0.7);
+  margin-vertical: 5px;
+`; // margin: 두 버튼 사이 간격
+const Hello = styled.Text`
+  font-size: 20px;
+  margin-top: 31px;
+  font-weight: bold;
+`;
+const Txt = styled.Text`
+  font-size: 15px;
+  font-weight: bold;
+  text-align: center;
+`;
+const Character = styled.Image`
+  width: 121px;
+  height: 100px;
+`;
 export default CalendarView;
 
 // 그 기록 있는 날짜는 파랑 마크업 필요한데 그거 찾아서 넣기

@@ -35,7 +35,7 @@ const Game = ({ navigation: { navigate } }) => (
       <Target onPress={() => navigate("Stack", { screen: "Game2" })}>
         <Txt style={{ marginLeft: 30 }}>💡 기억력</Txt>
       </Target>
-      <Target onPress={() => navigate("Stack", { screen: "Game3" })}>
+      <Target onPress={() => navigate("Stack", { screen: "Game3First" })}>
         <Txt style={{ marginLeft: 30 }}>💡 계산력</Txt>
       </Target>
     </View>

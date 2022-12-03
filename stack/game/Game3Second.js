@@ -1,21 +1,19 @@
 import React, { useState, useEffect, useRef } from "react";
 import { TouchableOpacity, Text, View, Alert } from "react-native";
 import styled from "styled-components/native";
-import { useIsFocused } from "@react-navigation/native";
-import Risk from "../info/Risk";
 
-const Game3 = ({ navigation: { navigate } }) => {
-  const isFocused = useIsFocused();
+const Game3Second = ({ navigation: { navigate } }) => {
   const getRandom = (min, max) => Math.floor(Math.random() * (max - min) + min);
   const num1 = getRandom(10, 100);
-  const num2 = getRandom(10, 100);
-  //useEffect(() => {}, [isFocused]);
+  const num2 = getRandom(10, 20);
+  const num3 = getRandom(50, 100);
+  const answer = num1 + num2 - num3;
   return (
     <Body style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
       <View>
-        <Txt>
-          📝 {num1} - {num2}의 값은 무엇일까요?
-        </Txt>
+        <Title>
+          📝 {num1} + {num2} - {num3}의 값은 무엇일까요?
+        </Title>
       </View>
       <View
         style={{
@@ -27,7 +25,7 @@ const Game3 = ({ navigation: { navigate } }) => {
         <Target
           onPress={() => {
             Alert.alert("😢 오답입니다.");
-            navigate("Main", { screen: "Home" });
+            navigate("Stack", { screen: "Game3Third" });
           }}
         >
           <Txt>💡 {getRandom(10, 100)}</Txt>
@@ -36,7 +34,7 @@ const Game3 = ({ navigation: { navigate } }) => {
         <Target
           onPress={() => {
             Alert.alert("😢 오답입니다.");
-            navigate("Main", { screen: "Home" });
+            navigate("Stack", { screen: "Game3Third" });
           }}
         >
           <Txt>💡 {num1 - num2 + 10}</Txt>
@@ -44,15 +42,15 @@ const Game3 = ({ navigation: { navigate } }) => {
         <Target
           onPress={() => {
             Alert.alert("😢 오답입니다.");
-            navigate("Main", { screen: "Home" });
+            navigate("Stack", { screen: "Game3Third" });
           }}
         >
           <Txt>💡 {(num1 * num2) % 100}</Txt>
         </Target>
         <Target
           onPress={() => {
-            Alert.alert("🥳 정답입니다!");
-            navigate("Main", { screen: "Home" });
+            Alert.alert("😢 오답입니다.");
+            navigate("Stack", { screen: "Game3Third" });
           }}
         >
           <Txt>💡 {num1 - num2}</Txt>
@@ -62,7 +60,7 @@ const Game3 = ({ navigation: { navigate } }) => {
         <Target
           onPress={() => {
             Alert.alert("😢 오답입니다.");
-            navigate("Main", { screen: "Home" });
+            navigate("Stack", { screen: "Game3Third" });
           }}
         >
           <Txt>💡 {getRandom(10, 100)}</Txt>
@@ -71,15 +69,7 @@ const Game3 = ({ navigation: { navigate } }) => {
         <Target
           onPress={() => {
             Alert.alert("😢 오답입니다.");
-            navigate("Main", { screen: "Home" });
-          }}
-        >
-          <Txt>💡 {getRandom(10, 100)}</Txt>
-        </Target>
-        <Target
-          onPress={() => {
-            Alert.alert("😢 오답입니다.");
-            navigate("Main", { screen: "Home" });
+            navigate("Stack", { screen: "Game3Third" });
           }}
         >
           <Txt>💡 {getRandom(10, 100)}</Txt>
@@ -87,7 +77,15 @@ const Game3 = ({ navigation: { navigate } }) => {
         <Target
           onPress={() => {
             Alert.alert("🥳 정답입니다!");
-            navigate("Main", { screen: "Home" });
+            navigate("Stack", { screen: "Game3Third" });
+          }}
+        >
+          <Txt>💡 {answer}</Txt>
+        </Target>
+        <Target
+          onPress={() => {
+            Alert.alert("😢 오답입니다.");
+            navigate("Stack", { screen: "Game3Third" });
           }}
         >
           <Txt>💡 {getRandom(10, 100)}</Txt>
@@ -103,10 +101,13 @@ const Body = styled.View`
   justify-content: center;
   align-items: center;
 `;
+const Title = styled.Text`
+  font-size: 20px;
+  font-weight: bold;
+`;
 const Txt = styled.Text`
   font-size: 15px;
   font-weight: bold;
-  padding-left: 0px;
 `;
 const Target = styled.TouchableOpacity`
   justify-content: center;
@@ -120,4 +121,4 @@ const Target = styled.TouchableOpacity`
   box-shadow: 1px 1px 3px rgba(41, 30, 95, 0.9);
   flex: 1;
 `;
-export default Game3;
+export default Game3Second;

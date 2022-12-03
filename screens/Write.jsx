@@ -152,6 +152,10 @@ const Write = ({ navigation: { goBack, navigate } }) => {
       console.log(writeFormat);
       if (count === 1) {
         const tmp = {
+          member_seq: userIDNumber,
+          serialNum: serialNumber,
+          type: "WASHING_MACHINE",
+          settingTime: date.getHours() + ":" + date.getMinutes(),
           mon: mon,
           tue: tue,
           wed: wed,
@@ -164,6 +168,9 @@ const Write = ({ navigation: { goBack, navigate } }) => {
         console.log(typeof count);
       } else if (count === 2) {
         const tmp2 = {
+          member_seq: userIDNumber,
+          serialNum: serialNumber,
+          type: "AIR_CLEANER",
           mon: mon,
           tue: tue,
           wed: wed,
@@ -176,6 +183,9 @@ const Write = ({ navigation: { goBack, navigate } }) => {
         console.log(count);
       } else if (count === 3) {
         const tmp3 = {
+          member_seq: userIDNumber,
+          serialNum: serialNumber,
+          type: "WATER_MACHINE",
           mon: mon,
           tue: tue,
           wed: wed,
@@ -187,6 +197,9 @@ const Write = ({ navigation: { goBack, navigate } }) => {
         setThird(tmp3);
       } else if (count === 4) {
         const tmp4 = {
+          member_seq: userIDNumber,
+          serialNum: serialNumber,
+          type: "STYLER",
           mon: mon,
           tue: tue,
           wed: wed,

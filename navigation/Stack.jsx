@@ -15,12 +15,13 @@ import Prevent from "../stack/info/Prevent";
 import Game from "../stack/game/Game";
 import Game1 from "../stack/game/Game1";
 import Game2 from "../stack/game/Game2";
-import Game3 from "../stack/game/Game3";
+import Game3First from "../stack/game/Game3First";
 import HomeInfos from "../screens/home/HomeInfos";
 import HomeGame from "../screens/home/HomeGame";
 import HomeDiagnosis from "../screens/home/HomeDiagnosis";
 import Write from "../screens/Write";
-import Answer from "../stack/game/Answer";
+import Game2Answer from "../stack/game/Game2Answer";
+import Game3Second from "../stack/game/Game3Second";
 const Body = styled.View`
   flex-direction: column;
   padding-top: 20px;
@@ -159,8 +160,13 @@ const Stack = () => (
       options={{ headerShown: false }}
     />
     <NativeStack.Screen
-      name="Game3"
-      component={Game3}
+      name="Game3First"
+      component={Game3First}
+      options={{ headerShown: false }}
+    />
+    <NativeStack.Screen
+      name="Game3Second"
+      component={Game3Second}
       options={{ headerShown: false }}
     />
     <NativeStack.Screen
@@ -184,8 +190,8 @@ const Stack = () => (
       options={{ headerShown: false }}
     />
     <NativeStack.Screen
-      name="Answer"
-      component={Answer}
+      name="Game2Answer"
+      component={Game2Answer}
       options={{ headerShown: false }}
     />
   </NativeStack.Navigator>

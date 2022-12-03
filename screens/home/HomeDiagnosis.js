@@ -1,19 +1,16 @@
 import React from "react";
-import {
-  View,
-  Text,
-  SafeAreaView,
-  Alert,
-  TouchableOpacity,
-} from "react-native";
+import { View, Text, Alert, TouchableOpacity } from "react-native";
 import styled from "styled-components/native";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
-import { useNavigation } from "@react-navigation/native";
 const Header = styled.ScrollView`
   flex-direction: column;
   padding: 10px;
   padding-top: 20px;
   background-color: white;
+`;
+const Character = styled.Image`
+  width: 150px;
+  height: 100px;
 `;
 const Target = styled.View`
   flex-direction: row;
@@ -22,7 +19,7 @@ const Target = styled.View`
 const Intro = styled.Text`3
   text-align: right;
   font-weight: bold;
-  font-size: 16px;
+  font-size: 15px;
 `;
 const Question = styled.Text`
   margin-left: 5px;
@@ -44,7 +41,7 @@ const NewLine = styled.Text`
   font-size: 5px;
 `; // 줄간격이라고 보면 될듯
 const T = styled.View`
-  flex: 4;
+  flex: 5;
   align-items: center;
   justify-content: center;
   background-color: #d4d4d4;
@@ -56,16 +53,7 @@ const goAlert = () => {
   Alert.alert(
     "자가진단 결과",
     "위험! 가까운 보건소나 치매안심센터를 방문하셔서 더 정확한 치매검진을 받아보시기 바랍니다.",
-    [
-      {
-        text: "아니요",
-      },
-      {
-        text: "네",
-        //onPress: () => console.log("그렇다는데"),
-        style: "cancel",
-      },
-    ],
+    [{ text: "아니요" }, { text: "네", style: "cancel" }],
     { cancelable: false }
   );
 };
@@ -74,17 +62,7 @@ const goAlert2 = () => {
   Alert.alert(
     "자가진단 결과",
     "안전! 운동과 외부 사회 활동을 유지하시고 치매예방수칙 3.3.3을 잘 실천하셔서 치매를 예방하세요. 좀 더 정확한 치매검진을 원하신다면 가까운 보건소나 치매안심센터를 방문해주세요.", // 두번째 text: 그 밑에 작은 제목
-    [
-      {
-        text: "아니요",
-        //onPress: () => navigate("Main"),
-      },
-      {
-        text: "네",
-        //onPress: () => console.log("하이"),
-        style: "cancel",
-      },
-    ],
+    [{ text: "아니요" }, { text: "네", style: "cancel" }],
     { cancelable: false }
   );
 };
@@ -100,22 +78,28 @@ const HomeDiagnosis = ({ navigation: { navigate } }) => (
     </TouchableOpacity>
     <Header>
       <View style={{ flexDirection: "row", marginBottom: 15 }}>
-        <View style={{ flex: 1, alignItems: "center" }}>
-          <Text style={{ fontSize: 60 }}>🤦‍♂️</Text>
+        <View style={{ flex: 3, alignItems: "center" }}>
+          <Character
+            source={require("/Users/leesukcheol/memento/assets/images/crying3.png")}
+          />
         </View>
         <T>
-          <Text style={{ fontSize: 17, fontWeight: "600" }}>
-            자꾸 깜빡하는 나, 혹시 영츠하이머?
-          </Text>
+          <Intro style={{ fontSize: 20, fontWeight: "600" }}>
+            자꾸 깜빡하는 나.{"\n"}혹시 영츠하이머?
+          </Intro>
         </T>
       </View>
       <View style={{ flexDirection: "row" }}>
-        <T>
-          <Intro>보건복지부 중앙치매센터에서 제시하는</Intro>
-          <Intro>주관적 기억감퇴 설문에 지금 참여해보세요!</Intro>
+        <T style={{ padding: 10 }}>
+          <Intro style={{ textAlign: "right" }}>
+            보건복지부 중앙치매센터에서 제시한 주관적 기억감퇴 설문에 {"\n"}지금
+            참여해보세요!
+          </Intro>
         </T>
-        <View style={{ flex: 1 }}>
-          <Text style={{ fontSize: 60 }}>💁</Text>
+        <View style={{ flex: 2.5 }}>
+          <Character
+            source={require("/Users/leesukcheol/memento/assets/images/righthand.png")}
+          />
         </View>
       </View>
       <NewLine>{"\n"}</NewLine>
