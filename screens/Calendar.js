@@ -54,7 +54,7 @@ const CalendarView = ({ navigation: { navigate } }) => {
   const [login, setLogin] = useRecoilState(loginFlag);
   useEffect(
     () => {
-      getUserIDNumber();
+      //getUserIDNumber();
     },
     [
       /*isFocused*/
@@ -94,6 +94,18 @@ const CalendarView = ({ navigation: { navigate } }) => {
             <Calendar
               onDayPress={(day) => {
                 //Get the date of the day that was pressed
+                /*
+                axios
+                  .get(
+                    `http://ec2-52-79-187-71.ap-northeast-2.compute.amazonaws.com:8080/record?data=${day.dateString}&memberId=${userIDNumber}`
+                  )
+                  .then(function (response) {
+                    console.log("ㅇㅇ");
+                  })
+                  .catch(function (error) {
+                    console.log("ㄴㄴ");
+                  });
+                  */
                 navigate("Stack", { screen: "Days" });
               }} // 날짜 클릭하면 스택으로 이동
               minDate={"2022-11-01"}

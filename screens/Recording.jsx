@@ -3,7 +3,9 @@ import { Alert, ImageBackground, View } from "react-native";
 import styled from "styled-components/native";
 import Voice from "react-native-voice";
 import { RecordText1, RecordText2, RecordText3, RecordText4 } from "../atom";
+import { UserIDNumber } from "../atom";
 import { useRecoilState } from "recoil";
+import axios from "axios";
 
 const Container = styled.View`
   flex: 1;
@@ -21,6 +23,7 @@ const VoiceText = styled.Text`
 `;
 
 const Recording = () => {
+  const [userIDNumber, setUserIDNumber] = useRecoilState(UserIDNumber);
   const [isRecord, setIsRecord] = useState(false); // 녹음 중인지 아닌지
   const [showingText, setShowingText] = useState("");
   const [text, setText] = useRecoilState(RecordText1); // 녹음한 텍스트
@@ -37,6 +40,7 @@ const Recording = () => {
     : "음성인식 시작";
 
   const _onSpeechStart = () => {
+    console.log(userIDNumber);
     // 음성인식 시작
   };
   const _onSpeechEnd = () => {
@@ -50,6 +54,17 @@ const Recording = () => {
     setShowingText(event.value[0]);
     if (cnt.current === 0) {
       setText(event.value[0]); // 음성인식 결과를 text에 저장
+      /* 서버로 전달하는 파트인데 타이틀인지 로케이션인지 잘 맞춰서. else if에도 다 넣어야함
+      const temp = {
+        member_seq: userIDNumber,
+        title: "한양대학교",
+        content: event.value[0],
+      };
+      axios.post(
+        "http://ec2-52-79-187-71.ap-northeast-2.compute.amazonaws.com:8080/record",
+        temp
+        )
+        */
     } else if (cnt.current === 1) {
       setText2(event.value[0]); // 음성인식 결과를 text2에 저장
     } else if (cnt.current === 2) {
@@ -57,6 +72,7 @@ const Recording = () => {
     } else if (cnt.current === 3) {
       setText4(event.value[0]); // 음성인식 결과를 text4에 저장
     }
+
     //console.log(event.value[0]); // 음성인식 결과 출력
     //console.log(event.value[0].length); // 음성인식 결과 길이
   };

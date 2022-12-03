@@ -41,7 +41,7 @@ const Tabs = () => {
         name="Home"
         component={Calendar}
         options={{
-          tabBarBadge: 0, // 홈화면 옆에 숫자
+          //tabBarBadge: 0, // 홈화면 옆에 숫자
           tabBarIcon: ({ color, size }) => {
             return <Ionicons name="home" size={size} color={color} />;
           },
