@@ -90,34 +90,6 @@ const Write = ({ navigation: { goBack, navigate } }) => {
     setVisible(false); // 모달 close
   };
   const [userIDNumber, setUserIDNumber] = useRecoilState(UserIDNumber);
-  const setLG = () => {
-    //const [loading, setLoading] = useState(false);
-    //const [error, setError] = useState(null);
-    const productInfo = {
-      member_seq: userIDNumber,
-      serialNum: serialNumber,
-      type: "WASHING_MACHINE",
-      settingTime: "11:00",
-      mon: "ON",
-      tue: "ON",
-      wed: "OFF",
-      thr: "OFF",
-      fri: "OFF",
-      sat: "OFF",
-      sun: "OFF",
-    };
-    /*axios
-      .post(
-        "http://ec2-52-79-187-71.ap-northeast-2.compute.amazonaws.com:8080/appliance",
-        productInfo
-      )
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });*/
-  };
   const initialWriteFormat = useRef({
     name: "",
     time: "",
@@ -150,12 +122,17 @@ const Write = ({ navigation: { goBack, navigate } }) => {
       };
       console.log("Before");
       console.log(writeFormat);
-      if (count === 1) {
+      //if (count === 1) {
+      if (selectedProduct === "🤯") {
         const tmp = {
           member_seq: userIDNumber,
           serialNum: serialNumber,
           type: "WASHING_MACHINE",
-          settingTime: date.getHours() + ":" + date.getMinutes(),
+          settingTime:
+            date.getHours() +
+            ":" +
+            (date.getMinutes() < 10 ? "0" : "") +
+            date.getMinutes(),
           mon: mon,
           tue: tue,
           wed: wed,
@@ -166,11 +143,16 @@ const Write = ({ navigation: { goBack, navigate } }) => {
         };
         setFirst(tmp);
         console.log(typeof count);
-      } else if (count === 2) {
+      } else if (selectedProduct === "🥲") {
         const tmp2 = {
           member_seq: userIDNumber,
           serialNum: serialNumber,
           type: "AIR_CLEANER",
+          settingTime:
+            date.getHours() +
+            ":" +
+            (date.getMinutes() < 10 ? "0" : "") +
+            date.getMinutes(),
           mon: mon,
           tue: tue,
           wed: wed,
@@ -181,11 +163,16 @@ const Write = ({ navigation: { goBack, navigate } }) => {
         };
         setSecond(tmp2);
         console.log(count);
-      } else if (count === 3) {
+      } else if (selectedProduct === "🤬") {
         const tmp3 = {
           member_seq: userIDNumber,
           serialNum: serialNumber,
           type: "WATER_MACHINE",
+          settingTime:
+            date.getHours() +
+            ":" +
+            (date.getMinutes() < 10 ? "0" : "") +
+            date.getMinutes(),
           mon: mon,
           tue: tue,
           wed: wed,
@@ -195,11 +182,16 @@ const Write = ({ navigation: { goBack, navigate } }) => {
           sun: sun,
         };
         setThird(tmp3);
-      } else if (count === 4) {
+      } else if (selectedProduct === "🤗") {
         const tmp4 = {
           member_seq: userIDNumber,
           serialNum: serialNumber,
           type: "STYLER",
+          settingTime:
+            date.getHours() +
+            ":" +
+            (date.getMinutes() < 10 ? "0" : "") +
+            date.getMinutes(),
           mon: mon,
           tue: tue,
           wed: wed,

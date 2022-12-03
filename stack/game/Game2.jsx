@@ -23,7 +23,7 @@ const Game2 = ({ navigation: { navigate } }) => {
   setTimeout(() => {
     flag.current = (flag.current + 1) % 2; // 1, 0, 1, 0, 1, 0... 반복
     console.log("This is ", flag.current);
-    navigate("Stack", { screen: "Answer" });
+    navigate("Stack", { screen: "Game2Answer" });
   }, 2000);
 
   return (

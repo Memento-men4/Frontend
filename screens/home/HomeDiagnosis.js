@@ -69,7 +69,7 @@ const goAlert2 = () => {
 var cnt = 0;
 
 const HomeDiagnosis = ({ navigation: { navigate } }) => (
-  <View>
+  <View style={{ backgroundColor: "white" }}>
     <TouchableOpacity
       style={{ marginTop: 40, marginLeft: 10 }}
       onPress={() => navigate("Main", { screen: "Home" })}
@@ -80,7 +80,7 @@ const HomeDiagnosis = ({ navigation: { navigate } }) => (
       <View style={{ flexDirection: "row", marginBottom: 15 }}>
         <View style={{ flex: 3, alignItems: "center" }}>
           <Character
-            source={require("/Users/leesukcheol/memento/assets/images/crying3.png")}
+            source={require("/Users/leesukcheol/memento/assets/images/bbiyak3.png")}
           />
         </View>
         <T>
@@ -98,7 +98,7 @@ const HomeDiagnosis = ({ navigation: { navigate } }) => (
         </T>
         <View style={{ flex: 2.5 }}>
           <Character
-            source={require("/Users/leesukcheol/memento/assets/images/righthand.png")}
+            source={require("/Users/leesukcheol/memento/assets/images/bbiyak2.png")}
           />
         </View>
       </View>

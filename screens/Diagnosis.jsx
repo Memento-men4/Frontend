@@ -1,8 +1,8 @@
 import React from "react";
-import { View, Text, SafeAreaView, Alert } from "react-native";
+import { View, Text, TouchableOpacity, Alert } from "react-native";
 import styled from "styled-components/native";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
-import { useNavigation } from "@react-navigation/native";
+
 const Header = styled.ScrollView`
   flex-direction: column;
   padding: 10px;
@@ -13,6 +13,10 @@ const Target = styled.View`
   flex-direction: row;
   margin: 5px;
 `; // 3분할. 1. 질문 2. 예 체크박스 3. 아니오 체크박스
+const Character = styled.Image`
+  width: 150px;
+  height: 100px;
+`;
 const Intro = styled.Text`
   text-align: right;
   font-weight: bold;
@@ -85,25 +89,31 @@ const goAlert2 = () => {
 var cnt = 0;
 
 const Diagnosis = ({ navigation: { navigate } }) => (
-  <SafeAreaView>
+  <View style={{ backgroundColor: "white" }}>
     <Header>
       <View style={{ flexDirection: "row", marginBottom: 15 }}>
-        <View style={{ flex: 1, alignItems: "center" }}>
-          <Text style={{ fontSize: 60 }}>🤦‍♂️</Text>
+        <View style={{ flex: 3, alignItems: "center" }}>
+          <Character
+            source={require("/Users/leesukcheol/memento/assets/images/bbiyak3.png")}
+          />
         </View>
         <T>
-          <Text style={{ fontSize: 17, fontWeight: "600" }}>
-            자꾸 깜빡하는 나, 혹시 영츠하이머?
-          </Text>
+          <Intro style={{ fontSize: 20, fontWeight: "600" }}>
+            자꾸 깜빡하는 나.{"\n"}혹시 영츠하이머?
+          </Intro>
         </T>
       </View>
       <View style={{ flexDirection: "row" }}>
-        <T>
-          <Intro>보건복지부 중앙치매센터에서 제시하는</Intro>
-          <Intro>주관적 기억감퇴 설문에 지금 참여해보세요!</Intro>
+        <T style={{ padding: 10 }}>
+          <Intro style={{ textAlign: "right" }}>
+            보건복지부 중앙치매센터에서 제시한 주관적 기억감퇴 설문에 {"\n"}지금
+            참여해보세요!
+          </Intro>
         </T>
-        <View style={{ flex: 1 }}>
-          <Text style={{ fontSize: 60 }}>💁</Text>
+        <View style={{ flex: 2.5 }}>
+          <Character
+            source={require("/Users/leesukcheol/memento/assets/images/bbiyak2.png")}
+          />
         </View>
       </View>
       <NewLine>{"\n"}</NewLine>
@@ -279,7 +289,7 @@ const Diagnosis = ({ navigation: { navigate } }) => (
         <Text style={{ textAlign: "center", fontSize: 20 }}>제출</Text>
       </Submit>
     </Header>
-  </SafeAreaView>
+  </View>
 );
 
 export default Diagnosis;

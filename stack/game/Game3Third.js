@@ -2,7 +2,7 @@ import React from "react";
 import { View, Alert } from "react-native";
 import styled from "styled-components/native";
 
-const Game3 = ({ navigation: { navigate } }) => {
+const Game3Third = ({ navigation: { navigate } }) => {
   const getRandom = (min, max) => Math.floor(Math.random() * (max - min) + min);
   const num1 = getRandom(80, 100);
   const num2 = getRandom(10, 50);
@@ -37,7 +37,7 @@ const Game3 = ({ navigation: { navigate } }) => {
             navigate("Main", { screen: "Home" });
           }}
         >
-          <Txt>💡 {num1 + num2 + num3}</Txt>
+          <Txt>💡 {num1 - num2 + num3 - 100}</Txt>
         </Target>
         <Target
           onPress={() => {
@@ -121,4 +121,4 @@ const Target = styled.TouchableOpacity`
   box-shadow: 1px 1px 3px rgba(41, 30, 95, 0.9);
   flex: 1;
 `;
-export default Game3;
+export default Game3Third;

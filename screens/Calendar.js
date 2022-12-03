@@ -17,14 +17,14 @@ const CalendarView = ({ navigation: { navigate } }) => {
     //const [loading, setLoading] = useState(false);
     //const [error, setError] = useState(null);
     const userInfo = {
-      id: "new1",
-      password: "1234",
-      name: "new2",
-      phoneNumber: "010-3333-3333",
-      gender: "MALE",
+      id: "haneul",
+      password: "123445",
+      name: "hahaha",
+      phoneNumber: "010-3343-3333",
+      gender: "FEMALE",
       type: "GENERAL",
-      birthDay: "1999-01-01",
-      email: "dltjrcjf9@naver,com",
+      birthDay: "1993-01-01",
+      email: "ddsfsdrcjf9@naver,com",
     };
 
     axios
@@ -36,8 +36,9 @@ const CalendarView = ({ navigation: { navigate } }) => {
         console.log(response);
         /*console.log(response.data);
         console.log(response.config);
+        */
+        setUserName(userInfo["name"]);
         setUserIDNumber(response.data);
-        setUserName(userInfo["name"]);*/
       })
       .catch(function (error) {
         console.log(error);
@@ -53,7 +54,7 @@ const CalendarView = ({ navigation: { navigate } }) => {
   const [login, setLogin] = useRecoilState(loginFlag);
   useEffect(
     () => {
-      /*getUserIDNumber();*/
+      getUserIDNumber();
     },
     [
       /*isFocused*/
@@ -69,7 +70,7 @@ const CalendarView = ({ navigation: { navigate } }) => {
         <View>
           <Header>
             <Character
-              source={require("/Users/leesukcheol/memento/assets/images/shy1.png")}
+              source={require("/Users/leesukcheol/memento/assets/images/bbiyak1.png")}
             />
             <View style={{ alignItems: "center" }}>
               <Hello>안녕하세요</Hello>
@@ -86,7 +87,7 @@ const CalendarView = ({ navigation: { navigate } }) => {
               />
             </View>
             <Character
-              source={require("/Users/leesukcheol/memento/assets/images/new1.png")}
+              source={require("/Users/leesukcheol/memento/assets/images/bbiyak2.png")}
             />
           </Header>
           <Container>

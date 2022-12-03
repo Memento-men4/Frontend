@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { View, Text, Alert } from "react-native";
+import { View, Text, Alert, Image } from "react-native";
 import styled from "styled-components/native";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { format } from "date-fns";
@@ -28,21 +28,10 @@ const LG = ({ navigation: { navigate } }) => {
   const [writeFormat, setWriteFormat] = useRecoilState(WriteFormat);
   const check = useRef([0, 0, 0, 0, 0, 0, 0]); // 가전제품 종류별 렌더링
   const [userIDNumber, setUserIDNumber] = useRecoilState(UserIDNumber);
-  /*
-  12/4에 문제 없으면 삭제
-  const [mon, setMon] = useState(false);
-  const [tue, setTue] = useState(false);
-  const [wed, setWed] = useState(false);
-  const [thu, setThu] = useState(false);
-  const [fri, setFri] = useState(false);
-  const [sat, setSat] = useState(false);
-  const [sun, setSun] = useState(false);
-  */
 
   useEffect(() => {
     if (writeFormat["name"] == "🤯") {
       check.current[0] = 1;
-      console.log();
     } else if (writeFormat["name"] == "🥲") {
       check.current[1] = 1;
     } else if (writeFormat["name"] == "🤬") {
@@ -58,55 +47,12 @@ const LG = ({ navigation: { navigate } }) => {
     }
   }, [writeFormat]); // 제발 여기에 꼭 넣어야함!!!
 
-  const [date, onChangeDate] = useState(new Date()); // 선택 날짜
-  const [mode, setMode] = useState("date"); // 모달 유형
-  const [visible, setVisible] = useState(false); // 모달 노출 여부
-  /*
-  12/4에 문제 없으면 삭제
-  const onPressDate = () => {
-    // 날짜 클릭 시
-    setMode("date"); // 모달 유형을 date로 변경
-    setVisible(true); // 모달 open
-  };
-  */
-  const onPressTime = () => {
-    // 시간 클릭 시
-    setMode("time"); // 모달 유형을 time으로 변경
-    setVisible(true); // 모달 open
-  };
-  const onConfirm = (selectedDate) => {
-    // 날짜 또는 시간 선택 시
-    setVisible(false); // 모달 close
-    onChangeDate(selectedDate); // 선택한 날짜 변경
-  };
-  const onCancel = () => {
-    // 취소 시
-    setVisible(false); // 모달 close
-  };
-  const onSubmit = () => {
-    Alert.alert("설정이 완료되었습니다.");
-    //타임라인으로 전송 구현해야함
-  };
-  const SetBtn = () => (
-    <LGSetBtn
-      onPress={() => {
-        /* 
-        setWriteFormat으로 값 변경해줘야함...
-        */
-        console.log(first);
-        onSubmit();
-      }}
-    >
-      <Text>설정</Text>
-    </LGSetBtn>
-  );
   const [first, setFirst] = useRecoilState(FirstData);
   const [second, setSecond] = useRecoilState(SecondData);
   const [third, setThird] = useRecoilState(ThirdData);
   const [fourth, setFourth] = useRecoilState(FourthData);
 
-  const Airplane = () => {
-    const [productName, setProductName] = useState("");
+  const WASHING_MACHINE = () => {
     const [monday, setMonday] = useState(first.mon);
     const [tuesday, setTuesday] = useState(first.tue);
     const [wednesday, setWednesday] = useState(first.wed);
@@ -134,6 +80,68 @@ const LG = ({ navigation: { navigate } }) => {
     };
     const onSunPress = () => {
       setSunday(!sunday);
+    };
+    const temp1 = useRef({});
+    const SetBtn1 = () => (
+      <LGSetBtn
+        onPress={() => {
+          /* 12/5일 폐기
+          setFirst({
+            한 텀씩 밀려서 저장되는 것 같으니, 내일 하늘이랑 바로 옆에서 확인해보기
+            member_seq: userIDNumber,
+            serialNum: "test1",
+            type: "WASHING_MACHINE",
+            settingTime:
+            date1.getHours() +
+            ":" +
+            (date1.getMinutes() < 10 ? "0" : "") +
+            date1.getMinutes(),
+            mon: monday,
+            tue: tuesday,
+            wed: wednesday,
+            thr: thursday,
+            fri: friday,
+            sat: saturday,
+            sun: sunday,
+          });
+          */
+          temp1.current = {
+            member_seq: userIDNumber,
+            serialNum: "test1",
+            type: "WASHING_MACHINE",
+            settingTime:
+              date1.getHours() +
+              ":" +
+              (date1.getMinutes() < 10 ? "0" : "") +
+              date1.getMinutes(),
+            mon: monday,
+            tue: tuesday,
+            wed: wednesday,
+            thr: thursday,
+            fri: friday,
+            sat: saturday,
+            sun: sunday,
+          };
+          onSubmit1();
+        }}
+      >
+        <Text>설정</Text>
+      </LGSetBtn>
+    );
+    const onSubmit1 = async () => {
+      const response = await axios
+        .post(
+          "http://ec2-52-79-187-71.ap-northeast-2.compute.amazonaws.com:8080/appliance",
+          temp1.current
+        )
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+      console.log("temp1:", temp1);
+      Alert.alert("설정이 완료되었습니다1");
     };
     const [date1, onChangeDate1] = useState(new Date()); // 선택 날짜
     const [mode1, setMode1] = useState("date"); // 모달 유형
@@ -217,12 +225,12 @@ const LG = ({ navigation: { navigate } }) => {
               />
             </View>
           </Footer>
-          <SetBtn key={1} style={{ flex: 1 }} />
+          <SetBtn1 style={{ flex: 1 }} />
         </View>
       </Content>
     );
   };
-  const Air = () => {
+  const AIR_CLEANER = () => {
     const [monday, setMonday] = useState(second.mon);
     const [tuesday, setTuesday] = useState(second.tue);
     const [wednesday, setWednesday] = useState(second.wed);
@@ -250,6 +258,48 @@ const LG = ({ navigation: { navigate } }) => {
     };
     const onSunPress = () => {
       setSunday(!sunday);
+    };
+    const temp2 = useRef({});
+    const SetBtn2 = () => (
+      <LGSetBtn
+        onPress={() => {
+          temp2.current = {
+            member_seq: userIDNumber,
+            serialNum: "test1",
+            type: "AIR_CLEANER",
+            settingTime:
+              date2.getHours() +
+              ":" +
+              (date2.getMinutes() < 10 ? "0" : "") +
+              date2.getMinutes(),
+            mon: monday,
+            tue: tuesday,
+            wed: wednesday,
+            thr: thursday,
+            fri: friday,
+            sat: saturday,
+            sun: sunday,
+          };
+          onSubmit2();
+        }}
+      >
+        <Text>설정</Text>
+      </LGSetBtn>
+    );
+    const onSubmit2 = async () => {
+      const response = await axios
+        .post(
+          "http://ec2-52-79-187-71.ap-northeast-2.compute.amazonaws.com:8080/appliance",
+          temp2
+        )
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+      Alert.alert("설정이 완료되었습니다2");
+      //타임라인으로 전송 구현해야함
     };
     const [date2, onChangeDate2] = useState(new Date()); // 선택 날짜
     const [mode2, setMode2] = useState("date"); // 모달 유형
@@ -333,12 +383,12 @@ const LG = ({ navigation: { navigate } }) => {
               />
             </View>
           </Footer>
-          <SetBtn style={{ flex: 1 }} />
+          <SetBtn2 style={{ flex: 1 }} />
         </View>
       </Content>
     );
   };
-  const Drum = () => {
+  const WATER_MACHINE = () => {
     const [monday, setMonday] = useState(third.mon);
     const [tuesday, setTuesday] = useState(third.tue);
     const [wednesday, setWednesday] = useState(third.wed);
@@ -367,6 +417,66 @@ const LG = ({ navigation: { navigate } }) => {
     const onSunPress = () => {
       setSunday(!sunday);
     };
+    const [date3, onChangeDate3] = useState(new Date()); // 선택 날짜
+    const [mode3, setMode3] = useState("date"); // 모달 유형
+    const [visible3, setVisible3] = useState(false); // 모달 노출 여부
+    const onPressTime3 = () => {
+      // 시간 클릭 시
+      setMode3("time"); // 모달 유형을 time으로 변경
+      setVisible3(true); // 모달 open
+    };
+    const onConfirm3 = (selectedDate) => {
+      // 날짜 또는 시간 선택 시
+      setVisible3(false); // 모달 close
+      onChangeDate3(selectedDate); // 선택한 날짜 변경
+      //console.log(selectedDate);
+    };
+    const onCancel3 = () => {
+      // 취소 시
+      setVisible3(false); // 모달 close
+    };
+    const temp3 = useRef({});
+    const SetBtn3 = () => (
+      <LGSetBtn
+        onPress={() => {
+          temp3.current = {
+            member_seq: userIDNumber,
+            serialNum: "test1",
+            type: "WATER_MACHINE",
+            settingTime:
+              date3.getHours() +
+              ":" +
+              (date3.getMinutes() < 10 ? "0" : "") +
+              date3.getMinutes(),
+            mon: monday,
+            tue: tuesday,
+            wed: wednesday,
+            thr: thursday,
+            fri: friday,
+            sat: saturday,
+            sun: sunday,
+          };
+          onSubmit3();
+        }}
+      >
+        <Text>설정</Text>
+      </LGSetBtn>
+    );
+    const onSubmit3 = async () => {
+      const response = await axios
+        .post(
+          "http://ec2-52-79-187-71.ap-northeast-2.compute.amazonaws.com:8080/appliance",
+          temp3
+        )
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+      Alert.alert("설정이 완료되었습니다3");
+      //타임라인으로 전송 구현해야함
+    };
     return (
       <Content style={{ marginTop: 20, padding: 15 }}>
         <View style={{ flex: 1, flexDirection: "row" }}>
@@ -389,9 +499,9 @@ const LG = ({ navigation: { navigate } }) => {
                   flex: 3,
                 }}
               >
-                <Btn style={{ flex: 1 }} onPress={onPressTime}>
+                <Btn style={{ flex: 1 }} onPress={onPressTime3}>
                   <ShowDate style={{ fontSize: 20 }}>
-                    {format(new Date(date), "p", { locale: ko })}
+                    {format(new Date(date3), "p", { locale: ko })}
                   </ShowDate>
                 </Btn>
                 <View style={{ flex: 1, flexDirection: "row", marginRight: 5 }}>
@@ -419,20 +529,20 @@ const LG = ({ navigation: { navigate } }) => {
                 </View>
               </View>
               <DateTimePickerModal
-                isVisible={visible}
-                mode={mode}
-                onConfirm={onConfirm}
-                onCancel={onCancel}
-                date={date}
+                isVisible={visible3}
+                mode={mode3}
+                onConfirm={onConfirm3}
+                onCancel={onCancel3}
+                date={date3}
               />
             </View>
           </Footer>
-          <SetBtn style={{ flex: 1 }} />
+          <SetBtn3 style={{ flex: 1 }} />
         </View>
       </Content>
     );
   };
-  const Clothes = () => {
+  const STYLER = () => {
     const [monday, setMonday] = useState(fourth.mon);
     const [tuesday, setTuesday] = useState(fourth.tue);
     const [wednesday, setWednesday] = useState(fourth.wed);
@@ -461,6 +571,65 @@ const LG = ({ navigation: { navigate } }) => {
     const onSunPress = () => {
       setSunday(!sunday);
     };
+    const [date4, onChangeDate4] = useState(new Date()); // 선택 날짜
+    const [mode4, setMode4] = useState("date"); // 모달 유형
+    const [visible4, setVisible4] = useState(false); // 모달 노출 여부
+    const onPressTime4 = () => {
+      // 시간 클릭 시
+      setMode4("time"); // 모달 유형을 time으로 변경
+      setVisible4(true); // 모달 open
+    };
+    const onConfirm4 = (selectedDate) => {
+      // 날짜 또는 시간 선택 시
+      setVisible4(false); // 모달 close
+      onChangeDate4(selectedDate); // 선택한 날짜 변경
+      //console.log(selectedDate);
+    };
+    const onCancel4 = () => {
+      // 취소 시
+      setVisible4(false); // 모달 close
+    };
+    const SetBtn4 = () => (
+      <LGSetBtn
+        onPress={() => {
+          temp4.current = {
+            member_seq: userIDNumber,
+            serialNum: "test1",
+            type: "WASHING_MACHINE",
+            settingTime:
+              date4.getHours() +
+              ":" +
+              (date4.getMinutes() < 10 ? "0" : "") +
+              date4.getMinutes(),
+            mon: monday,
+            tue: tuesday,
+            wed: wednesday,
+            thr: thursday,
+            fri: friday,
+            sat: saturday,
+            sun: sunday,
+          };
+          onSubmit4();
+        }}
+      >
+        <Text>설정</Text>
+      </LGSetBtn>
+    );
+    const onSubmit4 = async () => {
+      const response = await axios
+        .post(
+          "http://ec2-52-79-187-71.ap-northeast-2.compute.amazonaws.com:8080/appliance",
+          fourth
+        )
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+      Alert.alert("설정이 완료되었습니다4");
+      //타임라인으로 전송 구현해야함
+    };
     return (
       <Content style={{ marginTop: 20, padding: 15 }}>
         <View style={{ flex: 1, flexDirection: "row" }}>
@@ -483,9 +652,9 @@ const LG = ({ navigation: { navigate } }) => {
                   flex: 3,
                 }}
               >
-                <Btn style={{ flex: 1 }} onPress={onPressTime}>
+                <Btn style={{ flex: 1 }} onPress={onPressTime4}>
                   <ShowDate style={{ fontSize: 20 }}>
-                    {format(new Date(date), "p", { locale: ko })}
+                    {format(new Date(date4), "p", { locale: ko })}
                   </ShowDate>
                 </Btn>
                 <View style={{ flex: 1, flexDirection: "row", marginRight: 5 }}>
@@ -513,35 +682,33 @@ const LG = ({ navigation: { navigate } }) => {
                 </View>
               </View>
               <DateTimePickerModal
-                isVisible={visible}
-                mode={mode}
-                onConfirm={onConfirm}
-                onCancel={onCancel}
-                date={date}
+                isVisible={visible4}
+                mode={mode4}
+                onConfirm={onConfirm4}
+                onCancel={onCancel4}
+                date={date4}
               />
             </View>
           </Footer>
-          <SetBtn style={{ flex: 1 }} />
+          <SetBtn4 style={{ flex: 1 }} />
         </View>
       </Content>
     );
   };
   return (
     <Body style={{ flex: 1 }}>
-      <Container style={{ flex: 1, margin: 10 }}>
-        <View style={{ backgroundColor: "#f2f2f2" }}>
-          <Title>우리 집 LG 가전</Title>
-        </View>
-      </Container>
-      <Container style={{ marginTop: 50, flex: 5.5 }}>
-        <ScrollView style={{ backgroundColor: "#f2f2f2" }}>
-          {console.log("Hello", check.current)}
-          {check.current[0] !== 0 ? <Airplane /> : null}
-          {check.current[1] !== 0 ? <Air /> : null}
-          {check.current[2] !== 0 ? <Drum /> : null}
-          {check.current[3] !== 0 ? <Clothes /> : null}
+      <Header style={{ flex: 1 }}>
+        <Character source={require("../assets/images/bbiyak1.png")} />
+        <Title>우리 집 LG 가전</Title>
+      </Header>
+      <Header style={{ marginTop: 50, flex: 5 }}>
+        <ScrollView style={{ backgroundColor: "#f2f2f2", borderRadius: 10 }}>
+          {check.current[0] !== 0 ? <WASHING_MACHINE /> : null}
+          {check.current[1] !== 0 ? <AIR_CLEANER /> : null}
+          {check.current[2] !== 0 ? <WATER_MACHINE /> : null}
+          {check.current[3] !== 0 ? <STYLER /> : null}
         </ScrollView>
-      </Container>
+      </Header>
       <AddBtn onPress={() => navigate("Stack", { screen: "Write" })}>
         <AddBtnText>+</AddBtnText>
       </AddBtn>
@@ -551,20 +718,24 @@ const LG = ({ navigation: { navigate } }) => {
 const Title = styled.Text`
   font-size: 30px;
   font-weight: bold;
-  margin-bottom: 28px;
-  margin-top: 25px;
+  margin-top: 32px;
+  margin-right: 20px;
   text-align: center;
 `;
 const Body = styled.View`
   flex-direction: column;
   padding: 10px;
-  padding-top: 20px;
   background-color: white;
 `;
-const Container = styled.View`
-  border: 1px solid gray;
-  border-radius: 1px;
-  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+const Header = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+  margin-horizontal: 10px;
+  margin-top: 10px;
+  border: 1px solid black;
+  background-color: #f2f2f2;
+  box-shadow: 1px 1px 3px rgba(41, 30, 95, 0.9);
+  border-radius: 10px;
 `;
 const Btn = styled.TouchableOpacity`
   align-items: center;
@@ -574,7 +745,7 @@ const Btn = styled.TouchableOpacity`
 `;
 const DayBtn = styled.TouchableOpacity`
   align-items: center;
-  padding-horizontal: 2px;
+  padding-horizontal: 1px;
   margin-horizontal: 2px;
   padding-vertical: 3px;
   border-width: 1px;
@@ -617,5 +788,9 @@ const LGSetBtn = styled.TouchableOpacity`
   justify-content: center;
   border: 1.5px solid black;
   margin-right: 5px;
+`;
+const Character = styled.Image`
+  width: 120px;
+  height: 98px;
 `;
 export default LG;
