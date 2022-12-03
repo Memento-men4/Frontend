@@ -6,10 +6,13 @@ import HighlightText from "react-native-highlight-underline-text";
 import { loginFlag } from "../atom";
 import { useRecoilState } from "recoil";
 import axios from "axios";
-import { UserIDNumber, UserName } from "../atom";
+import { UserIDNumber, UserName, RecordDate } from "../atom";
 import { useIsFocused } from "@react-navigation/native";
 
 const CalendarView = ({ navigation: { navigate } }) => {
+  const [login, setLogin] = useRecoilState(loginFlag);
+  // 전역변수로 recordDate 선언하고, recording에서 날짜를 받아와서 저장하고, calendar에서 불러와서 표시하기
+  const [recordDate, setRecordDate] = useRecoilState(RecordDate);
   const isFocused = useIsFocused();
   const [userName, setUserName] = useRecoilState(UserName);
   const [userIDNumber, setUserIDNumber] = useRecoilState(UserIDNumber);
@@ -26,7 +29,7 @@ const CalendarView = ({ navigation: { navigate } }) => {
       birthDay: "1993-01-01",
       email: "ddsfsdrcjf9@naver,com",
     };
-
+    // 첫 유저 정보 서버로
     axios
       .post(
         "http://ec2-52-79-187-71.ap-northeast-2.compute.amazonaws.com:8080/member",
@@ -44,14 +47,6 @@ const CalendarView = ({ navigation: { navigate } }) => {
         console.log(error);
       });
   };
-  const markedDates = {
-    "2022-11-01": { selected: true, marked: true, selectedColor: "#ffda79" },
-    "2022-11-02": { marked: true },
-    "2022-11-03": { marked: true, dotColor: "#ffda79", activeOpacity: 0 },
-    "2022-11-04": { disabled: true, disableTouchEvent: true },
-  };
-
-  const [login, setLogin] = useRecoilState(loginFlag);
   useEffect(
     () => {
       //getUserIDNumber();
@@ -93,24 +88,24 @@ const CalendarView = ({ navigation: { navigate } }) => {
           <Container>
             <Calendar
               onDayPress={(day) => {
-                //Get the date of the day that was pressed
-                /*
-                axios
-                  .get(
-                    `http://ec2-52-79-187-71.ap-northeast-2.compute.amazonaws.com:8080/record?data=${day.dateString}&memberId=${userIDNumber}`
-                  )
-                  .then(function (response) {
-                    console.log("ㅇㅇ");
-                  })
-                  .catch(function (error) {
-                    console.log("ㄴㄴ");
-                  });
-                  */
+                console.log(day.dateString);
                 navigate("Stack", { screen: "Days" });
-              }} // 날짜 클릭하면 스택으로 이동
+                /* 서버로부터 날짜에 맞게 데이터 받아오기
+                  axios
+                  .get(
+                    `http://ec2-52-79-187-71.ap-northeast-2.compute.amazonaws.com:8080/record?date=${day.dateString}&member_seq=${userIDNumber}`
+                    )
+                    .then(function (response) {
+                      console.log("ㅇㅇ");
+                    })
+                    .catch(function (error) {
+                      console.log("ㄴㄴ");
+                    });
+                    */
+              }}
               minDate={"2022-11-01"}
               //markingType={"multi-dot"}
-              markedDates={markedDates}
+              markedDates={recordDate}
               hideExtraDays={true}
               style={styles.calendar}
               theme={{

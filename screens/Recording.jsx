@@ -3,7 +3,7 @@ import { Alert, ImageBackground, View } from "react-native";
 import styled from "styled-components/native";
 import Voice from "react-native-voice";
 import { RecordText1, RecordText2, RecordText3, RecordText4 } from "../atom";
-import { UserIDNumber } from "../atom";
+import { UserIDNumber, RecordDate } from "../atom";
 import { useRecoilState } from "recoil";
 import axios from "axios";
 
@@ -30,8 +30,17 @@ const Recording = () => {
   const [text2, setText2] = useRecoilState(RecordText2); // 녹음한 텍스트 두번째
   const [text3, setText3] = useRecoilState(RecordText3); // 녹음한 텍스트 세번째
   const [text4, setText4] = useRecoilState(RecordText4); // 녹음한 텍스트 네번째
+  const [recordDate, setRecordDate] = useRecoilState(RecordDate); // 녹음한 날짜
   const cnt = useRef(0); // 녹음한 횟수 카운트
-
+  const date = new Date(); // 녹음한 날짜
+  const today =
+    date.getFullYear() +
+    "-" +
+    (date.getMonth() < 9 ? "0" : "") +
+    (date.getMonth() + 1) +
+    "-" +
+    (date.getDate() < 10 ? "0" : "") +
+    date.getDate(); // 녹음한 날짜
   const buttonLabel = isRecord ? "녹음 끝! 전송하기" : "녹음 시작하기"; // 녹음 중이면 전송, 아니면 시작
   const voiceLabel = showingText
     ? showingText
@@ -41,6 +50,12 @@ const Recording = () => {
 
   const _onSpeechStart = () => {
     console.log(userIDNumber);
+    setRecordDate(
+      Object.assign({}, recordDate, {
+        [today]: { marked: true, selectedColor: "#ffda79" },
+      })
+    );
+    console.log(recordDate);
     // 음성인식 시작
   };
   const _onSpeechEnd = () => {
@@ -52,6 +67,7 @@ const Recording = () => {
     // 음성인식 결과
     console.log("onSpeechResults");
     setShowingText(event.value[0]);
+    //setRecordDate(Object.assign({}, recordDate, { [today]: "hi" }));
     if (cnt.current === 0) {
       setText(event.value[0]); // 음성인식 결과를 text에 저장
       /* 서버로 전달하는 파트인데 타이틀인지 로케이션인지 잘 맞춰서. else if에도 다 넣어야함

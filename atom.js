@@ -56,26 +56,10 @@ export const WriteNumber = atom({
   key: "WriteNumber",
   default: 0,
 });
-
-/*
-export const WriteFormat = atom({
-  key: "WriteFormat",
-  default: [
-    {
-      name: "",
-      time: "",
-      selectDay: {
-        mon: false,
-        tue: false,
-        wed: false,
-        thu: false,
-        fri: false,
-        sat: false,
-        sun: false,
-      },
-    },
-  ],
-});*/
+export const RecordDate = atom({
+  key: "RecordDate",
+  default: {},
+});
 export const UserIDNumber = atom({
   key: "UserIDNumber",
   default: 0,
@@ -88,7 +72,6 @@ export const SelectQuiz = atom({
   key: "SelectQuiz",
   default: 0,
 });
-
 export const QuizList = atom({
   key: "QuizList",
   default: ["📺 TV", "🏫 ITBT관", "🐶 강아지", "🥤 커피", "🍕 피자"],
