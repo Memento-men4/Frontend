@@ -388,7 +388,7 @@ const LG = ({ navigation: { navigate } }) => {
       </Content>
     );
   };
-  const WA = () => {
+  const WATER_MACHINE = () => {
     const [monday, setMonday] = useState(third.mon);
     const [tuesday, setTuesday] = useState(third.tue);
     const [wednesday, setWednesday] = useState(third.wed);
@@ -705,7 +705,7 @@ const LG = ({ navigation: { navigate } }) => {
         <ScrollView style={{ backgroundColor: "#f2f2f2", borderRadius: 10 }}>
           {check.current[0] !== 0 ? <WASHING_MACHINE /> : null}
           {check.current[1] !== 0 ? <AIR_CLEANER /> : null}
-          {check.current[2] !== 0 ? <WA /> : null}
+          {check.current[2] !== 0 ? <WATER_MACHINE /> : null}
           {check.current[3] !== 0 ? <STYLER /> : null}
         </ScrollView>
       </Header>

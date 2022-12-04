@@ -6,7 +6,7 @@ import HighlightText from "react-native-highlight-underline-text";
 import { loginFlag, UserIDNumber, UserName } from "../atom";
 import { useRecoilState } from "recoil";
 import axios from "axios";
-import { RecordDate, RecordResponse, TodayDate } from "../atom";
+import { RecordDate, RecordResponse, TodayDate, TimelineData } from "../atom";
 import { useIsFocused } from "@react-navigation/native";
 
 const CalendarView = ({ navigation: { navigate } }) => {
@@ -20,14 +20,15 @@ const CalendarView = ({ navigation: { navigate } }) => {
   const isFocused = useIsFocused();
   const [userName, setUserName] = useRecoilState(UserName);
   const [userIDNumber, setUserIDNumber] = useRecoilState(UserIDNumber);
-
+  // 전역변수로 timelineData 선언하고, calendar에서 날짜 클릭하면 그 날짜에 해당하는 데이터 받아와서 저장하기 하늘이가 준거
+  const [timelineData, setTimelineData] = useRecoilState(TimelineData);
   const getUserIDNumber = () => {
     //const [loading, setLoading] = useState(false);
     //const [error, setError] = useState(null);
     const userInfo = {
-      id: "jsklfl",
+      id: "dsfsd",
       password: "12344sf",
-      name: "hahahdsa",
+      name: "이석철",
       phoneNumber: "010-1111-1111",
       gender: "FEMALE",
       type: "GENERAL",
@@ -55,7 +56,7 @@ const CalendarView = ({ navigation: { navigate } }) => {
   };
   useEffect(
     () => {
-      /*getUserIDNumber();*/
+      //getUserIDNumber();
     },
     [
       /*isFocused*/
@@ -96,7 +97,7 @@ const CalendarView = ({ navigation: { navigate } }) => {
               onDayPress={(day) => {
                 axios
                   .get(
-                    "http://ec2-52-79-187-71.ap-northeast-2.compute.amazonaws.com:8080/record/date",
+                    "http://ec2-52-79-187-71.ap-northeast-2.compute.amazonaws.com:8080/day",
                     {
                       params: {
                         date: day.dateString,
@@ -106,7 +107,21 @@ const CalendarView = ({ navigation: { navigate } }) => {
                     { withCredentials: true }
                   )
                   .then(function (response) {
-                    setRecordResponse(response.data);
+                    console.log(response.data[0]);
+                    for (let i = 0; i < response.data.length; i++) {
+                      if (response.data[i]["title"] === "LG 가전") {
+                        response.data[i] = {
+                          ...response.data[i],
+                          icon: require("../assets/images/LG.png"),
+                        };
+                      } else if (response.data[i]["title"] === "한양대학교") {
+                        response.data[i] = {
+                          ...response.data[i],
+                          icon: require("../assets/images/hanyang.png"),
+                        };
+                      }
+                    }
+                    setTimelineData(response.data);
                     setTodayDate(day.dateString);
                   })
                   .catch(function (error) {
@@ -117,8 +132,33 @@ const CalendarView = ({ navigation: { navigate } }) => {
                     );
                     console.log(error);
                   });
-                axios.get();
                 navigate("Stack", { screen: "Days" });
+                /* 
+                    이하늘이 정렬해서 던져준 데이터 받기
+                    axios
+                      .get(
+                        "http://ec2-52-79-187-71.ap-northeast-2.compute.amazonaws.com:8080/record/date",
+                        {
+                          params: {
+                            date: day.dateString,
+                            member_seq: 1,
+                          },
+                        },
+                        { withCredentials: true }
+                      )
+                      .then(function (response) {
+                        setRecordResponse(response.data);
+                        setTodayDate(day.dateString);
+                      })
+                      .catch(function (error) {
+                        console.log("Calendar usernum: ", userIDNumber);
+                        console.log(
+                          "Record Response 들어오면 빈칸 아님",
+                          recordResponse
+                        );
+                        console.log(error);
+                      });
+                      */
               }}
               minDate={"2022-11-01"}
               //markingType={"multi-dot"}

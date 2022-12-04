@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Text, Alert, View } from "react-native";
 //import { RecordText1, RecordText2, RecordText3, RecordText4 } from "../../atom";
-import { TodayDate } from "../../atom";
+import { TodayDate, TimelineData } from "../../atom";
 import { RecordResponse, UserIDNumber } from "../../atom";
 import { useRecoilState, atom } from "recoil";
 import Timeline from "react-native-timeline-flatlist";
@@ -23,6 +23,7 @@ const Title = styled.Text`
 const TimeLine = () => {
   const [userIDNumber, setUserIDNumber] = useRecoilState(UserIDNumber);
   const [recordResponse, setRecordResponse] = useRecoilState(RecordResponse);
+  const [timelineData, setTimelineData] = useRecoilState(TimelineData); // 타임라인 데이터
   /* 서버로부터 날짜에 맞게 데이터 받아오기
   const [text1, setText1] = useRecoilState(RecordText1);
   const [text2, setText2] = useRecoilState(RecordText2);
@@ -53,12 +54,12 @@ const TimeLine = () => {
   */
   return (
     <Timeline
-      data={recordResponse} /* recordResponse로 바꾸자 */
+      data={timelineData}
       separator={true}
-      lineColor="#ffda79"
-      innerCircle={"dot"}
-      circleColor="#ffda79"
-      circleSize={20}
+      lineColor="#D4D4D4"
+      innerCircle="icon"
+      circleColor="white"
+      circleSize={30}
       descriptionStyle={{ color: "gray" }}
       options={{
         style: { padding: 20 },

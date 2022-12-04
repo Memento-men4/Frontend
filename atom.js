@@ -93,3 +93,7 @@ export const TodayDate = atom({
   key: "TodayDate",
   default: "",
 });
+export const TimelineData = atom({
+  key: "TimelineData",
+  default: [],
+});

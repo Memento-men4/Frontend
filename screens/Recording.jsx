@@ -51,16 +51,17 @@ const Recording = () => {
   const _onSpeechStart = () => {
     console.log("시작 유저넘버", userIDNumber);
     console.log(text2);
-    setRecordDate(
-      Object.assign({}, recordDate, {
-        [today]: { marked: true, selectedColor: "#ffda79" },
-      })
-    );
     console.log(recordDate);
     // 음성인식 시작
   };
   const _onSpeechEnd = () => {
     // 녹음이 끝나면
+    /* 녹음 끝나면, 달력에 닷 찍힌다! !*/
+    setRecordDate(
+      Object.assign({}, recordDate, {
+        [today]: { marked: true, selectedColor: "#ffda79" },
+      })
+    );
     console.log("녹음종료 유저넘버는: ", userIDNumber);
     if (cnt.current === 0) {
       const temp = {
@@ -80,7 +81,7 @@ const Recording = () => {
           console.log(error);
         });
     } else if (cnt.current === 1) {
-      const temp = {
+      const temp2 = {
         member_seq: userIDNumber,
         title: "한양대학교",
         description: text2,
@@ -88,7 +89,7 @@ const Recording = () => {
       axios
         .post(
           "http://ec2-52-79-187-71.ap-northeast-2.compute.amazonaws.com:8080/record",
-          temp
+          temp2
         )
         .then(function (response) {
           console.log(response);
@@ -97,7 +98,7 @@ const Recording = () => {
           console.log(error);
         }); // 음성인식 결과를 text2에 저장
     } else if (cnt.current === 2) {
-      const temp = {
+      const temp3 = {
         member_seq: userIDNumber,
         title: "한양대학교",
         description: text3,
@@ -105,7 +106,7 @@ const Recording = () => {
       axios
         .post(
           "http://ec2-52-79-187-71.ap-northeast-2.compute.amazonaws.com:8080/record",
-          temp
+          temp3
         )
         .then(function (response) {
           console.log(response);
@@ -114,7 +115,7 @@ const Recording = () => {
           console.log(error);
         }); // 음성인식 결과를 text3에 저장
     } else if (cnt.current === 3) {
-      const temp = {
+      const temp4 = {
         member_seq: userIDNumber,
         title: "한양대학교",
         description: text4,
@@ -122,7 +123,7 @@ const Recording = () => {
       axios
         .post(
           "http://ec2-52-79-187-71.ap-northeast-2.compute.amazonaws.com:8080/record",
-          temp
+          temp4
         )
         .then(function (response) {
           console.log(response);
