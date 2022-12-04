@@ -49,7 +49,8 @@ const Recording = () => {
     : "음성인식 시작";
 
   const _onSpeechStart = () => {
-    console.log(userIDNumber);
+    console.log("시작 유저넘버", userIDNumber);
+    console.log(text2);
     setRecordDate(
       Object.assign({}, recordDate, {
         [today]: { marked: true, selectedColor: "#ffda79" },
@@ -60,6 +61,76 @@ const Recording = () => {
   };
   const _onSpeechEnd = () => {
     // 녹음이 끝나면
+    console.log("녹음종료 유저넘버는: ", userIDNumber);
+    if (cnt.current === 0) {
+      const temp = {
+        member_seq: userIDNumber,
+        title: "한양대학교",
+        description: text,
+      };
+      axios
+        .post(
+          "http://ec2-52-79-187-71.ap-northeast-2.compute.amazonaws.com:8080/record",
+          temp
+        )
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    } else if (cnt.current === 1) {
+      const temp = {
+        member_seq: userIDNumber,
+        title: "한양대학교",
+        description: text2,
+      };
+      axios
+        .post(
+          "http://ec2-52-79-187-71.ap-northeast-2.compute.amazonaws.com:8080/record",
+          temp
+        )
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.log(error);
+        }); // 음성인식 결과를 text2에 저장
+    } else if (cnt.current === 2) {
+      const temp = {
+        member_seq: userIDNumber,
+        title: "한양대학교",
+        description: text3,
+      };
+      axios
+        .post(
+          "http://ec2-52-79-187-71.ap-northeast-2.compute.amazonaws.com:8080/record",
+          temp
+        )
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.log(error);
+        }); // 음성인식 결과를 text3에 저장
+    } else if (cnt.current === 3) {
+      const temp = {
+        member_seq: userIDNumber,
+        title: "한양대학교",
+        description: text4,
+      };
+      axios
+        .post(
+          "http://ec2-52-79-187-71.ap-northeast-2.compute.amazonaws.com:8080/record",
+          temp
+        )
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.log(error);
+        }); // 음성인식 결과를 text4에 저장
+    }
     Alert.alert("녹음 끝! 타임라인에 반영됩니다.");
     cnt.current = cnt.current + 1;
   };
@@ -70,17 +141,6 @@ const Recording = () => {
     //setRecordDate(Object.assign({}, recordDate, { [today]: "hi" }));
     if (cnt.current === 0) {
       setText(event.value[0]); // 음성인식 결과를 text에 저장
-      /* 서버로 전달하는 파트인데 타이틀인지 로케이션인지 잘 맞춰서. else if에도 다 넣어야함
-      const temp = {
-        member_seq: userIDNumber,
-        title: "한양대학교",
-        content: event.value[0],
-      };
-      axios.post(
-        "http://ec2-52-79-187-71.ap-northeast-2.compute.amazonaws.com:8080/record",
-        temp
-        )
-        */
     } else if (cnt.current === 1) {
       setText2(event.value[0]); // 음성인식 결과를 text2에 저장
     } else if (cnt.current === 2) {

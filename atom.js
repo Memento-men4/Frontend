@@ -4,6 +4,15 @@ export const loginFlag = atom({
   key: "loginFlag",
   default: 1,
 });
+/** 
+ 레코드텍스트 1234는 내가 데이즈.제이에스에 테스트해보려고 선언한 전역변수임.
+ 어차피 post로 시간, 타이틀, description으로 보낼거고, 그걸 다시 받아서 활용할 거니까
+ 얘네 네 개는 없애는 게 맞음.
+ */
+export const RecordResponse = atom({
+  key: "RecordResponse",
+  default: [],
+});
 export const RecordText1 = atom({
   key: "RecordText1",
   default: "",
@@ -79,4 +88,8 @@ export const QuizList = atom({
 export const QuizAnswer = atom({
   key: "QuizAnswer",
   default: ["LG전자", "학교", "동물", "음료", "음식"],
+});
+export const TodayDate = atom({
+  key: "TodayDate",
+  default: "",
 });

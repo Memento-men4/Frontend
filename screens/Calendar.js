@@ -3,31 +3,36 @@ import { Calendar } from "react-native-calendars";
 import { StyleSheet, View } from "react-native";
 import styled from "styled-components/native";
 import HighlightText from "react-native-highlight-underline-text";
-import { loginFlag } from "../atom";
+import { loginFlag, UserIDNumber, UserName } from "../atom";
 import { useRecoilState } from "recoil";
 import axios from "axios";
-import { UserIDNumber, UserName, RecordDate } from "../atom";
+import { RecordDate, RecordResponse, TodayDate } from "../atom";
 import { useIsFocused } from "@react-navigation/native";
 
 const CalendarView = ({ navigation: { navigate } }) => {
   const [login, setLogin] = useRecoilState(loginFlag);
   // 전역변수로 recordDate 선언하고, recording에서 날짜를 받아와서 저장하고, calendar에서 불러와서 표시하기
   const [recordDate, setRecordDate] = useRecoilState(RecordDate);
+  // 전역변수로 recordResponse 선언하고, recording에서 서버로 데이터 보내고, 날짜 클릭했을 때 그 데이터 받아오기
+  const [recordResponse, setRecordResponse] = useRecoilState(RecordResponse);
+  // 달력에 특정 날짜 클릭하면 하루 스크린에서 오늘 날짜 띄워줘야 해서 그걸 위한 전역변수
+  const [todayDate, setTodayDate] = useRecoilState(TodayDate);
   const isFocused = useIsFocused();
   const [userName, setUserName] = useRecoilState(UserName);
   const [userIDNumber, setUserIDNumber] = useRecoilState(UserIDNumber);
+
   const getUserIDNumber = () => {
     //const [loading, setLoading] = useState(false);
     //const [error, setError] = useState(null);
     const userInfo = {
-      id: "haneul",
-      password: "123445",
-      name: "hahaha",
-      phoneNumber: "010-3343-3333",
+      id: "jsklfl",
+      password: "12344sf",
+      name: "hahahdsa",
+      phoneNumber: "010-1111-1111",
       gender: "FEMALE",
       type: "GENERAL",
-      birthDay: "1993-01-01",
-      email: "ddsfsdrcjf9@naver,com",
+      birthDay: "1993-12-01",
+      email: "rcjf9@naver,com",
     };
     // 첫 유저 정보 서버로
     axios
@@ -37,7 +42,8 @@ const CalendarView = ({ navigation: { navigate } }) => {
       )
       .then(function (response) {
         console.log(response);
-        /*console.log(response.data);
+        /*
+        console.log(response.data);
         console.log(response.config);
         */
         setUserName(userInfo["name"]);
@@ -49,7 +55,7 @@ const CalendarView = ({ navigation: { navigate } }) => {
   };
   useEffect(
     () => {
-      //getUserIDNumber();
+      /*getUserIDNumber();*/
     },
     [
       /*isFocused*/
@@ -88,20 +94,31 @@ const CalendarView = ({ navigation: { navigate } }) => {
           <Container>
             <Calendar
               onDayPress={(day) => {
-                console.log(day.dateString);
-                navigate("Stack", { screen: "Days" });
-                /* 서버로부터 날짜에 맞게 데이터 받아오기
-                  axios
+                axios
                   .get(
-                    `http://ec2-52-79-187-71.ap-northeast-2.compute.amazonaws.com:8080/record?date=${day.dateString}&member_seq=${userIDNumber}`
-                    )
-                    .then(function (response) {
-                      console.log("ㅇㅇ");
-                    })
-                    .catch(function (error) {
-                      console.log("ㄴㄴ");
-                    });
-                    */
+                    "http://ec2-52-79-187-71.ap-northeast-2.compute.amazonaws.com:8080/record/date",
+                    {
+                      params: {
+                        date: day.dateString,
+                        member_seq: 1,
+                      },
+                    },
+                    { withCredentials: true }
+                  )
+                  .then(function (response) {
+                    setRecordResponse(response.data);
+                    setTodayDate(day.dateString);
+                  })
+                  .catch(function (error) {
+                    console.log("Calendar usernum: ", userIDNumber);
+                    console.log(
+                      "Record Response 들어오면 빈칸 아님",
+                      recordResponse
+                    );
+                    console.log(error);
+                  });
+                axios.get();
+                navigate("Stack", { screen: "Days" });
               }}
               minDate={"2022-11-01"}
               //markingType={"multi-dot"}
