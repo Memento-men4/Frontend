@@ -48,7 +48,6 @@
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
-    "@bam.tech/react-native-make": "^3.0.3",
     "@tsconfig/react-native": "^2.0.2",
     "@types/jest": "^29.2.2",
     "@types/react": "^18.0.25",
