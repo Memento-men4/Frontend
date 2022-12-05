@@ -1,5 +1,5 @@
 import AppLoading from "expo-app-loading";
-import React, { useState, createContext } from "react";
+import React, { useState, useEffect } from "react";
 import * as Font from "expo-font";
 import { Ionicons } from "@expo/vector-icons";
 import { Asset } from "expo-asset";
@@ -11,6 +11,7 @@ import { darkTheme, lightTheme } from "./mystyled";
 import "react-native-gesture-handler"; // drawer navigation
 import Geolocation from "@react-native-community/geolocation";
 import { RecoilRoot } from "recoil";
+
 const loadFonts = (fonts) => fonts.map((font) => Font.loadAsync(font));
 
 const loadImages = (images) =>
@@ -29,6 +30,18 @@ export default function App() {
     const fonts = loadFonts([Ionicons.font]);
     await Promise.all([...fonts]);
   };
+  /*
+  useEffect(() => {
+    try {
+      setTimeout(() => {
+        SplashScreen.hide(); // 추가
+      }, 2000); // 스플래시 시간 조절 (2초)
+    } catch (e) {
+      console.warn("에러발생");
+      console.warn(e);
+    }
+  });
+  */
   const isDark = useColorScheme() === "dark"; // T or F
   if (!ready) {
     return (

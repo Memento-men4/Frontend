@@ -1,5 +1,6 @@
 #import "AppDelegate.h"
 
+//#import "RNSplashScreen.h"// splashScreen 사용하려고 선언한 헤더파일
 #import <React/RCTBridge.h>
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
