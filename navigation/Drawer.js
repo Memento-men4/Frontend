@@ -38,8 +38,8 @@ const CustomDrawer = (props) => {
             position: "absolute",
             right: 10,
             left: 10,
-            bottom: 600,
-            backgroundColor: "gray",
+            bottom: 500,
+            backgroundColor: "white",
             padding: 10,
             borderRadius: 3,
           }}
@@ -48,7 +48,7 @@ const CustomDrawer = (props) => {
             setFlag(0);
           }}
         >
-          <Text>로그아웃</Text>
+          <Text style={{ color: "red" }}>로그아웃</Text>
         </TouchableOpacity>
       ) : null}
     </View>

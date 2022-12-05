@@ -12,7 +12,7 @@ const Game3Third = ({ navigation: { navigate } }) => {
     <Body style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
       <View>
         <Title>
-          📝 {num1} - {num2} + {num3}의 값은 무엇일까요?
+          📝 {num1} - {num2} + {num3} 의 값은 무엇일까요?
         </Title>
       </View>
       <View
@@ -106,7 +106,7 @@ const Title = styled.Text`
   font-weight: bold;
 `;
 const Txt = styled.Text`
-  font-size: 15px;
+  font-size: 13px;
   font-weight: bold;
 `;
 const Target = styled.TouchableOpacity`

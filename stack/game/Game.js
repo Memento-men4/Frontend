@@ -5,10 +5,14 @@ import styled from "styled-components/native";
 const Game = ({ navigation: { navigate } }) => (
   <Body style={{ flex: 1 }}>
     <Header>
-      <Character
-        source={require("/Users/leesukcheol/memento/assets/images/bbiyak1.png")}
-      />
-      <Title>영츠하이머 예방 게임</Title>
+      <View style={{ flex: 1 }}>
+        <Character
+          source={require("/Users/leesukcheol/memento/assets/images/bbiyak1.png")}
+        />
+      </View>
+      <View style={{ flex: 2 }}>
+        <Title>영츠하이머 예방 게임</Title>
+      </View>
     </Header>
     <View style={{ margin: 10 }}>
       <Target onPress={() => navigate("Stack", { screen: "Game1" })}>
@@ -47,27 +51,28 @@ const Txt = styled.Text`
   padding-right: 3px;
 `;
 const Title = styled.Text`
-  font-size: 27px;
+  font-size: 24px;
   font-weight: bold;
-  padding: 10px;
-  padding-left: 0px;
-  padding-right: 6px;
+  padding-right: 3px;
+  text-align: center;
+  margin-top: 8px;
 `;
 const Character = styled.Image`
   width: 120px;
-  height: 98px;
+  height: 90px;
+  margin-right: 0px;
 `;
 const Header = styled.View`
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   margin-horizontal: 20px;
   margin-top: 10px;
-  margin-bottom: 40px;
   border: 1px solid black;
   background-color: #f2f2f2;
   box-shadow: 1px 1px 3px rgba(41, 30, 95, 0.9);
   border-radius: 10px;
+  margin-bottom: 40px;
 `;
 
 export default Game;

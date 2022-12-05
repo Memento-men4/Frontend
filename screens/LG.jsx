@@ -194,25 +194,25 @@ const LG = ({ navigation: { navigate } }) => {
                 </Btn>
                 <View style={{ flex: 1, flexDirection: "row", marginRight: 5 }}>
                   <DayBtn selected={monday} onPress={() => onMonPress()}>
-                    <Text style={{ fontSize: 20 }}>월</Text>
+                    <Text style={{ fontSize: 17 }}>월</Text>
                   </DayBtn>
                   <DayBtn selected={tuesday} onPress={() => onTuePress()}>
-                    <Text style={{ fontSize: 20 }}>화</Text>
+                    <Text style={{ fontSize: 17 }}>화</Text>
                   </DayBtn>
                   <DayBtn selected={wednesday} onPress={() => onWedPress()}>
-                    <Text style={{ fontSize: 20 }}>수</Text>
+                    <Text style={{ fontSize: 17 }}>수</Text>
                   </DayBtn>
                   <DayBtn selected={thursday} onPress={() => onThuPress()}>
-                    <Text style={{ fontSize: 20 }}>목</Text>
+                    <Text style={{ fontSize: 17 }}>목</Text>
                   </DayBtn>
                   <DayBtn selected={friday} onPress={() => onFriPress()}>
-                    <Text style={{ fontSize: 20 }}>금</Text>
+                    <Text style={{ fontSize: 17 }}>금</Text>
                   </DayBtn>
                   <DayBtn selected={saturday} onPress={() => onSatPress()}>
-                    <Text style={{ fontSize: 20 }}>토</Text>
+                    <Text style={{ fontSize: 17 }}>토</Text>
                   </DayBtn>
                   <DayBtn selected={sunday} onPress={() => onSunPress()}>
-                    <Text style={{ fontSize: 20 }}>일</Text>
+                    <Text style={{ fontSize: 17 }}>일</Text>
                   </DayBtn>
                 </View>
               </View>
@@ -352,25 +352,25 @@ const LG = ({ navigation: { navigate } }) => {
                 </Btn>
                 <View style={{ flex: 1, flexDirection: "row", marginRight: 5 }}>
                   <DayBtn selected={monday} onPress={() => onMonPress()}>
-                    <Text style={{ fontSize: 20 }}>월</Text>
+                    <Text style={{ fontSize: 17 }}>월</Text>
                   </DayBtn>
                   <DayBtn selected={tuesday} onPress={() => onTuePress()}>
-                    <Text style={{ fontSize: 20 }}>화</Text>
+                    <Text style={{ fontSize: 17 }}>화</Text>
                   </DayBtn>
                   <DayBtn selected={wednesday} onPress={() => onWedPress()}>
-                    <Text style={{ fontSize: 20 }}>수</Text>
+                    <Text style={{ fontSize: 17 }}>수</Text>
                   </DayBtn>
                   <DayBtn selected={thursday} onPress={() => onThuPress()}>
-                    <Text style={{ fontSize: 20 }}>목</Text>
+                    <Text style={{ fontSize: 17 }}>목</Text>
                   </DayBtn>
                   <DayBtn selected={friday} onPress={() => onFriPress()}>
-                    <Text style={{ fontSize: 20 }}>금</Text>
+                    <Text style={{ fontSize: 17 }}>금</Text>
                   </DayBtn>
                   <DayBtn selected={saturday} onPress={() => onSatPress()}>
-                    <Text style={{ fontSize: 20 }}>토</Text>
+                    <Text style={{ fontSize: 17 }}>토</Text>
                   </DayBtn>
                   <DayBtn selected={sunday} onPress={() => onSunPress()}>
-                    <Text style={{ fontSize: 20 }}>일</Text>
+                    <Text style={{ fontSize: 17 }}>일</Text>
                   </DayBtn>
                 </View>
               </View>
@@ -506,25 +506,25 @@ const LG = ({ navigation: { navigate } }) => {
                 </Btn>
                 <View style={{ flex: 1, flexDirection: "row", marginRight: 5 }}>
                   <DayBtn selected={monday} onPress={() => onMonPress()}>
-                    <Text style={{ fontSize: 20 }}>월</Text>
+                    <Text style={{ fontSize: 17 }}>월</Text>
                   </DayBtn>
                   <DayBtn selected={tuesday} onPress={() => onTuePress()}>
-                    <Text style={{ fontSize: 20 }}>화</Text>
+                    <Text style={{ fontSize: 17 }}>화</Text>
                   </DayBtn>
                   <DayBtn selected={wednesday} onPress={() => onWedPress()}>
-                    <Text style={{ fontSize: 20 }}>수</Text>
+                    <Text style={{ fontSize: 17 }}>수</Text>
                   </DayBtn>
                   <DayBtn selected={thursday} onPress={() => onThuPress()}>
-                    <Text style={{ fontSize: 20 }}>목</Text>
+                    <Text style={{ fontSize: 17 }}>목</Text>
                   </DayBtn>
                   <DayBtn selected={friday} onPress={() => onFriPress()}>
-                    <Text style={{ fontSize: 20 }}>금</Text>
+                    <Text style={{ fontSize: 17 }}>금</Text>
                   </DayBtn>
                   <DayBtn selected={saturday} onPress={() => onSatPress()}>
-                    <Text style={{ fontSize: 20 }}>토</Text>
+                    <Text style={{ fontSize: 17 }}>토</Text>
                   </DayBtn>
                   <DayBtn selected={sunday} onPress={() => onSunPress()}>
-                    <Text style={{ fontSize: 20 }}>일</Text>
+                    <Text style={{ fontSize: 17 }}>일</Text>
                   </DayBtn>
                 </View>
               </View>
@@ -659,25 +659,25 @@ const LG = ({ navigation: { navigate } }) => {
                 </Btn>
                 <View style={{ flex: 1, flexDirection: "row", marginRight: 5 }}>
                   <DayBtn selected={monday} onPress={() => onMonPress()}>
-                    <Text style={{ fontSize: 20 }}>월</Text>
+                    <Text style={{ fontSize: 17 }}>월</Text>
                   </DayBtn>
                   <DayBtn selected={tuesday} onPress={() => onTuePress()}>
-                    <Text style={{ fontSize: 20 }}>화</Text>
+                    <Text style={{ fontSize: 17 }}>화</Text>
                   </DayBtn>
                   <DayBtn selected={wednesday} onPress={() => onWedPress()}>
-                    <Text style={{ fontSize: 20 }}>수</Text>
+                    <Text style={{ fontSize: 17 }}>수</Text>
                   </DayBtn>
                   <DayBtn selected={thursday} onPress={() => onThuPress()}>
-                    <Text style={{ fontSize: 20 }}>목</Text>
+                    <Text style={{ fontSize: 17 }}>목</Text>
                   </DayBtn>
                   <DayBtn selected={friday} onPress={() => onFriPress()}>
-                    <Text style={{ fontSize: 20 }}>금</Text>
+                    <Text style={{ fontSize: 17 }}>금</Text>
                   </DayBtn>
                   <DayBtn selected={saturday} onPress={() => onSatPress()}>
-                    <Text style={{ fontSize: 20 }}>토</Text>
+                    <Text style={{ fontSize: 17 }}>토</Text>
                   </DayBtn>
                   <DayBtn selected={sunday} onPress={() => onSunPress()}>
-                    <Text style={{ fontSize: 20 }}>일</Text>
+                    <Text style={{ fontSize: 17 }}>일</Text>
                   </DayBtn>
                 </View>
               </View>
@@ -701,7 +701,7 @@ const LG = ({ navigation: { navigate } }) => {
         <Character source={require("../assets/images/bbiyak1.png")} />
         <Title>우리 집 LG 가전</Title>
       </Header>
-      <Header style={{ marginTop: 50, flex: 5 }}>
+      <Header style={{ marginTop: 50, flex: 5.19 }}>
         <ScrollView style={{ backgroundColor: "#f2f2f2", borderRadius: 10 }}>
           {check.current[0] !== 0 ? <WASHING_MACHINE /> : null}
           {check.current[1] !== 0 ? <AIR_CLEANER /> : null}
@@ -716,7 +716,7 @@ const LG = ({ navigation: { navigate } }) => {
   );
 };
 const Title = styled.Text`
-  font-size: 30px;
+  font-size: 28px;
   font-weight: bold;
   margin-top: 32px;
   margin-right: 20px;
@@ -791,6 +791,6 @@ const LGSetBtn = styled.TouchableOpacity`
 `;
 const Character = styled.Image`
   width: 120px;
-  height: 98px;
+  height: 90px;
 `;
 export default LG;

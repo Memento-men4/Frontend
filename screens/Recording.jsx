@@ -179,17 +179,19 @@ const Recording = () => {
   }, []); //[]에 text를 넣으면 text가 바뀔 때마다 useEffect가 실행되는데 그럼 스트링 한 번밖에 못 받아서 빼야함.
   return (
     <Container>
-      <ImageBackground
-        source={require("../assets/images/back1.png")}
-        style={{ width: "105%", height: "100%" }}
-      >
-        <View style={{ marginTop: 250 }}>
-          <VoiceText>{voiceLabel}</VoiceText>
-          <ButtonRecord onPress={_onRecordVoice} title={buttonLabel} />
-        </View>
-      </ImageBackground>
+      <View>
+        <VoiceText>{voiceLabel}</VoiceText>
+        <ButtonRecord onPress={_onRecordVoice} title={buttonLabel} />
+      </View>
     </Container>
   );
 };
-
+/*
+백그라운드 이미지 우선 삭제
+  <ImageBackground
+  source={require("../assets/images/back1.png")}
+  style={{ width: "105%", height: "100%" }}
+  >
+  </ImageBackground>
+*/
 export default Recording;

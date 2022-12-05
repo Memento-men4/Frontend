@@ -31,10 +31,10 @@ target 'memento' do
 
   # Uncomment to opt-in to using Flipper
   # Note that if you have use_frameworks! enabled, Flipper will not work
-  #
-  # if !ENV['CI']
-  #   use_flipper!()
-  # end
+  # 한 번 바꿨따- 석철
+  if !ENV['CI']
+    use_flipper!({'Flipper' => '0.75.1', 'Flipper-Folly' => '2.5.3', 'Flipper-RSocket' => '1.3.1'})
+  end
 
   post_install do |installer|
     react_native_post_install(installer)
@@ -60,3 +60,4 @@ target 'memento' do
     end
   end
 end
+workspace '../memento.xcworkspace'

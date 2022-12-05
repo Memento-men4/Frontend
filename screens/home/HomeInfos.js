@@ -42,7 +42,7 @@ const Info = "영츠하이머 그게 뭔데?";
 const HomeInfos = ({ navigation: { navigate } }) => (
   <Body style={{ alignContent: "flex-start", justifyContent: "center" }}>
     <TouchableOpacity
-      style={{ marginTop: 20, marginLeft: 10 }}
+      style={{ marginTop: 30, marginLeft: 10 }}
       onPress={() => navigate("Main", { screen: "Home" })}
     >
       <Text style={{ fontSize: 30 }}>🔙</Text>

@@ -11,7 +11,7 @@ const Game3First = ({ navigation: { navigate } }) => {
     <Body style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
       <View>
         <Title>
-          📝 {num1} - {num2}의 값은 무엇일까요?
+          📝 {num1} - {num2} 의 값은 무엇일까요?
         </Title>
       </View>
       <View
@@ -101,7 +101,7 @@ const Body = styled.View`
   align-items: center;
 `;
 const Txt = styled.Text`
-  font-size: 15px;
+  font-size: 13px;
   font-weight: bold;
 `;
 const Title = styled.Text`

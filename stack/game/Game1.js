@@ -5,38 +5,6 @@ import { Ionicons } from "@expo/vector-icons";
 import Voice from "react-native-voice";
 import { useIsFocused } from "@react-navigation/native";
 
-const Container = styled.View`
-  flex: 1;
-  justify-content: center;
-  align-items: center;
-  background-color: #f5fcff;
-`;
-const ButtonRecord = styled.Button`
-  background-color: black;
-`;
-const VoiceText = styled.Text`
-  margin: 32px;
-  font-size: 20px;
-  font-weight: bold;
-  text-align: center;
-`;
-const Back = styled.TouchableOpacity``;
-const Title = styled.Text`
-  font-size: 20px;
-  font-weight: bold;
-  margin-bottom: 10px;
-  margin-top: 20px;
-  text-align: center;
-`;
-const ColorList = styled.View`
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 40px;
-  margin-bottom: 40px;
-  margin-left: 25px;
-  margin-right: 25px;
-`;
 const Record = () => {
   // hook
   const [isRecord, setIsRecord] = useState(false); // 녹음 중인지 아닌지
@@ -198,5 +166,36 @@ const Game1 = ({ navigation: { navigate } }) => {
     </View>
   );
 };
-
+const Container = styled.View`
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  background-color: #f5fcff;
+`;
+const ButtonRecord = styled.Button`
+  background-color: black;
+`;
+const VoiceText = styled.Text`
+  margin: 32px;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+`;
+const Back = styled.TouchableOpacity``;
+const Title = styled.Text`
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  margin-top: 20px;
+  text-align: center;
+`;
+const ColorList = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  margin-left: 25px;
+  margin-right: 25px;
+`;
 export default Game1;

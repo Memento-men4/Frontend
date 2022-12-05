@@ -56,7 +56,7 @@ const CalendarView = ({ navigation: { navigate } }) => {
   };
   useEffect(
     () => {
-      //getUserIDNumber();
+      getUserIDNumber();
     },
     [
       /*isFocused*/
@@ -85,7 +85,7 @@ const CalendarView = ({ navigation: { navigate } }) => {
                   fontWeight: "bold",
                   color: "black",
                 }}
-                text={userName}
+                text={userName + " 님"}
               />
             </View>
             <Character
@@ -240,7 +240,7 @@ const Target = styled.TouchableOpacity`
 `; // margin: 두 버튼 사이 간격
 const Hello = styled.Text`
   font-size: 20px;
-  margin-top: 31px;
+  margin-top: 28px;
   font-weight: bold;
 `;
 const Txt = styled.Text`
@@ -249,8 +249,8 @@ const Txt = styled.Text`
   text-align: center;
 `;
 const Character = styled.Image`
-  width: 121px;
-  height: 100px;
+  width: 120px;
+  height: 90px;
 `;
 export default CalendarView;
 
