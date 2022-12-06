@@ -7,19 +7,6 @@ import { useRecoilState, atom } from "recoil";
 import Timeline from "react-native-timeline-flatlist";
 import styled from "styled-components/native";
 import axios from "axios";
-const Body = styled.View`
-  flex-direction: column;
-  padding-top: 20px;
-  background-color: white;
-`;
-const Back = styled.TouchableOpacity``;
-const Title = styled.Text`
-  font-size: 20px;
-  font-weight: bold;
-  margin-bottom: 10px;
-  margin-top: 20px;
-  text-align: center;
-`;
 const TimeLine = () => {
   const [userIDNumber, setUserIDNumber] = useRecoilState(UserIDNumber);
   const [recordResponse, setRecordResponse] = useRecoilState(RecordResponse);
@@ -122,7 +109,7 @@ const Days = ({ navigation: { navigate } }) => {
 };
 
 const Txt = styled.Text`
-  font-size: 15px;
+  font-size: 13px;
   font-weight: bold;
 `;
 const Target = styled.TouchableOpacity`
@@ -136,5 +123,18 @@ const Target = styled.TouchableOpacity`
   padding: 10px;
   box-shadow: 1px 1px 3px rgba(41, 30, 95, 0.9);
   flex: 1;
+`;
+const Body = styled.View`
+  flex-direction: column;
+  padding-top: 20px;
+  background-color: white;
+`;
+const Back = styled.TouchableOpacity``;
+const Title = styled.Text`
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  margin-top: 20px;
+  text-align: center;
 `;
 export default Days;

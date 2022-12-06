@@ -56,7 +56,7 @@ const CalendarView = ({ navigation: { navigate } }) => {
   };
   useEffect(
     () => {
-      getUserIDNumber();
+      //getUserIDNumber();
     },
     [
       /*isFocused*/
@@ -65,8 +65,22 @@ const CalendarView = ({ navigation: { navigate } }) => {
   return (
     <Body>
       {login === 0 ? (
-        <View style={{ marginVertical: 320 }}>
-          <Txt style={{ textAlign: "center" }}>로그인이 필요합니다.</Txt>
+        <View
+          style={{
+            flexDirection: "row",
+            marginVertical: 230,
+            justifyContent: "center",
+          }}
+        >
+          <View>
+            <Character
+              style={{ width: 100, height: 200 }}
+              source={require("/Users/leesukcheol/memento/assets/images/bbiyak4.png")}
+            />
+          </View>
+          <View style={{ justifyContent: "center", marginBottom: 50 }}>
+            <Txt style={{ textAlign: "center" }}>로그인이 필요합니다.</Txt>
+          </View>
         </View> /* 여기에 그림 귀여운 거 들어갔으면 좋겠다! */
       ) : (
         <View>
@@ -235,7 +249,7 @@ const Target = styled.TouchableOpacity`
   border-radius: 10px;
   padding: 5px;
   border: 1px solid black;
-  box-shadow: 1px 1px 3px rgba(41, 30, 95, 0.7);
+  box-shadow: 1px 1px 3px rgba(41, 30, 95, 0.1);
   margin-vertical: 5px;
 `; // margin: 두 버튼 사이 간격
 const Hello = styled.Text`

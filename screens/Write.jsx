@@ -5,6 +5,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { format } from "date-fns";
 import ko from "date-fns/esm/locale/ko/index.js";
+import { ImageBackground } from "react-native";
 import HighlightText from "react-native-highlight-underline-text";
 import {
   WriteFormat,
@@ -15,13 +16,26 @@ import {
   FourthData,
   WriteNumber,
 } from "../atom";
+import {
+  Ionicons,
+  MaterialCommunityIcons,
+  MaterialIcons,
+} from "@expo/vector-icons";
 import { useRecoilState } from "recoil";
 import axios from "axios";
 import { useIsFocused } from "@react-navigation/native";
 
 const week = ["월", "화", "수", "목", "금", "토", "일"];
 const products = ["🤯", "🥲", "🤬", "🤗", "🥰", "😊", "🤩"];
-
+const list1 = [
+  <MaterialCommunityIcons name="washing-machine" size={30} color="black" />,
+  <MaterialCommunityIcons name="air-purifier" size={30} color="black" />,
+  <Ionicons name="water" size={30} color="black" />,
+  <MaterialIcons name="dry-cleaning" size={30} color="black" />,
+  <MaterialCommunityIcons name="fridge" size={30} color="black" />,
+  <MaterialCommunityIcons name="fan" size={30} color="black" />,
+  <MaterialCommunityIcons name="air-conditioner" size={30} color="black" />,
+];
 const Write = ({ navigation: { goBack, navigate } }) => {
   const isFocused = useIsFocused();
   const [selectedProduct, setProduct] = useState(null);
@@ -36,8 +50,6 @@ const Write = ({ navigation: { goBack, navigate } }) => {
   const [fri, setFri] = useState(false);
   const [sat, setSat] = useState(false);
   const [sun, setSun] = useState(false);
-  //const [count, setCount] = useState(0);
-  //const count = useRef(0);
   const [count, setCount] = useRecoilState(WriteNumber);
   const [first, setFirst] = useRecoilState(FirstData); //해지자
   const [second, setSecond] = useRecoilState(SecondData);
@@ -262,13 +274,13 @@ const Write = ({ navigation: { goBack, navigate } }) => {
         <Title>LG 가전 제품을 선택해주세요</Title>
         <List>
           {products.map((product, index) => (
-            <Emotion
+            <Product
               selected={product === selectedProduct}
               onPress={() => onProductPress(product)}
               key={index}
             >
-              <EmotionText>{product}</EmotionText>
-            </Emotion>
+              <ProductName>{list1[index]}</ProductName>
+            </Product>
           ))}
         </List>
       </Part>
@@ -320,8 +332,7 @@ const Write = ({ navigation: { goBack, navigate } }) => {
   );
 };
 export default Write;
-const Body = styled.View`
-  background-color: #ffda79;
+const Body = styled.ScrollView`
   flex: 1;
   flex-direction: column;
   background-color: white;
@@ -334,9 +345,9 @@ const ShowDate = styled.Text`
 const Title = styled.Text`
   color: black;
   text-align: center;
-  font-size: 24px;
+  font-size: 21px;
   font-weight: 500;
-  margin: 30px;
+  margin: 25px;
 `;
 const TextInput = styled.TextInput`
   background-color: white;
@@ -352,7 +363,7 @@ const SaveBtn = styled.TouchableOpacity`
   align-items: center;
   border-radius: 20px;
   box-shadow: 1px 1px 1px rgba(41, 30, 95, 0.9);
-  background-color: #1c1c1c;
+  background-color: black;
 `;
 const BtnText = styled.Text`
   color: white;
@@ -361,11 +372,12 @@ const BtnText = styled.Text`
 `;
 const TimeBtn = styled.TouchableOpacity`
   margin: 20px;
-  padding: 10px 20px;
+  padding: 15px;
   align-items: center;
   border-radius: 20px;
   box-shadow: 1px 1px 3px rgba(41, 30, 95, 0.3);
   border: 1px solid;
+  background-color: white;
 `;
 const Back = styled.TouchableOpacity``;
 const List = styled.View`
@@ -378,10 +390,10 @@ const TimeView = styled.View`
   margin-horizontal: 120px;
   border-radius: 20px;
 `;
-const Emotion = styled.TouchableOpacity`
+const Product = styled.TouchableOpacity`
   background-color: white;
   box-shadow: 1px 1px 3px rgba(41, 30, 95, 0.2);
-  padding: 10px;
+  padding: 5px;
   border-radius: 10px;
   border-width: 1px;
   border-color: ${(props) =>
@@ -396,14 +408,17 @@ const DayBtn = styled.TouchableOpacity`
   border-color: ${(props) =>
     props.selected ? "rgba(41, 30, 95, 1);" : "transparent"};
 `;
-const EmotionText = styled.Text`
+const ProductName = styled.Text`
   font-size: 20px;
 `;
 const DayBtnText = styled.Text`
-  font-size: 20px;
+  font-size: 15px;
 `;
 const Part = styled.View`
-  border: 1px solid gray;
+  border: 2px solid gray;
+  margin: 10px;
+  border-radius: 10px;
+  background-color: #f5f5f5;
 `;
 const Container = styled.View``;
 /* 
@@ -412,12 +427,12 @@ write.js 페이지에 새로운 시간이랑 요일 추가 기능 구현해서, 
 요일은 월화수목금토일 버튼인데 다수선택 가능하기로 햇자나? 그거 트루펄스로 넘기자. MON=true or false
 <List>
         {week.map((day, index) => (
-          <Emotion
+          <Product
             selected={day === days}
             onPress={() => console.log()}
             key={index}
           >
-            <EmotionText>{day}</EmotionText>
-          </Emotion>
+            <ProductName>{day}</ProductName>
+          </Product>
         ))}
 */

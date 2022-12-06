@@ -1,25 +1,37 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Alert, ImageBackground, View } from "react-native";
+import { Alert, Text, View } from "react-native";
 import styled from "styled-components/native";
 import Voice from "react-native-voice";
 import { RecordText1, RecordText2, RecordText3, RecordText4 } from "../atom";
 import { UserIDNumber, RecordDate } from "../atom";
 import { useRecoilState } from "recoil";
 import axios from "axios";
-
+import { MaterialIcons, MaterialCommunityIcons } from "@expo/vector-icons";
 const Container = styled.View`
   flex: 1;
   justify-content: center;
   align-items: center;
 `;
-const ButtonRecord = styled.Button`
-  background-color: black;
+const ButtonRecord = styled.TouchableOpacity`
+  background-color: #ffda79;
+  padding: 30px;
+  margin-horizontal: 50px;
+  border-radius: 50px;
+  align-items: center;
+  border: 1px solid black;
 `;
 const VoiceText = styled.Text`
   margin: 32px;
   font-size: 20px;
   font-weight: bold;
   text-align: center;
+`;
+const Character = styled.Image`
+  width: 300px;
+  height: 170px;
+  margin-bottom: 100px;
+  margin-left: 100px;
+  align-self: flex-end;
 `;
 
 const Recording = () => {
@@ -41,7 +53,11 @@ const Recording = () => {
     "-" +
     (date.getDate() < 10 ? "0" : "") +
     date.getDate(); // 녹음한 날짜
-  const buttonLabel = isRecord ? "녹음 끝! 전송하기" : "녹음 시작하기"; // 녹음 중이면 전송, 아니면 시작
+  const buttonLabel = isRecord ? (
+    <MaterialCommunityIcons name="stop-circle" size={30} color="black" />
+  ) : (
+    <MaterialIcons name="keyboard-voice" size={30} color="black" />
+  ); // 녹음 중이면 전송, 아니면 시작
   const voiceLabel = showingText
     ? showingText
     : isRecord
@@ -178,14 +194,24 @@ const Recording = () => {
     };
   }, []); //[]에 text를 넣으면 text가 바뀔 때마다 useEffect가 실행되는데 그럼 스트링 한 번밖에 못 받아서 빼야함.
   return (
-    <Container>
-      <View>
+    <Container style={{ flex: 1, backgroundColor: "white" }}>
+      <View style={{ marginTop: 270 }}>
         <VoiceText>{voiceLabel}</VoiceText>
-        <ButtonRecord onPress={_onRecordVoice} title={buttonLabel} />
+        <View>
+          <ButtonRecord onPress={_onRecordVoice}>
+            <Text>{buttonLabel}</Text>
+          </ButtonRecord>
+        </View>
+      </View>
+      <View style={{ paddingTop: 60, marginRight: 60 }}>
+        <Character
+          source={require("/Users/leesukcheol/memento/assets/images/bbiyakmemory.png")}
+        />
       </View>
     </Container>
   );
 };
+//<ButtonRecord onPress={_onRecordVoice} title={buttonLabel} />
 /*
 백그라운드 이미지 우선 삭제
   <ImageBackground

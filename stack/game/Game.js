@@ -21,9 +21,16 @@ const Game = ({ navigation: { navigate } }) => (
       <Target onPress={() => navigate("Stack", { screen: "Game2" })}>
         <Txt style={{ marginLeft: 30 }}>🎮ㅤ기억력</Txt>
       </Target>
-      <Target onPress={() => navigate("Stack", { screen: "Game3First" })}>
+      <LastTarget onPress={() => navigate("Stack", { screen: "Game3First" })}>
         <Txt style={{ marginLeft: 30 }}>🎮ㅤ계산력</Txt>
-      </Target>
+      </LastTarget>
+    </View>
+    <View>
+      <View style={{ flexDirection: "row", alignItems: "center" }}>
+        <GameCharacter
+          source={require("/Users/leesukcheol/memento/assets/images/bbiyakgame.png")}
+        />
+      </View>
     </View>
   </Body>
 );
@@ -40,6 +47,16 @@ const Target = styled.TouchableOpacity`
   margin-left: 10px;
   margin-right: 10px;
   margin-bottom: 50px;
+  padding: 10px;
+  box-shadow: 1px 1px 3px rgba(41, 30, 95, 0.9);
+`;
+const LastTarget = styled.TouchableOpacity`
+  justify-content: center;
+  align-items: flex-start;
+  background-color: #ffda79;
+  border-radius: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
   padding: 10px;
   box-shadow: 1px 1px 3px rgba(41, 30, 95, 0.9);
 `;
@@ -61,6 +78,13 @@ const Character = styled.Image`
   width: 120px;
   height: 90px;
   margin-right: 0px;
+`;
+const GameCharacter = styled.Image`
+  width: 300px;
+  height: 170px;
+  margin-bottom: 100px;
+  margin-left: 100px;
+  align-self: flex-end;
 `;
 const Header = styled.View`
   flex-direction: row;

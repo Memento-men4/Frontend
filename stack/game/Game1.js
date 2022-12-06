@@ -152,7 +152,7 @@ const Game1 = ({ navigation: { navigate } }) => {
       >
         <Text style={{ fontSize: 30 }}>🔙</Text>
       </Back>
-      <Title>치매 게임 111111</Title>
+      <Title>치매 게임</Title>
       <View style={{ backgroundColor: "#D4D4D4" }}>
         {count % 2 === 0 ? <Colors /> : <Colors2 />}
       </View>
