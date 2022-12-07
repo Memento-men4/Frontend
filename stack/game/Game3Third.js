@@ -10,9 +10,12 @@ const Game3Third = ({ navigation: { navigate } }) => {
   const answer = num1 - num2 + num3;
   return (
     <Body style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <View>
+      <View style={{ flexDirection: "row", alignItems: "center" }}>
+        <Character
+          source={require("/Users/leesukcheol/memento/assets/images/bbiyakgame2.png")}
+        />
         <Title>
-          📝 {num1} - {num2} + {num3} 의 값은 무엇일까요?
+          {num1} - {num2} + {num3} 의 {"\n"}값은 무엇일까요?
         </Title>
       </View>
       <View
@@ -104,6 +107,7 @@ const Body = styled.View`
 const Title = styled.Text`
   font-size: 20px;
   font-weight: bold;
+  text-align: center;
 `;
 const Txt = styled.Text`
   font-size: 13px;
@@ -120,5 +124,9 @@ const Target = styled.TouchableOpacity`
   padding: 10px;
   box-shadow: 1px 1px 3px rgba(41, 30, 95, 0.9);
   flex: 1;
+`;
+const Character = styled.Image`
+  width: 150px;
+  height: 180px;
 `;
 export default Game3Third;

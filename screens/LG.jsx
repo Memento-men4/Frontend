@@ -85,31 +85,12 @@ const LG = ({ navigation: { navigate } }) => {
     const SetBtn1 = () => (
       <LGSetBtn
         onPress={() => {
-          /* 12/5일 폐기
-          setFirst({
-            한 텀씩 밀려서 저장되는 것 같으니, 내일 하늘이랑 바로 옆에서 확인해보기
-            member_seq: userIDNumber,
-            serialNum: "test1",
-            type: "WASHING_MACHINE",
-            settingTime:
-            date1.getHours() +
-            ":" +
-            (date1.getMinutes() < 10 ? "0" : "") +
-            date1.getMinutes(),
-            mon: monday,
-            tue: tuesday,
-            wed: wednesday,
-            thr: thursday,
-            fri: friday,
-            sat: saturday,
-            sun: sunday,
-          });
-          */
           temp1.current = {
             member_seq: userIDNumber,
             serialNum: "test1",
             type: "WASHING_MACHINE",
             settingTime:
+              (date1.getHours() < 10 ? "0" : "") +
               date1.getHours() +
               ":" +
               (date1.getMinutes() < 10 ? "0" : "") +
@@ -192,7 +173,9 @@ const LG = ({ navigation: { navigate } }) => {
                     {format(new Date(date1), "p", { locale: ko })}
                   </ShowDate>
                 </Btn>
-                <View style={{ flex: 1, flexDirection: "row", marginRight: 5 }}>
+                <View
+                  style={{ flex: 1, flexDirection: "row", marginRight: 10 }}
+                >
                   <DayBtn selected={monday} onPress={() => onMonPress()}>
                     <Text style={{ fontSize: 17 }}>월</Text>
                   </DayBtn>
@@ -268,6 +251,7 @@ const LG = ({ navigation: { navigate } }) => {
             serialNum: "test1",
             type: "AIR_CLEANER",
             settingTime:
+              (date2.getHours() < 10 ? "0" : "") +
               date2.getHours() +
               ":" +
               (date2.getMinutes() < 10 ? "0" : "") +
@@ -350,7 +334,9 @@ const LG = ({ navigation: { navigate } }) => {
                     {format(new Date(date2), "p", { locale: ko })}
                   </ShowDate>
                 </Btn>
-                <View style={{ flex: 1, flexDirection: "row", marginRight: 5 }}>
+                <View
+                  style={{ flex: 1, flexDirection: "row", marginRight: 10 }}
+                >
                   <DayBtn selected={monday} onPress={() => onMonPress()}>
                     <Text style={{ fontSize: 17 }}>월</Text>
                   </DayBtn>
@@ -444,6 +430,7 @@ const LG = ({ navigation: { navigate } }) => {
             serialNum: "test1",
             type: "WATER_MACHINE",
             settingTime:
+              (date3.getHours() < 10 ? "0" : "") +
               date3.getHours() +
               ":" +
               (date3.getMinutes() < 10 ? "0" : "") +
@@ -504,7 +491,9 @@ const LG = ({ navigation: { navigate } }) => {
                     {format(new Date(date3), "p", { locale: ko })}
                   </ShowDate>
                 </Btn>
-                <View style={{ flex: 1, flexDirection: "row", marginRight: 5 }}>
+                <View
+                  style={{ flex: 1, flexDirection: "row", marginRight: 10 }}
+                >
                   <DayBtn selected={monday} onPress={() => onMonPress()}>
                     <Text style={{ fontSize: 17 }}>월</Text>
                   </DayBtn>
@@ -597,6 +586,7 @@ const LG = ({ navigation: { navigate } }) => {
             serialNum: "test1",
             type: "WASHING_MACHINE",
             settingTime:
+              (date4.getHours() < 10 ? "0" : "") +
               date4.getHours() +
               ":" +
               (date4.getMinutes() < 10 ? "0" : "") +
@@ -657,7 +647,9 @@ const LG = ({ navigation: { navigate } }) => {
                     {format(new Date(date4), "p", { locale: ko })}
                   </ShowDate>
                 </Btn>
-                <View style={{ flex: 1, flexDirection: "row", marginRight: 5 }}>
+                <View
+                  style={{ flex: 1, flexDirection: "row", marginRight: 10 }}
+                >
                   <DayBtn selected={monday} onPress={() => onMonPress()}>
                     <Text style={{ fontSize: 17 }}>월</Text>
                   </DayBtn>
@@ -697,11 +689,11 @@ const LG = ({ navigation: { navigate } }) => {
   };
   return (
     <Body style={{ flex: 1 }}>
-      <Header style={{ flex: 1 }}>
+      <Header style={{ flex: 0.95 }}>
         <Character source={require("../assets/images/bbiyak1.png")} />
         <Title>우리 집 LG 가전</Title>
       </Header>
-      <Header style={{ marginTop: 50, flex: 5.19 }}>
+      <Header style={{ marginTop: 25, flex: 5.19 }}>
         <ScrollView style={{ backgroundColor: "#f2f2f2", borderRadius: 10 }}>
           {check.current[0] !== 0 ? <WASHING_MACHINE /> : null}
           {check.current[1] !== 0 ? <AIR_CLEANER /> : null}
@@ -719,7 +711,7 @@ const Title = styled.Text`
   font-size: 28px;
   font-weight: bold;
   margin-top: 32px;
-  margin-right: 20px;
+  margin-right: 25px;
   text-align: center;
 `;
 const Body = styled.View`
@@ -732,7 +724,6 @@ const Header = styled.View`
   justify-content: space-between;
   margin-horizontal: 10px;
   margin-top: 10px;
-  border: 1px solid black;
   background-color: #f2f2f2;
   box-shadow: 1px 1px 3px rgba(41, 30, 95, 0.9);
   border-radius: 10px;
@@ -746,17 +737,16 @@ const Btn = styled.TouchableOpacity`
 const DayBtn = styled.TouchableOpacity`
   align-items: center;
   padding-horizontal: 1px;
-  margin-horizontal: 2px;
+  margin-left: 3px;
+  margin-right: 3px;
   padding-vertical: 3px;
-  border-width: 1px;
+  border: 0.7px solid #d4d4d4;
   border-radius: 5px;
-  background-color: ${(props) => (props.selected ? "black" : "transparent")};
+  background-color: ${(props) => (props.selected ? "#d4d4d4" : "white")};
 `;
 const Footer = styled.View`
-  border: 2px solid black;
+  box-shadow: 1px 1px 3px rgba(41, 30, 95, 0.6);
 `;
-//box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.15);
-// 차라리 테두리 라인 주기
 const AddBtn = styled.TouchableOpacity`
   position: absolute;
   bottom: 50px;
@@ -783,10 +773,10 @@ const Content = styled.View`
 const LGSetBtn = styled.TouchableOpacity`
   padding: 15px;
   border-radius: 10px;
-  margin-left: 5px;
+  margin-left: 10px;
   background-color: #d4d4d4;
   justify-content: center;
-  border: 1.5px solid black;
+  box-shadow: 1px 1px 3px rgba(41, 30, 95, 0.6);
   margin-right: 5px;
 `;
 const Character = styled.Image`

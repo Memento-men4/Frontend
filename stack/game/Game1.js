@@ -1,98 +1,24 @@
 import React, { useState, useEffect, useRef } from "react";
-import { TouchableOpacity, Text, View, Alert, StyleSheet } from "react-native";
+import { Text, View, Alert, StyleSheet } from "react-native";
 import styled from "styled-components/native";
-import { Ionicons } from "@expo/vector-icons";
 import Voice from "react-native-voice";
 import { useIsFocused } from "@react-navigation/native";
+import { MaterialIcons, MaterialCommunityIcons } from "@expo/vector-icons";
 
-const Record = () => {
-  // hook
-  const [isRecord, setIsRecord] = useState(false); // 녹음 중인지 아닌지
-  const [text, setText] = useState(""); // 녹음한 텍스트
-  const buttonLabel = isRecord ? "녹음 끝! 전송하기" : "녹음 시작하기"; // 녹음 중이면 전송, 아니면 시작
-  const voiceLabel = text
-    ? text
-    : isRecord
-    ? "Recording..."
-    : "정답을 말해주세요!";
-  // hook
-  const _onSpeechStart = () => {
-    // 음성인식 시작
-    console.log("onSpeechStart");
-    console.log("Answer:", AnswerText);
-  };
-  const _onSpeechEnd = () => {
-    // 녹음이 끝나면
-    console.log("onSpeechEnd");
-    if (text === AnswerText) {
-      console.log(text, AnswerText, "정답");
-      //Alert.alert(text, AnswerText);
-    }
-    if (text !== AnswerText) {
-      console.log(text, AnswerText, "오답");
-      //Alert.alert(AnswerText, text);
-    }
-    Alert.alert("녹음 끝! 타임라인에 반영됩니다.");
-  };
-  const _onSpeechResults = (event) => {
-    // 음성인식 결과
-    console.log("onSpeechResults");
-    setText(event.value[0]);
-    // 음성인식 결과를 text에 저장
-    //console.log(event.value[0]); // 음성인식 결과 출력
-    console.log(event.value[0].length); // 음성인식 결과 길이
-  };
-  const _onSpeechError = (event) => {
-    // 에러 발생시
-    Alert.alert("녹음 에러 발생! 다시 시도하세요.");
-    console.log("_onSpeechError");
-    console.log(event.error);
-  };
-
-  const _onRecordVoice = () => {
-    // 녹음 시작
-    if (isRecord) {
-      Voice.stop(); // 녹음 중지
-    } else {
-      Voice.start("ko-KR"); // 한국어
-    }
-    setIsRecord(!isRecord); // 상태 변경
-  };
-
-  useEffect(() => {
-    Voice.onSpeechStart = _onSpeechStart;
-    Voice.onSpeechEnd = _onSpeechEnd;
-    Voice.onSpeechResults = _onSpeechResults;
-    Voice.onSpeechError = _onSpeechError;
-    //AsyncStorage.setItem("Text", text); // 이걸 보내야함? 정답처리 걍 프론트에서
-    return () => {
-      Voice.destroy().then(Voice.removeAllListeners); // 컴포넌트가 사라질 때
-    };
-  }, []); //[]에 text를 넣으면 text가 바뀔 때마다 useEffect가 실행되는데 그럼 스트링 한 번밖에 못 받아서 빼야함.
-  return (
-    <Container>
-      <VoiceText>{voiceLabel}</VoiceText>
-      <ButtonRecord onPress={_onRecordVoice} title={buttonLabel} />
-    </Container>
-  );
-};
 var AnswerText = "";
 const Game1 = ({ navigation: { navigate } }) => {
-  // hook
-  const [isRecord, setIsRecord] = useState(false); // 녹음 중인지 아닌지
-  const [text, setText] = useState(""); // 녹음한 텍스트
-  const buttonLabel = isRecord ? "녹음 끝! 전송하기" : "녹음 시작하기"; // 녹음 중이면 전송, 아니면 시작
-  const voiceLabel = text
-    ? text
-    : isRecord
-    ? "Recording..."
-    : "정답을 말해주세요!";
-  // hook
   const isFocused = useIsFocused();
   const [count, setCount] = useState(-1);
   const answer = ["빨강 파랑 노랑 초록", "파랑 빨강 초록 노랑"];
   const answerText1 = useRef(answer[0]);
   const answerText2 = useRef(answer[1]);
+  const [isRecord, setIsRecord] = useState(false); // 녹음 중인지 아닌지
+  const buttonLabel = isRecord ? (
+    <MaterialCommunityIcons name="stop-circle" size={30} color="black" />
+  ) : (
+    <MaterialIcons name="keyboard-voice" size={30} color="black" />
+  ); // 녹음 중이면 전송, 아니면 시작
+  const [text, setText] = useState(""); // 녹음한 텍스트
   useEffect(() => {
     setCount(count + 1);
   }, [isFocused]);
@@ -142,53 +68,104 @@ const Game1 = ({ navigation: { navigate } }) => {
       </Text>
     </ColorList>
   );
+  const _onSpeechStart = () => {
+    // 음성인식 시작
+  };
+  const _onSpeechEnd = () => {
+    // 녹음이 끝나면
+    console.log("onSpeechEnd");
+    if (text === AnswerText) {
+      console.log(text, AnswerText, "정답");
+      Alert.alert("🥳 정답입니다!");
+      navigate("Main", { screen: "home" });
+    }
+    if (text !== AnswerText) {
+      console.log(text, AnswerText, "오답");
+      Alert.alert("😢 오답입니다.");
+      navigate("Main", { screen: "home" });
+    }
+  };
+  const _onSpeechResults = (event) => {
+    // 음성인식 결과
+    console.log("onSpeechResults");
+    setText(event.value[0]);
+    // 음성인식 결과를 text에 저장
+    //console.log(event.value[0]); // 음성인식 결과 출력
+    console.log(event.value[0].length); // 음성인식 결과 길이
+  };
+  const _onSpeechError = (event) => {
+    // 에러 발생시
+    Alert.alert("녹음 에러 발생! 다시 시도하세요.");
+    console.log("_onSpeechError");
+    console.log(event.error);
+  };
+  const _onRecordVoice = () => {
+    // 녹음 시작
+    if (isRecord) {
+      Voice.stop(); // 녹음 중지
+    } else {
+      Voice.start("ko-KR"); // 한국어
+    }
+    setIsRecord(!isRecord); // 상태 변경
+  };
+
+  useEffect(() => {
+    Voice.onSpeechStart = _onSpeechStart;
+    Voice.onSpeechEnd = _onSpeechEnd;
+    Voice.onSpeechResults = _onSpeechResults;
+    Voice.onSpeechError = _onSpeechError;
+    return () => {
+      Voice.destroy().then(Voice.removeAllListeners); // 컴포넌트가 사라질 때
+    };
+  }, []);
   return (
-    <View
-      style={{ flex: 1, justifyContent: "center", alignContent: "flex-start" }}
-    >
+    <Body>
       <Back
         style={{ marginTop: 40, marginLeft: 10 }}
         onPress={() => navigate("Main", { screen: "Home" })}
       >
         <Text style={{ fontSize: 30 }}>🔙</Text>
       </Back>
-      <Title>치매 게임</Title>
-      <View style={{ backgroundColor: "#D4D4D4" }}>
+      <GameCharacter
+        source={require("/Users/leesukcheol/memento/assets/images/bbiyakgaming.png")}
+      />
+      <Container>
+        <View style={styles.view}>
+          <RecordBtn onPress={_onRecordVoice}>
+            <Text>{buttonLabel}</Text>
+          </RecordBtn>
+        </View>
+      </Container>
+      <View style={{ backgroundColor: "#e6e6e6", marginTop: 70 }}>
         {count % 2 === 0 ? <Colors /> : <Colors2 />}
       </View>
-      <View style={{ marginTop: 20 }}>
-        <Text>
-          {count % 2 === 0 ? answerText1.current : answerText2.current}
-          {console.log(count)}
-        </Text>
-      </View>
-      <Record />
-    </View>
+    </Body>
   );
 };
+const styles = StyleSheet.create({
+  view: {
+    width: 200,
+    height: 100,
+    alignSelf: "center",
+    marginVertical: 80,
+  },
+});
+const Body = styled.View`
+  background-color: white;
+`;
 const Container = styled.View`
-  flex: 1;
   justify-content: center;
   align-items: center;
-  background-color: #f5fcff;
+  background-color: white;
 `;
-const ButtonRecord = styled.Button`
-  background-color: black;
-`;
-const VoiceText = styled.Text`
-  margin: 32px;
-  font-size: 20px;
-  font-weight: bold;
-  text-align: center;
+const RecordBtn = styled.TouchableOpacity`
+  background-color: #ffda79;
+  padding: 30px;
+  margin-horizontal: 50px;
+  border-radius: 50px;
+  align-items: center;
 `;
 const Back = styled.TouchableOpacity``;
-const Title = styled.Text`
-  font-size: 20px;
-  font-weight: bold;
-  margin-bottom: 10px;
-  margin-top: 20px;
-  text-align: center;
-`;
 const ColorList = styled.View`
   flex-direction: row;
   justify-content: space-between;
@@ -197,5 +174,13 @@ const ColorList = styled.View`
   margin-bottom: 40px;
   margin-left: 25px;
   margin-right: 25px;
+`;
+const GameCharacter = styled.Image`
+  width: 300px;
+  height: 180px;
+  margin-bottom: 10px;
+  margin-right: 37px;
+  margin-top: 50px;
+  align-self: flex-end;
 `;
 export default Game1;

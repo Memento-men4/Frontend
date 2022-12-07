@@ -43,10 +43,6 @@ const CalendarView = ({ navigation: { navigate } }) => {
       )
       .then(function (response) {
         console.log(response);
-        /*
-        console.log(response.data);
-        console.log(response.config);
-        */
         setUserName(userInfo["name"]);
         setUserIDNumber(response.data);
       })
@@ -120,6 +116,11 @@ const CalendarView = ({ navigation: { navigate } }) => {
                           ...response.data[i],
                           icon: require("../assets/images/hanyang.png"),
                         };
+                      } else {
+                        response.data[i] = {
+                          ...response.data[i],
+                          icon: require("../assets/images/1024.png"),
+                        };
                       }
                     }
                     setTimelineData(response.data);
@@ -191,9 +192,11 @@ const CalendarView = ({ navigation: { navigate } }) => {
             >
               <Txt>영츠하이머 자가 진단!</Txt>
             </Target>
-            <Target onPress={() => navigate("Stack", { screen: "HomeGame" })}>
+            <LastTarget
+              onPress={() => navigate("Stack", { screen: "HomeGame" })}
+            >
               <Txt>영츠하이머 예방 게임!</Txt>
-            </Target>
+            </LastTarget>
           </Footer>
         </View>
       )}
@@ -218,7 +221,6 @@ const Header = styled.View`
   justify-content: space-between;
   margin-horizontal: 20px;
   margin-top: 20px;
-  border: 1px solid black;
   background-color: #f2f2f2;
   box-shadow: 1px 1px 3px rgba(41, 30, 95, 0.9);
   border-radius: 10px;
@@ -235,10 +237,17 @@ const Target = styled.TouchableOpacity`
   background-color: #ffda79;
   border-radius: 10px;
   padding: 5px;
-  border: 1px solid black;
   box-shadow: 1px 1px 3px rgba(41, 30, 95, 0.1);
   margin-vertical: 5px;
-`; // margin: 두 버튼 사이 간격
+`;
+const LastTarget = styled.TouchableOpacity`
+  background-color: #ffda79;
+  border-radius: 10px;
+  padding: 5px;
+  box-shadow: 1px 1px 3px rgba(41, 30, 95, 0.1);
+  margin-top: 5px;
+  margin-bottom: 100px;
+`;
 const Hello = styled.Text`
   font-size: 20px;
   margin-top: 28px;

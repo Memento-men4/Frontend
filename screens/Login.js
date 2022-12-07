@@ -11,7 +11,10 @@ const Login = ({ navigation: { navigate } }) => {
   return (
     <View style={{ justifyContent: "center", alignSelf: "center" }}>
       <Character
-        source={require("/Users/leesukcheol/memento/assets/images/bbiyaklove.png")}
+        source={require("/Users/leesukcheol/memento/assets/images/bbiyaklovebig.png")}
+      />
+      <MEMENTO
+        source={require("/Users/leesukcheol/memento/assets/images/memento.png")}
       />
       <View style={{ flexDirection: "row", marginLeft: 15 }}>
         <View>
@@ -59,10 +62,19 @@ const LoginView = styled.View`
   margin-left: 20px;
 `;
 const Character = styled.Image`
-  width: 300px;
-  height: 300px;
-  margin-left: 30px;
-  margin-top: 30px;
+  width: 150px;
+  height: 200px;
+  align-self: center;
+  margin-right: 25px;
+  margin-top: 35px;
+`;
+const MEMENTO = styled.Image`
+  width: 220px;
+  height: 31px;
+  align-self: center;
+  margin-left: 7px;
+  margin-top: 25px;
+  margin-bottom: 35px;
 `;
 
 export default Login;

@@ -73,8 +73,10 @@ const Days = ({ navigation: { navigate } }) => {
         <Title style={{ marginBottom: 30 }}>{todayDate} 타임라인</Title>
         <TimeLine />
       </View>
-      <View style={{ flex: 1 }}>
-        <DailyQuizButton />
+      <View style={{ flex: 1, marginTop: 5 }}>
+        <View style={{ flex: 1, marginTop: 20 }}>
+          <DailyQuizButton />
+        </View>
       </View>
     </Body>
   );

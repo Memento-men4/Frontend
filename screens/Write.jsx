@@ -415,7 +415,6 @@ const DayBtnText = styled.Text`
   font-size: 15px;
 `;
 const Part = styled.View`
-  border: 2px solid gray;
   margin: 10px;
   border-radius: 10px;
   background-color: #f5f5f5;

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Alert, Text, View } from "react-native";
+import { Alert, Text, View, StyleSheet } from "react-native";
 import styled from "styled-components/native";
 import Voice from "react-native-voice";
 import { RecordText1, RecordText2, RecordText3, RecordText4 } from "../atom";
@@ -7,41 +7,15 @@ import { UserIDNumber, RecordDate } from "../atom";
 import { useRecoilState } from "recoil";
 import axios from "axios";
 import { MaterialIcons, MaterialCommunityIcons } from "@expo/vector-icons";
-const Container = styled.View`
-  flex: 1;
-  justify-content: center;
-  align-items: center;
-`;
-const ButtonRecord = styled.TouchableOpacity`
-  background-color: #ffda79;
-  padding: 30px;
-  margin-horizontal: 50px;
-  border-radius: 50px;
-  align-items: center;
-  border: 1px solid black;
-`;
-const VoiceText = styled.Text`
-  margin: 32px;
-  font-size: 20px;
-  font-weight: bold;
-  text-align: center;
-`;
-const Character = styled.Image`
-  width: 300px;
-  height: 170px;
-  margin-bottom: 100px;
-  margin-left: 100px;
-  align-self: flex-end;
-`;
 
 const Recording = () => {
   const [userIDNumber, setUserIDNumber] = useRecoilState(UserIDNumber);
   const [isRecord, setIsRecord] = useState(false); // 녹음 중인지 아닌지
   const [showingText, setShowingText] = useState("");
-  const [text, setText] = useRecoilState(RecordText1); // 녹음한 텍스트
-  const [text2, setText2] = useRecoilState(RecordText2); // 녹음한 텍스트 두번째
-  const [text3, setText3] = useRecoilState(RecordText3); // 녹음한 텍스트 세번째
-  const [text4, setText4] = useRecoilState(RecordText4); // 녹음한 텍스트 네번째
+  const text = useRef(""); // 녹음한 텍스트
+  const text2 = useRef(""); // 녹음한 텍스트 두번째
+  const text3 = useRef(""); // 녹음한 텍스트 세번째
+  const text4 = useRef(""); // 녹음한 텍스트 네번째
   const [recordDate, setRecordDate] = useRecoilState(RecordDate); // 녹음한 날짜
   const cnt = useRef(0); // 녹음한 횟수 카운트
   const date = new Date(); // 녹음한 날짜
@@ -62,11 +36,10 @@ const Recording = () => {
     ? showingText
     : isRecord
     ? "Recording..."
-    : "음성인식 시작";
+    : "Record Start";
 
   const _onSpeechStart = () => {
     console.log("시작 유저넘버", userIDNumber);
-    console.log(text2);
     console.log(recordDate);
     // 음성인식 시작
   };
@@ -79,11 +52,12 @@ const Recording = () => {
       })
     );
     console.log("녹음종료 유저넘버는: ", userIDNumber);
+    console.log("description: ", text.current);
     if (cnt.current === 0) {
       const temp = {
         member_seq: userIDNumber,
         title: "한양대학교",
-        description: text,
+        description: text.current,
       };
       axios
         .post(
@@ -100,7 +74,7 @@ const Recording = () => {
       const temp2 = {
         member_seq: userIDNumber,
         title: "한양대학교",
-        description: text2,
+        description: text2.current,
       };
       axios
         .post(
@@ -117,7 +91,7 @@ const Recording = () => {
       const temp3 = {
         member_seq: userIDNumber,
         title: "한양대학교",
-        description: text3,
+        description: text3.current,
       };
       axios
         .post(
@@ -134,7 +108,7 @@ const Recording = () => {
       const temp4 = {
         member_seq: userIDNumber,
         title: "한양대학교",
-        description: text4,
+        description: text4.current,
       };
       axios
         .post(
@@ -157,24 +131,20 @@ const Recording = () => {
     setShowingText(event.value[0]);
     //setRecordDate(Object.assign({}, recordDate, { [today]: "hi" }));
     if (cnt.current === 0) {
-      setText(event.value[0]); // 음성인식 결과를 text에 저장
+      text.current = event.value[0];
     } else if (cnt.current === 1) {
-      setText2(event.value[0]); // 음성인식 결과를 text2에 저장
+      text2.current = event.value[0];
     } else if (cnt.current === 2) {
-      setText3(event.value[0]); // 음성인식 결과를 text3에 저장
+      text3.current = event.value[0];
     } else if (cnt.current === 3) {
-      setText4(event.value[0]); // 음성인식 결과를 text4에 저장
+      text4.current = event.value[0];
     }
-
-    //console.log(event.value[0]); // 음성인식 결과 출력
-    //console.log(event.value[0].length); // 음성인식 결과 길이
   };
   const _onSpeechError = (event) => {
     // 에러 발생시
     Alert.alert("녹음 에러 발생! 다시 시도하세요.");
     console.log(event.error);
   };
-
   const _onRecordVoice = () => {
     // 녹음 시작
     if (isRecord) {
@@ -197,7 +167,7 @@ const Recording = () => {
     <Container style={{ flex: 1, backgroundColor: "white" }}>
       <View style={{ marginTop: 270 }}>
         <VoiceText>{voiceLabel}</VoiceText>
-        <View>
+        <View style={styles.view}>
           <ButtonRecord onPress={_onRecordVoice}>
             <Text>{buttonLabel}</Text>
           </ButtonRecord>
@@ -211,13 +181,36 @@ const Recording = () => {
     </Container>
   );
 };
-//<ButtonRecord onPress={_onRecordVoice} title={buttonLabel} />
-/*
-백그라운드 이미지 우선 삭제
-  <ImageBackground
-  source={require("../assets/images/back1.png")}
-  style={{ width: "105%", height: "100%" }}
-  >
-  </ImageBackground>
-*/
+const styles = StyleSheet.create({
+  view: {
+    width: 200,
+    height: 100,
+    alignSelf: "center",
+  },
+});
+const Container = styled.View`
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+`;
+const ButtonRecord = styled.TouchableOpacity`
+  background-color: #ffda79;
+  padding: 30px;
+  margin-horizontal: 50px;
+  border-radius: 50px;
+  align-self: center;
+`;
+const VoiceText = styled.Text`
+  margin: 32px;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+`;
+const Character = styled.Image`
+  width: 300px;
+  height: 170px;
+  margin-bottom: 100px;
+  margin-left: 100px;
+  align-self: flex-end;
+`;
 export default Recording;

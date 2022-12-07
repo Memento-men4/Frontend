@@ -60,8 +60,8 @@ const Diagnosis = ({ navigation: { navigate } }) => {
         {line}
         <NewLine>{"\n"}</NewLine>
         <Target>
-          <Question style={{ fontSize: 30 }}>👉</Question>
-          <Question>기억력에 문제가{"\n"}있다고 생각하십니까?</Question>
+          <Question style={{ fontSize: 19 }}>Q01</Question>
+          <Sentence>기억력에 문제가{"\n"}있다고 생각하십니까?</Sentence>
           <BouncyCheckbox
             style={{ marginLeft: 30 }}
             size={25}
@@ -75,10 +75,10 @@ const Diagnosis = ({ navigation: { navigate } }) => {
         </Target>
         <NewLine>{"\n"}</NewLine>
         <Target>
-          <Question style={{ fontSize: 30 }}>👉</Question>
-          <Question>
+          <Question style={{ fontSize: 19 }}>Q02</Question>
+          <Sentence>
             기억력이 10년 전보다{"\n"}나빠졌다고 생각하십니까?
-          </Question>
+          </Sentence>
           <BouncyCheckbox
             style={{ marginLeft: 4 }}
             size={25}
@@ -92,8 +92,8 @@ const Diagnosis = ({ navigation: { navigate } }) => {
         </Target>
         <NewLine>{"\n"}</NewLine>
         <Target>
-          <Question style={{ fontSize: 30 }}>👉</Question>
-          <Question>기억력이 또래에 비해{"\n"}나쁘다고 생각하십니까?</Question>
+          <Question style={{ fontSize: 19 }}>Q03</Question>
+          <Sentence>기억력이 또래에 비해{"\n"}나쁘다고 생각하십니까?</Sentence>
           <BouncyCheckbox
             style={{ marginLeft: 17 }}
             size={25}
@@ -107,10 +107,10 @@ const Diagnosis = ({ navigation: { navigate } }) => {
         </Target>
         <NewLine>{"\n"}</NewLine>
         <Target>
-          <Question style={{ fontSize: 30 }}>👉</Question>
-          <Question>
+          <Question style={{ fontSize: 19 }}>Q04</Question>
+          <Sentence>
             기억력 저하로 인해{"\n"}일상생활에 불편을 느끼십니까?
-          </Question>
+          </Sentence>
           <BouncyCheckbox
             style={{ marginLeft: -26 }}
             size={25}
@@ -124,8 +124,8 @@ const Diagnosis = ({ navigation: { navigate } }) => {
         </Target>
         <NewLine>{"\n"}</NewLine>
         <Target>
-          <Question style={{ fontSize: 30 }}>👉</Question>
-          <Question>최근에 일어난 일을{"\n"}기억하는 것이 어렵습니까?</Question>
+          <Question style={{ fontSize: 19 }}>Q05</Question>
+          <Sentence>최근에 일어난 일을{"\n"}기억하는 것이 어렵습니까?</Sentence>
           <BouncyCheckbox
             style={{ marginLeft: 0 }}
             size={25}
@@ -139,10 +139,10 @@ const Diagnosis = ({ navigation: { navigate } }) => {
         </Target>
         <NewLine>{"\n"}</NewLine>
         <Target>
-          <Question style={{ fontSize: 30 }}>👉</Question>
-          <Question>
+          <Question style={{ fontSize: 19 }}>Q06</Question>
+          <Sentence>
             며칠 전에 나눈 대화 내용을{"\n"}기억하기 어렵습니까?
-          </Question>
+          </Sentence>
           <BouncyCheckbox
             style={{ marginLeft: 0 }}
             size={25}
@@ -156,8 +156,8 @@ const Diagnosis = ({ navigation: { navigate } }) => {
         </Target>
         <NewLine>{"\n"}</NewLine>
         <Target>
-          <Question style={{ fontSize: 30 }}>👉</Question>
-          <Question>며칠 전에 한 약속을{"\n"}기억하기 어렵습니까?</Question>
+          <Question style={{ fontSize: 19 }}>Q07</Question>
+          <Sentence>며칠 전에 한 약속을{"\n"}기억하기 어렵습니까?</Sentence>
           <BouncyCheckbox
             style={{ marginLeft: 30 }}
             size={25}
@@ -171,8 +171,8 @@ const Diagnosis = ({ navigation: { navigate } }) => {
         </Target>
         <NewLine>{"\n"}</NewLine>
         <Target>
-          <Question style={{ fontSize: 30 }}>👉</Question>
-          <Question>친한 사람의 이름을{"\n"}기억하기 어렵습니까?</Question>
+          <Question style={{ fontSize: 19 }}>Q08</Question>
+          <Sentence>친한 사람의 이름을{"\n"}기억하기 어렵습니까?</Sentence>
           <BouncyCheckbox
             style={{ marginLeft: 30 }}
             size={25}
@@ -186,8 +186,8 @@ const Diagnosis = ({ navigation: { navigate } }) => {
         </Target>
         <NewLine>{"\n"}</NewLine>
         <Target>
-          <Question style={{ fontSize: 30 }}>👉</Question>
-          <Question>물건 둔 곳을{"\n"}기억하기 어렵습니까?</Question>
+          <Question style={{ fontSize: 19 }}>Q09</Question>
+          <Sentence>물건 둔 곳을{"\n"}기억하기 어렵습니까?</Sentence>
           <BouncyCheckbox
             style={{ marginLeft: 30 }}
             size={25}
@@ -201,10 +201,10 @@ const Diagnosis = ({ navigation: { navigate } }) => {
         </Target>
         <NewLine>{"\n"}</NewLine>
         <Target>
-          <Question style={{ fontSize: 30 }}>👉</Question>
-          <Question>이전에 비해 물건을{"\n"}자주 잃어버립니까?</Question>
+          <Question style={{ fontSize: 19 }}>Q10</Question>
+          <Sentence>이전에 비해 물건을{"\n"}자주 잃어버립니까?</Sentence>
           <BouncyCheckbox
-            style={{ marginLeft: 43 }}
+            style={{ marginLeft: 42 }}
             size={25}
             fillColor="#ffda79"
             unfillColor="#FFFFFF"
@@ -216,10 +216,10 @@ const Diagnosis = ({ navigation: { navigate } }) => {
         </Target>
         <NewLine>{"\n"}</NewLine>
         <Target>
-          <Question style={{ fontSize: 30 }}>👉</Question>
-          <Question>집 근처에서 길을{"\n"}잃은 적이 있습니까?</Question>
+          <Question style={{ fontSize: 19 }}>Q11</Question>
+          <Sentence>집 근처에서 길을{"\n"}잃은 적이 있습니까?</Sentence>
           <BouncyCheckbox
-            style={{ marginLeft: 39 }}
+            style={{ marginLeft: 33 }}
             size={25}
             fillColor="#ffda79"
             unfillColor="#FFFFFF"
@@ -231,12 +231,12 @@ const Diagnosis = ({ navigation: { navigate } }) => {
         </Target>
         <NewLine>{"\n"}</NewLine>
         <Target>
-          <Question style={{ fontSize: 30 }}>👉</Question>
-          <Question>
+          <Question style={{ fontSize: 19 }}>Q12</Question>
+          <Sentence>
             물건을 사려고 할 때{"\n"}이름을 기억하기 어렵습니까?
-          </Question>
+          </Sentence>
           <BouncyCheckbox
-            style={{ marginLeft: -13 }}
+            style={{ marginLeft: -14 }}
             size={25}
             fillColor="#ffda79"
             unfillColor="#FFFFFF"
@@ -248,12 +248,12 @@ const Diagnosis = ({ navigation: { navigate } }) => {
         </Target>
         <NewLine>{"\n"}</NewLine>
         <Target>
-          <Question style={{ fontSize: 30 }}>👉</Question>
-          <Question>
+          <Question style={{ fontSize: 19 }}>Q13</Question>
+          <Sentence>
             가스불, 전기불 끄는 것을{"\n"}기억하기 어렵습니까?
-          </Question>
+          </Sentence>
           <BouncyCheckbox
-            style={{ marginLeft: 12 }}
+            style={{ marginLeft: 10 }}
             size={25}
             fillColor="#ffda79"
             unfillColor="#FFFFFF"
@@ -265,12 +265,12 @@ const Diagnosis = ({ navigation: { navigate } }) => {
         </Target>
         <NewLine>{"\n"}</NewLine>
         <Target>
-          <Question style={{ fontSize: 30 }}>👉</Question>
-          <Question>
+          <Question style={{ fontSize: 19 }}>Q14</Question>
+          <Sentence>
             자주 사용하는 전화번호를{"\n"}기억하기 어렵습니까?
-          </Question>
+          </Sentence>
           <BouncyCheckbox
-            style={{ marginLeft: 7 }}
+            style={{ marginLeft: 5 }}
             size={25}
             fillColor="#ffda79"
             unfillColor="#FFFFFF"
@@ -309,6 +309,7 @@ const Target = styled.View`
   background-color: #f5f5f5;
   border-radius: 10px;
   padding: 5px;
+  justify-content: space-between;
 `; // 3분할. 1. 질문 2. 예 체크박스 3. 아니오 체크박스
 const Intro = styled.Text`
   text-align: right;
@@ -316,7 +317,13 @@ const Intro = styled.Text`
   font-size: 15px;
 `;
 const Question = styled.Text`
-  margin-right: 50px;
+  margin-right: 0px;
+  font-size: 15px;
+  font-weight: 500;
+`;
+const Sentence = styled.Text`
+  margin-left: 0px;
+  margin-right: 0px;
   font-size: 15px;
   font-weight: 500;
 `;

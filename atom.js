@@ -71,7 +71,7 @@ export const RecordDate = atom({
 });
 export const UserIDNumber = atom({
   key: "UserIDNumber",
-  default: 0,
+  default: 1,
 });
 export const UserName = atom({
   key: "UserName",
