@@ -2,7 +2,7 @@ import { atom } from "recoil";
 
 export const loginFlag = atom({
   key: "loginFlag",
-  default: 1,
+  default: 0,
 });
 /** 
  레코드텍스트 1234는 내가 데이즈.제이에스에 테스트해보려고 선언한 전역변수임.

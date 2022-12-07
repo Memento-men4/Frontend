@@ -44,8 +44,9 @@ const CustomDrawer = (props) => {
             borderRadius: 3,
           }}
           onPress={() => {
-            Alert.alert("Logout");
             setFlag(0);
+            props.navigation.navigate("Stack", { screen: "Start" });
+            Alert.alert("Logout");
           }}
         >
           <Text style={{ color: "red" }}>로그아웃</Text>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Recording from "../screens/Recording";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Calendar from "../screens/Calendar";
@@ -6,15 +6,24 @@ import { useColorScheme } from "react-native";
 import LG from "../screens/LG";
 import { Ionicons } from "@expo/vector-icons";
 import Game from "../stack/game/Game";
+import { loginFlag } from "../atom";
+import { useRecoilState } from "recoil";
+import { useIsFocused } from "@react-navigation/native";
 
 const Tab = createBottomTabNavigator();
 
 const Tabs = () => {
   const isDark = useColorScheme() === "dark"; // T or F
+  const isFocused = useIsFocused();
+  const [login, setLogin] = useRecoilState(loginFlag);
+  useEffect(() => {
+    console.log("login", login);
+  }, [login, isFocused]);
   return (
     // 바텀탭 다 속성 적용하려면 네비게이터에 screenOptions, 각각하려면 스크린에 options
     <Tab.Navigator
       initialRouteName="Home"
+      //initialRouteName={login === 1 ? "Home" : "Game"}
       screenOptions={{
         tabBarStyle: { backgroundColor: isDark ? "#1e272e" : "white" },
         tabBarActiveTintColor: isDark ? "#ffa801" : "#1e272e",

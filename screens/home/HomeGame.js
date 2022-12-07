@@ -10,22 +10,31 @@ const HomeGame = ({ navigation: { navigate } }) => (
     >
       <Text style={{ fontSize: 30 }}>🔙</Text>
     </TouchableOpacity>
-    <View
-      style={{
-        justifyContent: "center",
-        alignContent: "flex-start",
-        margin: 10,
-      }}
-    >
+    <Header>
+      <View style={{ flex: 1 }}>
+        <Character
+          source={require("/Users/leesukcheol/memento/assets/images/bbiyak1.png")}
+        />
+      </View>
+      <View style={{ flex: 2 }}>
+        <Title>영츠하이머 예방 게임</Title>
+      </View>
+    </Header>
+    <Footer>
       <Target onPress={() => navigate("Stack", { screen: "Game1" })}>
         <Txt style={{ marginLeft: 30 }}>🎮ㅤ집중력</Txt>
       </Target>
       <Target onPress={() => navigate("Stack", { screen: "Game2" })}>
         <Txt style={{ marginLeft: 30 }}>🎮ㅤ기억력</Txt>
       </Target>
-      <Target onPress={() => navigate("Stack", { screen: "Game3First" })}>
+      <LastTarget onPress={() => navigate("Stack", { screen: "Game3First" })}>
         <Txt style={{ marginLeft: 30 }}>🎮ㅤ계산력</Txt>
-      </Target>
+      </LastTarget>
+    </Footer>
+    <View style={{ flexDirection: "row", alignItems: "center" }}>
+      <GameCharacter
+        source={require("/Users/leesukcheol/memento/assets/images/bbiyakgame.png")}
+      />
     </View>
   </Body>
 );
@@ -45,6 +54,16 @@ const Target = styled.TouchableOpacity`
   padding: 10px;
   box-shadow: 1px 1px 3px rgba(41, 30, 95, 0.9);
 `;
+const LastTarget = styled.TouchableOpacity`
+  justify-content: center;
+  align-items: flex-start;
+  background-color: #ffda79;
+  border-radius: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  padding: 10px;
+  box-shadow: 1px 1px 3px rgba(41, 30, 95, 0.9);
+`;
 const Txt = styled.Text`
   font-size: 20px;
   font-weight: bold;
@@ -53,27 +72,39 @@ const Txt = styled.Text`
   padding-right: 3px;
 `;
 const Title = styled.Text`
-  font-size: 27px;
+  font-size: 24px;
   font-weight: bold;
-  padding: 10px;
-  padding-left: 0px;
-  padding-right: 6px;
+  margin-top: 3px;
+  padding-right: 3px;
+  text-align: center;
+`;
+const Footer = styled.View`
+  margin: 10px;
+  justify-content: center;
+  align-content: center;
 `;
 const Character = styled.Image`
   width: 120px;
   height: 98px;
 `;
+const GameCharacter = styled.Image`
+  width: 300px;
+  height: 170px;
+  margin-bottom: 100px;
+  margin-left: 100px;
+  align-self: flex-end;
+`;
 const Header = styled.View`
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  margin-horizontal: 10px;
+  margin-horizontal: 20px;
   margin-top: 10px;
-  margin-bottom: 40px;
   border: 1px solid black;
   background-color: #f2f2f2;
   box-shadow: 1px 1px 3px rgba(41, 30, 95, 0.9);
   border-radius: 10px;
+  margin-bottom: 40px;
 `;
 
 export default HomeGame;

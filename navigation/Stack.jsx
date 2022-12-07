@@ -17,13 +17,19 @@ import Game3First from "../stack/game/Game3First";
 import Game3Second from "../stack/game/Game3Second";
 import Game3Third from "../stack/game/Game3Third";
 import Days from "../stack/calendarDay/Days";
+import Start from "../stack/Start";
 
 const NativeStack = createNativeStackNavigator();
 
 const Stack = () => (
   <NativeStack.Navigator screenOptions={{ headerBackTitleVisible: false }}>
     <NativeStack.Screen
-      name="Dayss"
+      name="Start"
+      component={Start}
+      options={{ headerShown: false }}
+    />
+    <NativeStack.Screen
+      name="Days"
       component={Days}
       options={{ headerShown: false }}
     />

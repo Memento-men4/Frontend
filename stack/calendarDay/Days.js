@@ -11,34 +11,6 @@ const TimeLine = () => {
   const [userIDNumber, setUserIDNumber] = useRecoilState(UserIDNumber);
   const [recordResponse, setRecordResponse] = useRecoilState(RecordResponse);
   const [timelineData, setTimelineData] = useRecoilState(TimelineData); // 타임라인 데이터
-  /* 서버로부터 날짜에 맞게 데이터 받아오기
-  const [text1, setText1] = useRecoilState(RecordText1);
-  const [text2, setText2] = useRecoilState(RecordText2);
-  const [text3, setText3] = useRecoilState(RecordText3);
-  const [text4, setText4] = useRecoilState(RecordText4);
-  axios
-  .get(
-    `http://ec2-52-79-187-71.ap-northeast-2.compute.amazonaws.com:8080/record?date=${day.dateString}&member_seq=${userIDNumber}`
-    )
-    .then(function (response) {
-      setRecordResponse(response.data);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-    const dummy = [
-      { time: "09:00", title: "한양대학교", description: `${text1}` },
-      { time: "10:45", title: "세탁기", description: `${text2}` },
-      {
-        time: "12:00",
-        title: "마쿠마라탕",
-        description: "마쿠마라탕에서 마라탕을 먹었다",
-      },
-      { time: "14:00", title: "스타일러", description: `${text3}` },
-      { time: "16:30", title: "집", description: `${text4}` },
-      { time: "18:30", title: "집", description: "이영지짱" },
-    ];
-  */
   return (
     <Timeline
       data={timelineData}

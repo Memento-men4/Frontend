@@ -25,12 +25,10 @@ const Game = ({ navigation: { navigate } }) => (
         <Txt style={{ marginLeft: 30 }}>🎮ㅤ계산력</Txt>
       </LastTarget>
     </View>
-    <View>
-      <View style={{ flexDirection: "row", alignItems: "center" }}>
-        <GameCharacter
-          source={require("/Users/leesukcheol/memento/assets/images/bbiyakgame.png")}
-        />
-      </View>
+    <View style={{ flexDirection: "row", alignItems: "center" }}>
+      <GameCharacter
+        source={require("/Users/leesukcheol/memento/assets/images/bbiyakgame.png")}
+      />
     </View>
   </Body>
 );

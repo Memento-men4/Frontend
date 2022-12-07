@@ -62,26 +62,13 @@ const CalendarView = ({ navigation: { navigate } }) => {
       /*isFocused*/
     ]
   ); // 주석 풀면 캘린더 스크린에 접속할 때마다 post가 실행됨
+  const tempname = "이석철";
   return (
     <Body>
       {login === 0 ? (
-        <View
-          style={{
-            flexDirection: "row",
-            marginVertical: 230,
-            justifyContent: "center",
-          }}
-        >
-          <View>
-            <Character
-              style={{ width: 100, height: 200 }}
-              source={require("/Users/leesukcheol/memento/assets/images/bbiyak4.png")}
-            />
-          </View>
-          <View style={{ justifyContent: "center", marginBottom: 50 }}>
-            <Txt style={{ textAlign: "center" }}>로그인이 필요합니다.</Txt>
-          </View>
-        </View> /* 여기에 그림 귀여운 거 들어갔으면 좋겠다! */
+        navigate("Stack", {
+          screen: "Start",
+        }) /* 로그인 안 되어 있으면 초기 화면으로 */
       ) : (
         <View>
           <Header>
@@ -99,7 +86,7 @@ const CalendarView = ({ navigation: { navigate } }) => {
                   fontWeight: "bold",
                   color: "black",
                 }}
-                text={userName + " 님"}
+                text={tempname + " 님"}
               />
             </View>
             <Character
