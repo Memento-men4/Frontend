@@ -23,6 +23,7 @@ const Login = ({ navigation: { navigate } }) => {
             <TextInput
               placeholder="아이디"
               autoCorrect={false}
+              autoCapitalize="none"
               keyboardType="email-address"
               style={{ backgroundColor: "white", width: 150 }}
             />
@@ -33,6 +34,7 @@ const Login = ({ navigation: { navigate } }) => {
               keyboardType="email-address"
               autoCorrect={false}
               placeholder="비밀번호"
+              autoCapitalize="none"
               secureTextEntry={true}
               style={{ backgroundColor: "white", width: 150 }}
             />
