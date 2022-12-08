@@ -62,7 +62,7 @@ const Answer = ({ navigation: { navigate } }) => {
               <Txt>{quizAnswer[num % 5]}</Txt>
             </View>
             <MaterialIcons
-              style={{ marginLeft: 100 }}
+              style={{ marginLeft: 75 }}
               name="arrow-forward-ios"
               size={24}
               color="#FE9A2E"

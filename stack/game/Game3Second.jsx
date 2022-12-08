@@ -6,8 +6,8 @@ const Game3Second = ({ navigation: { navigate } }) => {
   const getRandom = (min, max) => Math.floor(Math.random() * (max - min) + min);
   const num1 = getRandom(10, 100);
   const num2 = getRandom(10, 20);
-  const num3 = getRandom(50, 100);
-  const answer = num1 + num2 - num3;
+
+  const answer = num1 - num2;
   return (
     <Body style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
       <View style={{ flexDirection: "row", alignItems: "center" }}>
@@ -52,11 +52,11 @@ const Game3Second = ({ navigation: { navigate } }) => {
         </Target>
         <Target
           onPress={() => {
-            Alert.alert("😢 오답입니다.");
+            Alert.alert("🥳 정답입니다!");
             navigate("Stack", { screen: "Game3Third" });
           }}
         >
-          <Txt>💡 {num1 - num2}</Txt>
+          <Txt>💡 {answer}</Txt>
         </Target>
       </View>
       <View style={{ flexDirection: "row", alignItems: "space-between" }}>
@@ -79,11 +79,11 @@ const Game3Second = ({ navigation: { navigate } }) => {
         </Target>
         <Target
           onPress={() => {
-            Alert.alert("🥳 정답입니다!");
+            Alert.alert("😢 오답입니다.");
             navigate("Stack", { screen: "Game3Third" });
           }}
         >
-          <Txt>💡 {answer}</Txt>
+          <Txt>💡 {getRandom(10, 100)}</Txt>
         </Target>
         <Target
           onPress={() => {
