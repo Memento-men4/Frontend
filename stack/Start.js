@@ -9,6 +9,10 @@ import { ScrollView } from "react-native-gesture-handler";
  * 영츠하이머 예방을 더 재밌게. 검증된 치매 예방 게임을 통해 우리의 뇌를 활성화시켜요.
  * 잘 알려지지 않은 청년 치매 영츠하이머. 저희가 잘 알려드릴게요.
  */
+/* 
+  어플리케이션을 실행하면 처음 보이는 화면입니다. 스택 형식으로 넘어가는 이 페이지는
+  사용자에게
+*/
 const Start = ({ navigation: { navigate } }) => (
   <View style={{ backgroundColor: "white" }}>
     <Container pagingEnabled={true} horizontal={true}>

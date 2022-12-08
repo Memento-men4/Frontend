@@ -25,7 +25,7 @@ const TimeLine = () => {
       }}
       onEventPress={(event) => {
         console.log(event);
-        Alert.alert("Hello");
+        Alert.alert("선택하신 가전 제품을 실행합니다.");
       }}
     />
   );
@@ -49,6 +49,7 @@ const DailyQuizButton = () => {
     <Target
       onPress={() => {
         postToServer();
+        Alert.alert("오늘의 퀴즈를 생성합니다.");
       }}
     >
       <Txt>📝 퀴즈 생성</Txt>

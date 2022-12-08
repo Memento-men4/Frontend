@@ -122,7 +122,7 @@ const LG = ({ navigation: { navigate } }) => {
           console.log(error);
         });
       console.log("temp1:", temp1);
-      Alert.alert("설정이 완료되었습니다1");
+      Alert.alert("설정이 완료되었습니다.");
     };
     const [date1, onChangeDate1] = useState(new Date()); // 선택 날짜
     const [mode1, setMode1] = useState("date"); // 모달 유형
@@ -282,7 +282,7 @@ const LG = ({ navigation: { navigate } }) => {
         .catch(function (error) {
           console.log(error);
         });
-      Alert.alert("설정이 완료되었습니다2");
+      Alert.alert("설정이 완료되었습니다.");
       //타임라인으로 전송 구현해야함
     };
     const [date2, onChangeDate2] = useState(new Date()); // 선택 날짜
@@ -461,7 +461,7 @@ const LG = ({ navigation: { navigate } }) => {
         .catch(function (error) {
           console.log(error);
         });
-      Alert.alert("설정이 완료되었습니다3");
+      Alert.alert("설정이 완료되었습니다.");
       //타임라인으로 전송 구현해야함
     };
     return (
@@ -617,7 +617,7 @@ const LG = ({ navigation: { navigate } }) => {
         .catch(function (error) {
           console.log(error);
         });
-      Alert.alert("설정이 완료되었습니다4");
+      Alert.alert("설정이 완료되었습니다.");
       //타임라인으로 전송 구현해야함
     };
     return (

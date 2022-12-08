@@ -31,7 +31,7 @@ const HomeInfos = ({ navigation: { navigate } }) => (
       <Target onPress={() => navigate("Stack", { screen: "CurrentSituation" })}>
         <Type>
           <Txt style={{ color: "#FE9A2E" }}>INFO 1</Txt>
-          <Txt style={{ marginLeft: 20, color: "white" }}>치매 현황</Txt>
+          <Txt style={{ marginLeft: 22, color: "white" }}>치매 현황</Txt>
           <MaterialIcons
             style={{ marginLeft: 100 }}
             name="arrow-forward-ios"

@@ -4,6 +4,10 @@ export const loginFlag = atom({
   key: "loginFlag",
   default: 0,
 });
+export const UserIDNumber = atom({
+  key: "UserIDNumber",
+  default: 0,
+});
 /** 
  레코드텍스트 1234는 내가 데이즈.제이에스에 테스트해보려고 선언한 전역변수임.
  어차피 post로 시간, 타이틀, description으로 보낼거고, 그걸 다시 받아서 활용할 거니까
@@ -68,10 +72,6 @@ export const WriteNumber = atom({
 export const RecordDate = atom({
   key: "RecordDate",
   default: {},
-});
-export const UserIDNumber = atom({
-  key: "UserIDNumber",
-  default: 1,
 });
 export const UserName = atom({
   key: "UserName",
