@@ -1,5 +1,7 @@
 # 🧠 MEMENTO <img src="https://img.shields.io/badge/React%20Native-0.69.6-blue" />
 
+![MementoFrontEnd](https://user-images.githubusercontent.com/90544907/207659782-8dd9df2c-2afc-4e68-89a6-51fc3431fe0e.png)
+
 ## 🛠 Project Setup
 
 Server should be running before running the app.
