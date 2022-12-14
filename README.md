@@ -1,5 +1,9 @@
 # 🧠 MEMENTO <img src="https://img.shields.io/badge/React%20Native-0.69.6-blue" />
 
+## 🔗 Related Repositories
+
+- [Memento](https://github.com/Memento-men4)
+
 ## 🛠 Project Setup
 
 Server should be running before running the app.
@@ -55,6 +59,3 @@ $ npm start react-native run-ios (or npx react-native run-ios)
 - 🇰🇷 [정세희](https://github.com/sehee-jeong)
 - 🇰🇷 [조준상](https://github.com/wnstkd0622)
 
-## 🔗 Related Repositories
-
-- [Memento](https://github.com/Memento-men4)
