@@ -1,13 +1,9 @@
 ## 📅 Calender.jsx
-<view style={{flexDirection: "row"}}>
-  <img width="200" alt="캘린더 12:14"  src="https://user-images.githubusercontent.com/90544907/207784314-d73dd190-a35b-4117-82a6-878aa8037ccd.png">
-  <img width="200" alt="캘린더 dot" src="https://user-images.githubusercontent.com/90544907/207784327-30b5055e-b688-4251-949c-70a759212ca4.png">
-</view>
-로그인하면 나오는 홈 스크린이다.
 
+<img width="200" alt="캘린더 12:14" src="https://user-images.githubusercontent.com/90544907/207784314-d73dd190-a35b-4117-82a6-878aa8037ccd.png">
 <img width="200" alt="캘린더 dot" src="https://user-images.githubusercontent.com/90544907/207784327-30b5055e-b688-4251-949c-70a759212ca4.png">
 
-녹음을 하게 되면 해당 날짜에 이렇게 점이 찍힌다.
+로그인하면 나오는 홈 스크린이다. 녹음을 하게 되면 해당 날짜에 이렇게 점이 찍힌다.
 
 ## 👓 Dignoasis.jsx
 <img width="377" alt="자가진단 1" src="https://user-images.githubusercontent.com/90544907/207784381-3e93d616-87e4-42f0-9566-af80297561c4.png">
