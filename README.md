@@ -59,13 +59,22 @@ $ npm start react-native run-ios (or npx react-native run-ios)
 ## ⚙️ Feature Summary
 
 ### 👉 Three Navigations
-<p align="center">
+<p>
     <img src="https://user-images.githubusercontent.com/90544907/207840993-5911fb48-0f8b-4147-afa2-c4416ef3f049.gif" width= "200">
     <img src="https://user-images.githubusercontent.com/90544907/207841018-81337118-816d-49b0-8580-7027ad528fe9.gif" width= "200">
-    <img src="https://user-images.githubusercontent.com/90544907/207841030-acce60c0-7932-4244-b742-78bd95d3750e.gif" width="200">
+    <img src="https://user-images.githubusercontent.com/90544907/207841030-acce60c0-7932-4244-b742-78bd95d3750e.gif" width= "200">
 </p>
 ### 👉 Speech-To-Text
-
+<p>
+    <img width="200" alt="타임라인 녹음 LG 3" src="https://user-images.githubusercontent.com/90544907/207854435-b3a5b0a9-b978-47fb-934f-eff2b3851fa4.png">
+    <img width="200" alt="타임라인 녹음 LG 4" src="https://user-images.githubusercontent.com/90544907/207854443-54b89e58-e9a0-4315-bcfc-b9d8e6f3a48e.png">
+    <img width="200" alt="타임라인 부분 2" src="https://user-images.githubusercontent.com/90544907/207854513-9d0e0c86-bae5-475a-aef4-39dc493876ec.png">
+</p>
+<p>
+    <img src="https://user-images.githubusercontent.com/90544907/207840993-5911fb48-0f8b-4147-afa2-c4416ef3f049.gif" width= "200">
+    <img src="https://user-images.githubusercontent.com/90544907/207841018-81337118-816d-49b0-8580-7027ad528fe9.gif" width= "200">
+    <img src="https://user-images.githubusercontent.com/90544907/207841030-acce60c0-7932-4244-b742-78bd95d3750e.gif" width= "200">
+</p>
 
 ## 🔥 Contributors 🔥
 
