@@ -2,6 +2,11 @@
 
 ![MEMENTO_DESIGN](https://user-images.githubusercontent.com/90544907/207660887-19171e0d-c754-4fa0-9e8c-63aa8960cd90.png)
 
+## 🔗 Related Repositories
+
+- [Memento](https://github.com/Memento-men4)
+
+
 ## 🛠 Project Setup
 
 Server should be running before running the app.
@@ -51,12 +56,20 @@ $ npm start react-native run-ios (or npx react-native run-ios)
     "recoil": "^0.7.6",
     "styled-components": "^5.3.6"
 
+## ⚙️ Feature Summary
+
+### 👉 Three Navigations
+<p align="center">
+    ![drawer](https://user-images.githubusercontent.com/90544907/207840993-5911fb48-0f8b-4147-afa2-c4416ef3f049.gif)
+    ![stack](https://user-images.githubusercontent.com/90544907/207841018-81337118-816d-49b0-8580-7027ad528fe9.gif)
+    ![tabs](https://user-images.githubusercontent.com/90544907/207841030-acce60c0-7932-4244-b742-78bd95d3750e.gif)
+</p>
+### 👉 Speech-To-Text
+
+
 ## 🔥 Contributors 🔥
 
 - 🇰🇷 [이하늘](https://github.com/hanueleee)
 - 🇰🇷 [정세희](https://github.com/sehee-jeong)
 - 🇰🇷 [조준상](https://github.com/wnstkd0622)
 
-## 🔗 Related Repositories
-
-- [Memento](https://github.com/Memento-men4)
