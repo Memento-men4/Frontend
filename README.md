@@ -66,6 +66,7 @@ $ npm start react-native run-ios (or npx react-native run-ios)
     <img src="https://user-images.githubusercontent.com/90544907/207841030-acce60c0-7932-4244-b742-78bd95d3750e.gif" width= "200">
 </p>
 <br>
+
 ### 👉 Speech-To-Text
 <br>
 <p>
@@ -74,6 +75,7 @@ $ npm start react-native run-ios (or npx react-native run-ios)
     <img width="200" alt="타임라인 부분 2" src="https://user-images.githubusercontent.com/90544907/207854513-9d0e0c86-bae5-475a-aef4-39dc493876ec.png">
 </p>
 <br>
+
 ## 🔥 Contributors 🔥
 
 - 🇰🇷 [이하늘](https://github.com/hanueleee)
