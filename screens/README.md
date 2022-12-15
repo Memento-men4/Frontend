@@ -1,5 +1,5 @@
 ## 📅 Calender.jsx
-<p align="center">
+<p>
   <img width="200" alt="캘린더 12:14" src="https://user-images.githubusercontent.com/90544907/207784314-d73dd190-a35b-4117-82a6-878aa8037ccd.png">
   <img width="200" alt="캘린더 dot" src="https://user-images.githubusercontent.com/90544907/207784327-30b5055e-b688-4251-949c-70a759212ca4.png">
 </p>
