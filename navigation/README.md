@@ -1,13 +1,13 @@
 ## 🧭 Navigation
 
-https://user-images.githubusercontent.com/90544907/207835922-bb3cf944-32ca-4e68-9206-d01f6d7d0a5d.mov
+리액트 네이티브에서 제공하는 네비게이션을 사용하기 위해, **Root.jsx**안에 세 개의 Navigation이 구성되어 있다.
+이를 통해 화면 전환을 보다 매끄럽게 사용할 수 있었다.
+
+![drawer](https://user-images.githubusercontent.com/90544907/207838222-658e8826-b71b-43e3-9407-0ec7bc812de6.gif)
 ### ⬆️ Drawer.jsx 
 
-https://user-images.githubusercontent.com/90544907/207836149-5738aa10-ae3a-46aa-9186-01739438842c.mov
+![tabs](https://user-images.githubusercontent.com/90544907/207838414-e50dcbe9-65a4-419d-84f4-46e2ee241245.gif)
 ### ⬆️ Tabs.jsx 
 
-https://user-images.githubusercontent.com/90544907/207836269-46ed65a5-9277-42c6-a040-5c3e278306e1.mov
+![stack](https://user-images.githubusercontent.com/90544907/207837453-b7646342-b93b-4f32-9421-24053b97e883.gif)
 ### ⬆️ Stack.jsx
-
-
-
