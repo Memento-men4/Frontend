@@ -1,5 +1,5 @@
 ## 📅 Calender.jsx
-<img width="379" alt="캘린더 12:14" src="https://user-images.githubusercontent.com/90544907/207784314-d73dd190-a35b-4117-82a6-878aa8037ccd.png">
+<img width="379" alt="캘린더 12:14" src="https://user-images.githubusercontent.com/90544907/207784314-d73dd190-a35b-4117-82a6-878aa8037ccd.png"><img width="377" alt="레코딩 준비" src="https://user-images.githubusercontent.com/90544907/207785445-034cd784-d592-4461-b13b-24b8e73d5532.png">
 
 로그인하면 나오는 홈 스크린이다.
 
