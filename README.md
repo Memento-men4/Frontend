@@ -60,6 +60,7 @@ $ npm start react-native run-ios (or npx react-native run-ios)
 
 ### 👉 Three Navigations
 <p align="center">
+    <img src="https://user-images.githubusercontent.com/90544907/207840993-5911fb48-0f8b-4147-afa2-c4416ef3f049.gif" width= "200">
     ![drawer](https://user-images.githubusercontent.com/90544907/207840993-5911fb48-0f8b-4147-afa2-c4416ef3f049.gif)
     ![stack](https://user-images.githubusercontent.com/90544907/207841018-81337118-816d-49b0-8580-7027ad528fe9.gif)
     ![tabs](https://user-images.githubusercontent.com/90544907/207841030-acce60c0-7932-4244-b742-78bd95d3750e.gif)
