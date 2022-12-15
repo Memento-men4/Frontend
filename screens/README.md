@@ -1,4 +1,5 @@
 ## 📅 Calender.jsx
+<view> </view>
 <img width="200" alt="캘린더 12:14"  src="https://user-images.githubusercontent.com/90544907/207784314-d73dd190-a35b-4117-82a6-878aa8037ccd.png">
 
 로그인하면 나오는 홈 스크린이다.
