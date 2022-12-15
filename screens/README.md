@@ -5,7 +5,7 @@
 로그인하면 나오는 홈 스크린이다. 녹음을 하게 되면 해당 날짜에 이렇게 점이 찍힌다.
 
 ## 👓 Dignoasis.jsx
-<img width="200" alt="자가진단 1" src="https://user-images.githubusercontent.com/90544907/207784381-3e93d616-87e4-42f0-9566-af80297561c4.png"><img width="377" alt="자가진단 2" src="https://user-images.githubusercontent.com/90544907/207784385-c59617bb-8c01-4300-8f56-e631e795d9bf.png">
+<img width="200" alt="자가진단 1" src="https://user-images.githubusercontent.com/90544907/207784381-3e93d616-87e4-42f0-9566-af80297561c4.png"><img width="200" alt="자가진단 2" src="https://user-images.githubusercontent.com/90544907/207784385-c59617bb-8c01-4300-8f56-e631e795d9bf.png">
 
 사용자는 자가진단을 통해 영츠하이머 의심 정도를 확인할 수 있다.
 
