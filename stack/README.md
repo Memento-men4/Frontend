@@ -7,4 +7,5 @@
     <img width="180" alt="시작4" src="https://user-images.githubusercontent.com/90544907/207823211-03039639-a8be-441d-8b53-21b9eccbc7c0.png">
     <img width="180" alt="시작5" src="https://user-images.githubusercontent.com/90544907/207823221-9f98c5aa-ac97-4805-8abf-a05dceb95c0e.png">
 </p>
+<br>
 어플리케이션을 첫 실행했을 때, 사용자에게 어플리케이션의 요약된 핵심 기능을 확인할 수 있도록 제공되는 스크린
